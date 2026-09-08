@@ -320,24 +320,21 @@ export default function Testimonials() {
         setActiveIndex(index);
     }, []);
 
-    // Keyboard controls remain available
+    // Keyboard controls — only while the section is on screen and no field is focused
     useEffect(() => {
-        const handleKey = (event) => {
-            if (event.key === 'ArrowRight') {
-                goNext();
-            }
+        if (!visible) return;
 
-            if (event.key === 'ArrowLeft') {
-                goPrev();
-            }
+        const handleKey = (event) => {
+            const el = document.activeElement;
+            if (el && /^(INPUT|TEXTAREA|SELECT)$/.test(el.tagName)) return;
+
+            if (event.key === 'ArrowRight') goNext();
+            if (event.key === 'ArrowLeft') goPrev();
         };
 
         window.addEventListener('keydown', handleKey);
-
-        return () => {
-            window.removeEventListener('keydown', handleKey);
-        };
-    }, [goNext, goPrev]);
+        return () => window.removeEventListener('keydown', handleKey);
+    }, [visible, goNext, goPrev]);
 
     const activeTestimonial = testimonials[activeIndex];
 

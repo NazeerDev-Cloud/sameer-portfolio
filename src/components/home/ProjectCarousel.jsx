@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 export default function ProjectCarousel() {
     const [projects] = useState([
@@ -333,28 +333,26 @@ export default function ProjectCarousel() {
         }
     }, [projects]);
 
-    const handlePrev = () => {
+    const handlePrev = useCallback(() => {
         setActiveIndex((prev) =>
             prev === 0 ? projects.length - 1 : prev - 1
         );
-    };
+    }, [projects.length]);
 
-    const handleNext = () => {
+    const handleNext = useCallback(() => {
         setActiveIndex((prev) =>
             prev === projects.length - 1 ? 0 : prev + 1
         );
-    };
+    }, [projects.length]);
 
-    // Auto-play carousel
+    // Auto-play carousel (timer resets on any index change)
     useEffect(() => {
         if (selectedProject) return;
 
-        const interval = setInterval(() => {
-            handleNext();
-        }, 6000);
+        const interval = setInterval(handleNext, 6000);
 
         return () => clearInterval(interval);
-    }, [activeIndex, selectedProject]);
+    }, [activeIndex, selectedProject, handleNext]);
 
     // Keyboard navigation
     useEffect(() => {
@@ -372,7 +370,8 @@ export default function ProjectCarousel() {
         window.addEventListener("keydown", handleKey);
 
         return () => window.removeEventListener("keydown", handleKey);
-    }, [selectedProject]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedProject, handlePrev, handleNext]);
 
     // Lock body scroll when modal is open
     useEffect(() => {
@@ -604,9 +603,11 @@ export default function ProjectCarousel() {
                                             </div>
 
                                             {/* Duration Badge */}
-                                            <div className="absolute top-4 right-4 z-10 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-md">
-                                                {stats.duration}
-                                            </div>
+                                            {stats.duration && stats.duration !== "Auto" && (
+                                                <div className="absolute top-4 right-4 z-10 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-md">
+                                                    {stats.duration}
+                                                </div>
+                                            )}
 
                                             {/* Play Button */}
                                             {isActive && (
@@ -646,30 +647,32 @@ export default function ProjectCarousel() {
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-2 text-xs text-[#8a8fa3]">
-                                                <svg
-                                                    className="h-4 w-4"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                    strokeWidth="2"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                                                    />
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                                                    />
-                                                </svg>
+                                            {stats.views && stats.views !== "Auto" && (
+                                                <div className="flex items-center gap-2 text-xs text-[#8a8fa3]">
+                                                    <svg
+                                                        className="h-4 w-4"
+                                                        fill="none"
+                                                        viewBox="0 0 24 24"
+                                                        stroke="currentColor"
+                                                        strokeWidth="2"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                                        />
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                                        />
+                                                    </svg>
 
-                                                <span className="font-semibold">
-                                                    {stats.views}
-                                                </span>
-                                            </div>
+                                                    <span className="font-semibold">
+                                                        {stats.views}
+                                                    </span>
+                                                </div>
+                                            )}
                                         </div>
                                     </div>
                                 );

@@ -1,18 +1,24 @@
 /**
  * Compress every .mp4 under public/videos in place.
  *
- *  - H.264 / CRF 24 (visually near-lossless for web), preset "faster"
- *  - long edge capped at 1920px, aspect ratio preserved, even dimensions
- *  - AAC 128 kbps stereo audio (kept optional if source has none)
+ *  - H.264 / CRF 23 (visually transparent for web), preset "slow"
+ *    ("slow" buys ~15-20% smaller files than "faster" at the same quality,
+ *     which matters because most clips here were already encoded once)
+ *  - resolution is PRESERVED; the long edge is only capped if it exceeds
+ *    1920px (none of the current clips do), aspect ratio kept, even dims
+ *  - audio is stream-copied when it is already AAC <= 160 kbps, otherwise
+ *    re-encoded to AAC 128 kbps stereo (avoids a second generation of
+ *    audio loss on clips that are already fine)
  *  - +faststart so the moov atom sits at the front (instant web playback)
  *
  * The re-encoded file only replaces the original when it is meaningfully
  * smaller; otherwise the original is kept untouched.
  *
- * Run:  node scripts/compress-videos.mjs
+ * Run:  npm run compress:videos   (or: node scripts/compress-videos.mjs)
  */
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -26,10 +32,12 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const VIDEO_DIR = path.join(ROOT, "public", "videos");
 
 const MAX_EDGE = 1920;
-const CRF = "24";
-const PRESET = "faster";
+const CRF = "23";
+const PRESET = "slow";
 const AUDIO_BITRATE = "128k";
-const MIN_SAVING = 0.03; // require at least 3% smaller to bother replacing
+const AUDIO_COPY_MAX_BPS = 160_000; // copy AAC audio at or below this instead of re-encoding
+const MIN_SAVING = 0.02; // require at least 2% smaller to bother replacing
+const THREADS = String(Math.max(1, os.cpus().length));
 
 const mb = (bytes) => bytes / 1024 / 1024;
 const fmt = (bytes) => `${mb(bytes).toFixed(1)} MB`;
@@ -49,20 +57,27 @@ function probe(file) {
         FFPROBE,
         [
             "-v", "error",
-            "-select_streams", "v:0",
-            "-show_entries", "stream=width,height",
+            "-show_entries", "stream=index,codec_type,codec_name,width,height,bit_rate",
             "-of", "json",
             file,
         ],
         { encoding: "utf8" }
     );
-    const s = JSON.parse(json).streams?.[0] || {};
-    return { width: Number(s.width) || 0, height: Number(s.height) || 0 };
+    const streams = JSON.parse(json).streams || [];
+    const v = streams.find((s) => s.codec_type === "video") || {};
+    const a = streams.find((s) => s.codec_type === "audio");
+    return {
+        width: Number(v.width) || 0,
+        height: Number(v.height) || 0,
+        hasAudio: Boolean(a),
+        audioCodec: a?.codec_name || null,
+        audioBps: Number(a?.bit_rate) || 0,
+    };
 }
 
 function targetSize(w, h) {
     if (!w || !h || Math.max(w, h) <= MAX_EDGE) {
-        return { w: w || 1280, h: h || 720 };
+        return { w: w || 0, h: h || 0, scaled: false };
     }
     let tw;
     let th;
@@ -73,7 +88,7 @@ function targetSize(w, h) {
         th = MAX_EDGE;
         tw = Math.round((w * MAX_EDGE) / h);
     }
-    return { w: tw - (tw % 2), h: th - (th % 2) };
+    return { w: tw - (tw % 2), h: th - (th % 2), scaled: true };
 }
 
 const files = walk(VIDEO_DIR).sort();
@@ -82,8 +97,9 @@ if (!files.length) {
     process.exit(0);
 }
 
-console.log(`ffmpeg: ${FFMPEG}`);
-console.log(`Compressing ${files.length} videos …\n`);
+console.log(`ffmpeg:  ${FFMPEG}`);
+console.log(`ffprobe: ${FFPROBE}`);
+console.log(`Compressing ${files.length} videos (CRF ${CRF}, preset ${PRESET}) …\n`);
 
 const rows = [];
 let totalBefore = 0;
@@ -94,16 +110,26 @@ for (const file of files) {
     const before = fs.statSync(file).size;
     totalBefore += before;
 
-    let dims;
+    let info;
     try {
-        dims = probe(file);
+        info = probe(file);
     } catch {
-        dims = { width: 0, height: 0 };
+        info = { width: 0, height: 0, hasAudio: false, audioCodec: null, audioBps: 0 };
     }
-    const { w, h } = targetSize(dims.width, dims.height);
+    const { w, h, scaled } = targetSize(info.width, info.height);
+
+    const audioArgs =
+        !info.hasAudio
+            ? ["-an"]
+            : info.audioCodec === "aac" && info.audioBps > 0 && info.audioBps <= AUDIO_COPY_MAX_BPS
+                ? ["-map", "0:a:0", "-c:a", "copy"]
+                : ["-map", "0:a:0?", "-c:a", "aac", "-b:a", AUDIO_BITRATE, "-ac", "2"];
+
+    const videoFilter = scaled ? ["-vf", `scale=${w}:${h}:flags=lanczos`] : [];
 
     const tmp = `${file}.tmp.mp4`;
-    process.stdout.write(`• ${rel}  (${fmt(before)}, ${dims.width}x${dims.height} → ${w}x${h}) … `);
+    const dimNote = scaled ? `${info.width}x${info.height} → ${w}x${h}` : `${info.width}x${info.height} kept`;
+    process.stdout.write(`• ${rel}  (${fmt(before)}, ${dimNote}) … `);
 
     try {
         execFileSync(
@@ -111,16 +137,18 @@ for (const file of files) {
             [
                 "-hide_banner", "-loglevel", "error", "-y",
                 "-i", file,
-                "-map", "0:v:0", "-map", "0:a:0?",
-                "-c:v", "libx264", "-crf", CRF, "-preset", PRESET, "-pix_fmt", "yuv420p",
-                "-vf", `scale=${w}:${h}`,
-                "-c:a", "aac", "-b:a", AUDIO_BITRATE, "-ac", "2",
+                "-map", "0:v:0",
+                "-c:v", "libx264", "-crf", CRF, "-preset", PRESET,
+                "-profile:v", "high", "-pix_fmt", "yuv420p",
+                "-threads", THREADS,
+                ...videoFilter,
+                ...audioArgs,
                 "-movflags", "+faststart",
                 tmp,
             ],
             { stdio: ["ignore", "ignore", "inherit"] }
         );
-    } catch (err) {
+    } catch {
         if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
         console.log("FAILED");
         rows.push({ rel, before, after: before, saved: 0, action: "error" });
@@ -141,7 +169,7 @@ for (const file of files) {
         fs.unlinkSync(tmp);
         totalAfter += before;
         rows.push({ rel, before, after: before, saved: 0, action: "kept original" });
-        console.log(`kept original (${fmt(after)})`);
+        console.log(`kept original (re-encode was ${fmt(after)})`);
     }
 }
 
@@ -176,6 +204,7 @@ fs.writeFileSync(
     JSON.stringify(
         {
             generatedAt: new Date().toISOString(),
+            settings: { crf: CRF, preset: PRESET, maxEdge: MAX_EDGE },
             totalBefore,
             totalAfter,
             rows,

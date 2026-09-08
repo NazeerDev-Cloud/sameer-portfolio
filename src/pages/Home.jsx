@@ -11,12 +11,11 @@ import Faq from '../components/home/Faq'
 import Contact from '../components/home/Contact'
 
 export default function Home() {
-    // ✅ State for selected pricing plan (pura object store karega)
+    // Selected pricing plan / service — a new object each click so the
+    // Contact form's effect always re-fires and pre-fills the field.
     const [selectedPlan, setSelectedPlan] = useState(null)
 
-    // ✅ Handle plan selection from Pricing component
     const handleSelectPlan = (plan) => {
-        // Naya object har click par Contact useEffect ko trigger karega
         setSelectedPlan({ ...plan })
     }
 
@@ -36,7 +35,7 @@ export default function Home() {
 
             {/* Services */}
             <div id="services" className="scroll-mt-28">
-                <ProfessionalServices />
+                <ProfessionalServices onBookService={handleSelectPlan} />
             </div>
 
             {/* Process */}

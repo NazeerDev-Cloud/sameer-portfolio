@@ -41,7 +41,6 @@ export default function Navbar() {
     const linksRef = useRef([]);
     const ctaRef = useRef(null);
     const mobileMenuRef = useRef(null);
-    const indicatorRef = useRef(null);
 
     // ── URL ke according active navigation update ──
     useEffect(() => {

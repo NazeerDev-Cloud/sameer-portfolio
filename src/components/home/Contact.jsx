@@ -14,13 +14,42 @@ const COLORS = {
 };
 const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
-// ── Backend API Configuration ──
-const API_CONFIG = {
-    // Development (local testing)
-    endpoint: "http://localhost:5000/api/contact",
+// ── Contact delivery ──
+// Set VITE_CONTACT_ENDPOINT in an .env file to POST submissions to your own
+// backend / form service (Formspree, Web3Forms, etc). When it is not set the
+// form falls back to opening a pre-filled WhatsApp message — so it always works.
+const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || "";
+const WHATSAPP_NUMBER = "923039800035";
+const CONTACT_EMAIL = "connectsameervisuals@gmail.com";
 
-    // Production (deployment ke baad ye uncomment karna aur upar wala comment karna)
-    // endpoint: "https://your-backend-url.onrender.com/api/contact",
+const SERVICE_LABELS = {
+    starter: "Starter - $149/video",
+    professional: "Professional - $299/video",
+    signature: "Signature - $499/video",
+    custom: "Custom Package",
+    youtube: "YouTube Editing",
+    shortform: "Short Form Content",
+    saas: "SaaS Explainer Videos",
+    documentary: "Documentary Editing",
+    tutorial: "Tutorials & Walkthroughs",
+    aivideo: "AI Generated Videos",
+    other: "Other / Custom",
+};
+
+const buildMessage = (form) => {
+    const lines = [
+        "New project enquiry — Sameer Visuals",
+        "",
+        `Name: ${form.name}`,
+        `Email: ${form.email}`,
+        form.phone ? `Phone: ${form.phone}` : null,
+        `Service: ${SERVICE_LABELS[form.service] || form.service}`,
+        form.budget ? `Budget: ${form.budget}` : null,
+        "",
+        "Project details:",
+        form.message,
+    ];
+    return lines.filter(Boolean).join("\n");
 };
 
 // ── Pricing Plans ──
@@ -284,11 +313,15 @@ const SelectField = ({ label, value, onChange, options, required, error }) => {
 };
 
 // ── Contact Info Card ──
-const InfoCard = ({ icon, label, value, sub, link, index, visible }) => (
-    <a
-        href={link || "#"}
-        target={link ? "_blank" : undefined}
-        rel="noreferrer"
+const InfoCard = ({ icon, label, value, sub, link, index, visible }) => {
+    const Wrapper = link ? "a" : "div";
+    const wrapperProps = link
+        ? { href: link, target: "_blank", rel: "noreferrer" }
+        : {};
+
+    return (
+    <Wrapper
+        {...wrapperProps}
         className="info-card group flex items-center gap-5 p-6 rounded-2xl border transition-all duration-500"
         style={{
             borderColor: "#e6e7ec",
@@ -320,17 +353,20 @@ const InfoCard = ({ icon, label, value, sub, link, index, visible }) => (
                 <p className="text-[#8a8fa3] text-[14px] mt-1">{sub}</p>
             )}
         </div>
-        <svg
-            className="w-5 h-5 flex-shrink-0 transition-all duration-500 group-hover:translate-x-1 opacity-40 group-hover:opacity-100"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke={COLORS.right}
-            strokeWidth={2.5}
-        >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-    </a>
-);
+        {link && (
+            <svg
+                className="w-5 h-5 flex-shrink-0 transition-all duration-500 group-hover:translate-x-1 opacity-40 group-hover:opacity-100"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke={COLORS.right}
+                strokeWidth={2.5}
+            >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+        )}
+    </Wrapper>
+    );
+};
 
 // ══════════════════════════════════════════
 //  CONTACT — Main Component
@@ -394,6 +430,7 @@ export default function Contact({ selectedPlan }) {
         { value: "saas", label: "SaaS Explainer Videos" },
         { value: "documentary", label: "Documentary Editing" },
         { value: "tutorial", label: "Tutorials & Walkthroughs" },
+        { value: "aivideo", label: "AI Generated Videos" },
         { value: "other", label: "Other / Custom" },
     ];
 
@@ -431,7 +468,17 @@ export default function Contact({ selectedPlan }) {
         return newErrors;
     };
 
-    // ✅ Updated handleSubmit with Backend API
+    const resetForm = () => {
+        setForm({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
+    };
+
+    const showSuccess = () => {
+        setLoading(false);
+        setSubmitted(true);
+        resetForm();
+        setTimeout(() => setSubmitted(false), 10000);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -444,44 +491,43 @@ export default function Contact({ selectedPlan }) {
         setErrors({});
         setLoading(true);
 
-        try {
-            const response = await fetch(API_CONFIG.endpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(form),
-            });
-
-            const data = await response.json();
-
-            if (data.success) {
-                setLoading(false);
-                setSubmitted(true);
-
-                // Form reset
-                setForm({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    service: "",
-                    budget: "",
-                    message: "",
+        // 1) A real backend / form service was configured → POST to it
+        if (CONTACT_ENDPOINT) {
+            try {
+                const res = await fetch(CONTACT_ENDPOINT, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json", Accept: "application/json" },
+                    body: JSON.stringify(form),
                 });
 
-                // Auto hide success message after 10 seconds
-                setTimeout(() => {
-                    setSubmitted(false);
-                }, 10000);
-            } else {
-                setLoading(false);
-                alert(data.message || 'Failed to send message. Please try again.');
+                if (res.ok) {
+                    showSuccess();
+                    return;
+                }
+                throw new Error(`Request failed (${res.status})`);
+            } catch (err) {
+                console.error("Contact submit failed, falling back to WhatsApp:", err);
+                // fall through to the WhatsApp fallback below
             }
-        } catch (error) {
-            console.error('Error:', error);
-            setLoading(false);
-            alert('Network error. Please check your connection and try again.');
         }
+
+        // 2) Fallback — open a pre-filled WhatsApp message (works with no backend)
+        const text = encodeURIComponent(buildMessage(form));
+        const win = window.open(
+            `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`,
+            "_blank",
+            "noopener,noreferrer"
+        );
+
+        // popup blocked → hand them a mailto as a last resort
+        if (!win) {
+            window.location.href =
+                `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
+                    "New project enquiry"
+                )}&body=${text}`;
+        }
+
+        showSuccess();
     };
 
     const handleChange = (field) => (e) => {
@@ -908,7 +954,9 @@ export default function Contact({ selectedPlan }) {
                                     <div>
                                         <h4 className="text-[#1b1f3b] text-[32px] font-extrabold mb-3">Thank You!</h4>
                                         <p className="text-[#4b5563] text-[17px] leading-relaxed max-w-md">
-                                            Your response has been recorded and we will contact you shortly. I'll review your project details and get back to you within{" "}
+                                            Your enquiry is on its way. If a chat window didn't open,
+                                            reach me directly on WhatsApp — I'll review your project
+                                            and reply within{" "}
                                             <span style={{ color: COLORS.left }} className="font-bold">
                                                 24 hours
                                             </span>

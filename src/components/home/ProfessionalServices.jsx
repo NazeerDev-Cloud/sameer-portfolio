@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 
-export default function ProfessionalServices() {
+export default function ProfessionalServices({ onBookService }) {
     const [activeService, setActiveService] = useState(0);
     const sectionRef = useRef(null);
-    const panelRef = useRef(null);
 
     const services = [
         {
             id: "01",
+            key: "youtube",
             title: "YouTube Editing",
             tagline: "Retention-Engineered Narratives",
             desc: "High-retention video editing designed to maximize watch time. We map out precise pacing, integrate custom visual hooks, eliminate dead space, and build dynamic storylines that keep viewers glued to the screen from the first second to the final frame.",
@@ -22,6 +22,7 @@ export default function ProfessionalServices() {
         },
         {
             id: "02",
+            key: "shortform",
             title: "Short Form Content",
             tagline: "Algorithm-Snapping Micro-Edits",
             desc: "Turn passive scrolling into active engagement. Engineered specifically for TikTok, YouTube Shorts, and Instagram Reels, this service delivers high-impact kinetic typography, native sound trends, split-second pacing, and flawless loop structures.",
@@ -36,6 +37,7 @@ export default function ProfessionalServices() {
         },
         {
             id: "03",
+            key: "saas",
             title: "SaaS Explainer Videos",
             tagline: "High-Conversion Product Spotlights",
             desc: "Translate complex tech into elegant, understandable value propositions. We design premium platform product walkthroughs utilizing sleek UI zooming, custom cursor tracking, minimalist framing, and professional voiceover syncing to drive software sign-ups.",
@@ -50,6 +52,7 @@ export default function ProfessionalServices() {
         },
         {
             id: "04",
+            key: "documentary",
             title: "Documentary Editing",
             tagline: "Cinematic Long-Form Storytelling",
             desc: "Premium pacing engineered for investigative and documentary-style video content. We balance structural soundscapes, multi-cam archival footage synchronization, deep color grading matching, and cinematic pauses to evoke powerful user emotion.",
@@ -64,6 +67,7 @@ export default function ProfessionalServices() {
         },
         {
             id: "05",
+            key: "tutorial",
             title: "Tutorials & Walkthroughs",
             tagline: "Structured Educational Architecture",
             desc: "Clear, authoritative guide blueprints designed for technical execution. We emphasize crystal-clear screen recordings, automated spotlight focus tracking, structural chapter markers, and contextual graphic overlays to make learning completely friction-free.",
@@ -78,6 +82,7 @@ export default function ProfessionalServices() {
         },
         {
             id: "06",
+            key: "aivideo",
             title: "AI Generated Videos",
             tagline: "Prompt-to-Screen Visual Production",
             desc: "Fully AI-generated video content — from concept prompts to a finished, broadcast-ready cut. We build consistent characters, product scenes, and cinematic b-roll with generative models, then polish everything with color grading, sound design, and motion graphics.",
@@ -118,22 +123,17 @@ export default function ProfessionalServices() {
 
     const currentService = services[activeService];
 
-    // Handle Book Service Click
+    // Handle Book Service Click — pre-fills the contact form with this service
     const handleBookService = () => {
-        // Scroll to contact form
-        const contactSection = document.getElementById("contact");
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: "smooth" });
-
-            // Set the selected service in the form after a small delay to ensure form is rendered
-            setTimeout(() => {
-                const serviceSelect = document.getElementById("service-select");
-                if (serviceSelect) {
-                    serviceSelect.value = currentService.title;
-                    serviceSelect.dispatchEvent(new Event("change", { bubbles: true }));
-                }
-            }, 500);
+        if (typeof onBookService === "function") {
+            onBookService({ value: currentService.key, name: currentService.title });
         }
+
+        requestAnimationFrame(() => {
+            document
+                .getElementById("contact")
+                ?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
     };
 
     return (
@@ -306,7 +306,6 @@ export default function ProfessionalServices() {
                         {/* RIGHT: Execution Panel */}
                         <div className="scroll-reveal lg:col-span-7">
                             <div
-                                ref={panelRef}
                                 key={activeService}
                                 className="panel-fade-in relative flex min-h-[680px] flex-col overflow-hidden rounded-3xl border border-[#e6e7ec] bg-white p-6 shadow-[0_25px_60px_rgba(27,31,59,0.1)] backdrop-blur-2xl sm:p-8 md:p-10"
                             >

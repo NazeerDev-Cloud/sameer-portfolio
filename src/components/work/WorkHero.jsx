@@ -1,13 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 
 export default function WorkHero() {
-    const [isVideoLoaded, setIsVideoLoaded] = useState(false);
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-    const videoRef = useRef(null);
     const sectionRef = useRef(null);
 
-    // Replace with your actual showreel video URL
-    const showreelUrl = "https://sample-videos.com/video321/mp4/720/big_buck_bunny_720_1mb.mp4";
+    // Local showreel loop (see public/videos)
+    const showreelUrl = encodeURI("/videos/Long Form/Motion Graphics.mp4");
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -99,15 +97,13 @@ export default function WorkHero() {
                 {/* Background Video */}
                 <div className="absolute inset-0">
                     <video
-                        ref={videoRef}
                         className="h-full w-full object-cover"
                         src={showreelUrl}
                         autoPlay
                         muted
                         loop
                         playsInline
-                        preload="auto"
-                        onLoadedData={() => setIsVideoLoaded(true)}
+                        preload="metadata"
                     />
 
                     {/* Light Scrim */}
