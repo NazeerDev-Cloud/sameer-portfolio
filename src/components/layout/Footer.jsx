@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import logoMark from "../../assets/logo-mark.svg";
 
 const EMAIL = "connectsameervisuals@gmail.com";
 const PHONE_NUMBER = "+923039800035";
@@ -58,7 +59,6 @@ export default function Footer() {
     const quickLinks = [
         { name: "Home", to: "/", type: "route" },
         { name: "Work", to: "/work", type: "route" },
-        { name: "About Us", to: "/#about", type: "hash" },
         { name: "Services", to: "/#services", type: "hash" },
         { name: "Portfolio", to: "/#projects", type: "hash" },
         { name: "Testimonials", to: "/#testimonials", type: "hash" },
@@ -72,15 +72,6 @@ export default function Footer() {
             icon: (
                 <svg fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                </svg>
-            ),
-        },
-        {
-            name: "YouTube",
-            href: "https://youtube.com",
-            icon: (
-                <svg fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                 </svg>
             ),
         },
@@ -108,27 +99,27 @@ export default function Footer() {
         <>
             <footer
                 ref={footerRef}
-                className="relative w-full overflow-hidden text-white"
+                className="relative w-full overflow-hidden border-t border-[#e6e7ec] bg-[#f6f7f9] text-[#1b1f3b]"
             >
                 {/* ===== TOP GRADIENT DIVIDER ===== */}
-                <div className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#623BFD] to-transparent" />
+                <div className="pointer-events-none absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#8168F0] to-transparent" />
 
                 {/* ===== TOP BLEND ===== */}
                 <div
                     className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-40"
                     style={{
                         background:
-                            "linear-gradient(to bottom, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                            "linear-gradient(to bottom, #f6f7f9 0%, rgba(250,248,255,0.7) 50%, transparent 100%)",
                     }}
                 />
 
                 {/* ===== AMBIENT GLOWS ===== */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="orb-glow orb-1 absolute -top-40 left-[-10%] h-[600px] w-[600px] rounded-full bg-[#623BFD]/20 blur-[150px]" />
+                    <div className="orb-glow orb-1 absolute -top-40 left-[-10%] h-[600px] w-[600px] rounded-full bg-[#8168F0]/4 blur-[150px]" />
 
-                    <div className="orb-glow orb-2 absolute right-[-10%] bottom-0 h-[600px] w-[600px] rounded-full bg-[#B296FE]/15 blur-[150px]" />
+                    <div className="orb-glow orb-2 absolute right-[-10%] bottom-0 h-[600px] w-[600px] rounded-full bg-[#B296FE]/4 blur-[150px]" />
 
-                    <div className="orb-glow orb-3 absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#D4C8FE]/8 blur-[130px]" />
+                    <div className="orb-glow orb-3 absolute top-1/2 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#D4C8FE]/6 blur-[130px]" />
                 </div>
 
                 {/* ===== FLOATING PARTICLES ===== */}
@@ -136,7 +127,7 @@ export default function Footer() {
                     {[...Array(12)].map((_, index) => (
                         <div
                             key={index}
-                            className="particle absolute rounded-full bg-[#D4C8FE]"
+                            className="particle absolute rounded-full bg-[#8b5cf6]"
                             style={{
                                 width: `${2 + Math.random() * 4}px`,
                                 height: `${2 + Math.random() * 4}px`,
@@ -147,89 +138,6 @@ export default function Footer() {
                             }}
                         />
                     ))}
-                </div>
-
-                {/* ===== CTA BANNER ===== */}
-                <div className="relative z-10 w-full px-6 pt-24 sm:px-12 md:pt-32 lg:px-20 xl:px-28">
-                    <div className="scroll-reveal relative w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#623BFD]/20 via-[#080B29]/60 to-[#B296FE]/15 p-10 shadow-[0_25px_60px_rgba(98,59,253,0.25)] backdrop-blur-xl sm:p-14 md:p-20">
-                        <div className="cta-glow-1 pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-[#623BFD]/25 blur-[100px]" />
-                        <div className="cta-glow-2 pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-[#B296FE]/20 blur-[100px]" />
-
-                        <div className="relative flex flex-col items-center justify-between gap-10 text-center lg:flex-row lg:text-left">
-                            <div className="max-w-3xl flex-1">
-                                <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-[#623BFD]/30 bg-[#623BFD]/10 px-6 py-3 backdrop-blur-md">
-                                    <span className="pulse-dot h-2.5 w-2.5 rounded-full bg-[#B296FE] shadow-[0_0_10px_rgba(178,150,254,0.8)]" />
-
-                                    <span className="text-[15px] font-semibold uppercase tracking-[0.15em] text-[#D4C8FE]">
-                                        Let's Create Together
-                                    </span>
-                                </div>
-
-                                <h3 className="text-[36px] font-extrabold leading-[1.15] tracking-tight text-white sm:text-[44px] md:text-[52px] lg:text-[60px]">
-                                    Ready to Elevate Your{" "}
-                                    <span className="heading-gradient inline-block bg-gradient-to-r from-[#623BFD] via-[#D4C8FE] to-[#B296FE] bg-clip-text text-transparent">
-                                        Visual Story?
-                                    </span>
-                                </h3>
-
-                                <p className="mt-6 text-[20px] leading-[1.7] text-[#B8BDD9]">
-                                    Let's collaborate on your next cinematic
-                                    project. From concept to final cut — we
-                                    bring vision to life.
-                                </p>
-                            </div>
-
-                            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col xl:flex-row">
-                                {/* WhatsApp Button */}
-                                <a
-                                    href={WHATSAPP_LINK}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="cta-premium group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#623BFD] via-[#8562FE] to-[#B296FE] px-10 py-5 text-[18px] font-semibold text-white shadow-[0_10px_35px_rgba(98,59,253,0.4)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_45px_rgba(98,59,253,0.55)]"
-                                >
-                                    <span className="relative z-10">
-                                        WhatsApp Us
-                                    </span>
-
-                                    <svg
-                                        className="relative z-10 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2.5"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M17 8l4 4m0 0l-4 4m4-4H3"
-                                        />
-                                    </svg>
-                                </a>
-
-                                {/* Call Button */}
-                                <a
-                                    href={`tel:${PHONE_NUMBER}`}
-                                    className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/[0.04] px-10 py-5 text-[18px] font-semibold text-[#D4C8FE] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#623BFD]/40 hover:bg-white/[0.08] hover:text-white"
-                                >
-                                    Call Now
-
-                                    <svg
-                                        className="h-5 w-5"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                                        />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 {/* ===== MAIN FOOTER CONTENT ===== */}
@@ -243,36 +151,28 @@ export default function Footer() {
                                 onClick={handleHomeClick}
                                 className="group flex w-fit items-center gap-4"
                             >
-                                <div className="relative flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#623BFD] to-[#B296FE] shadow-[0_0_25px_rgba(98,59,253,0.4)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
-                                    <svg
-                                        className="h-7 w-7 text-white"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
-                                        />
-                                    </svg>
+                                <div className="relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-2xl bg-[#141414] shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition-transform duration-500 group-hover:scale-110 group-hover:rotate-6">
+                                    <img
+                                        src={logoMark}
+                                        alt="Sameer Visuals logo"
+                                        className="h-full w-full"
+                                    />
 
                                     <div className="icon-shimmer absolute inset-0 rounded-2xl" />
                                 </div>
 
                                 <div>
-                                    <h4 className="text-[26px] font-extrabold tracking-tight text-white transition-colors duration-300 group-hover:text-[#D4C8FE]">
+                                    <h4 className="text-[26px] font-extrabold tracking-tight text-[#1b1f3b] transition-colors duration-300 group-hover:text-[#8168F0]">
                                         Sameer Visuals
                                     </h4>
 
-                                    <p className="text-[13px] font-semibold uppercase tracking-widest text-[#B296FE]">
-                                        Cinematic Post-Production
+                                    <p className="text-[13px] font-semibold uppercase tracking-widest text-[#8168F0]">
+                                        Cinematic Video Editing
                                     </p>
                                 </div>
                             </Link>
 
-                            <p className="mt-8 max-w-md text-[18px] leading-[1.8] text-[#B8BDD9]">
+                            <p className="mt-8 max-w-md text-[17px] leading-[1.8] text-[#4b5563]">
                                 Crafting high-impact visual stories through
                                 cinematic editing, color grading, and motion
                                 design. We turn raw footage into unforgettable
@@ -284,9 +184,9 @@ export default function Footer() {
                                 {/* Email */}
                                 <a
                                     href={`mailto:${EMAIL}`}
-                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#B8BDD9] transition-all duration-500 hover:text-white"
+                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#4b5563] transition-all duration-500 hover:text-[#1b1f3b]"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[#B296FE] transition-all duration-500 group-hover:border-[#623BFD]/50 group-hover:bg-[#623BFD]/15 group-hover:text-white">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#8168F0] transition-all duration-500 group-hover:border-[#8168F0]/50 group-hover:bg-[#8168F0]/10 group-hover:text-[#8168F0]">
                                         <svg
                                             className="h-5 w-5"
                                             fill="none"
@@ -308,9 +208,9 @@ export default function Footer() {
                                 {/* Call */}
                                 <a
                                     href={`tel:${PHONE_NUMBER}`}
-                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#B8BDD9] transition-all duration-500 hover:text-white"
+                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#4b5563] transition-all duration-500 hover:text-[#1b1f3b]"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[#B296FE] transition-all duration-500 group-hover:border-[#623BFD]/50 group-hover:bg-[#623BFD]/15 group-hover:text-white">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#8168F0] transition-all duration-500 group-hover:border-[#8168F0]/50 group-hover:bg-[#8168F0]/10 group-hover:text-[#8168F0]">
                                         <svg
                                             className="h-5 w-5"
                                             fill="none"
@@ -334,9 +234,9 @@ export default function Footer() {
                                     href={WHATSAPP_LINK}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#B8BDD9] transition-all duration-500 hover:text-white"
+                                    className="contact-item group flex items-center gap-4 text-[17px] text-[#4b5563] transition-all duration-500 hover:text-[#1b1f3b]"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[#B296FE] transition-all duration-500 group-hover:border-[#623BFD]/50 group-hover:bg-[#623BFD]/15 group-hover:text-white">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#8168F0] transition-all duration-500 group-hover:border-[#8168F0]/50 group-hover:bg-[#8168F0]/10 group-hover:text-[#8168F0]">
                                         <svg
                                             className="h-5 w-5"
                                             fill="currentColor"
@@ -350,8 +250,8 @@ export default function Footer() {
                                 </a>
 
                                 {/* Location */}
-                                <div className="contact-item group flex items-center gap-4 text-[17px] text-[#B8BDD9]">
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-[#B296FE]">
+                                <div className="contact-item group flex items-center gap-4 text-[17px] text-[#4b5563]">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#8168F0]">
                                         <svg
                                             className="h-5 w-5"
                                             fill="none"
@@ -379,23 +279,23 @@ export default function Footer() {
 
                         {/* ===== NAVIGATION ===== */}
                         <div className="scroll-reveal lg:col-span-3">
-                            <h5 className="text-[20px] font-bold tracking-tight text-white">
+                            <h5 className="text-[21px] font-bold tracking-tight text-[#1b1f3b]">
                                 Navigate
                             </h5>
 
-                            <div className="mt-4 h-[3px] w-12 rounded-full bg-gradient-to-r from-[#623BFD] to-[#B296FE]" />
+                            <div className="mt-4 h-[3px] w-12 rounded-full bg-gradient-to-r from-[#8168F0] to-[#B296FE]" />
 
                             <ul className="mt-8 space-y-4">
                                 {quickLinks.map((link) => {
                                     const content = (
                                         <>
-                                            <span className="inline-block h-px w-0 bg-gradient-to-r from-[#623BFD] to-[#B296FE] transition-all duration-500 group-hover:w-6" />
+                                            <span className="inline-block h-px w-0 bg-gradient-to-r from-[#8168F0] to-[#B296FE] transition-all duration-500 group-hover:w-6" />
                                             <span>{link.name}</span>
                                         </>
                                     );
 
                                     const classes =
-                                        "footer-link group inline-flex items-center gap-2 text-[18px] text-[#B8BDD9] transition-all duration-500 hover:text-white";
+                                        "footer-link group inline-flex items-center gap-2 text-[17px] text-[#4b5563] transition-all duration-500 hover:text-[#1b1f3b]";
 
                                     if (link.type === "route") {
                                         return (
@@ -432,11 +332,11 @@ export default function Footer() {
 
                         {/* ===== SERVICES ===== */}
                         <div className="scroll-reveal lg:col-span-4">
-                            <h5 className="text-[20px] font-bold tracking-tight text-white">
+                            <h5 className="text-[21px] font-bold tracking-tight text-[#1b1f3b]">
                                 Services
                             </h5>
 
-                            <div className="mt-4 h-[3px] w-12 rounded-full bg-gradient-to-r from-[#623BFD] to-[#B296FE]" />
+                            <div className="mt-4 h-[3px] w-12 rounded-full bg-gradient-to-r from-[#8168F0] to-[#B296FE]" />
 
                             <ul className="mt-8 space-y-4">
                                 {services.map((service) => (
@@ -444,9 +344,9 @@ export default function Footer() {
                                         <HashLink
                                             smooth
                                             to="/#services"
-                                            className="footer-link group inline-flex items-center gap-2 text-[18px] text-[#B8BDD9] transition-all duration-500 hover:text-white"
+                                            className="footer-link group inline-flex items-center gap-2 text-[17px] text-[#4b5563] transition-all duration-500 hover:text-[#1b1f3b]"
                                         >
-                                            <span className="inline-block h-px w-0 bg-gradient-to-r from-[#623BFD] to-[#B296FE] transition-all duration-500 group-hover:w-6" />
+                                            <span className="inline-block h-px w-0 bg-gradient-to-r from-[#8168F0] to-[#B296FE] transition-all duration-500 group-hover:w-6" />
                                             <span>{service}</span>
                                         </HashLink>
                                     </li>
@@ -458,14 +358,14 @@ export default function Footer() {
 
                 {/* ===== SOCIAL MEDIA BAR ===== */}
                 <div className="relative z-10 w-full px-6 sm:px-12 lg:px-20 xl:px-28">
-                    <div className="scroll-reveal rounded-2xl border border-white/10 bg-white/[0.02] p-8 backdrop-blur-md sm:p-10">
+                    <div className="scroll-reveal rounded-2xl border border-[#e6e7ec] bg-white p-8 shadow-[0_10px_40px_rgba(27,31,59,0.05)] backdrop-blur-md sm:p-10">
                         <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
                             <div className="text-center sm:text-left">
-                                <p className="text-[14px] font-semibold uppercase tracking-widest text-[#B296FE]">
+                                <p className="text-[14px] font-semibold uppercase tracking-widest text-[#8168F0]">
                                     Follow Our Journey
                                 </p>
 
-                                <p className="mt-2 text-[20px] font-bold text-white">
+                                <p className="mt-2 text-[21px] font-bold text-[#1b1f3b]">
                                     Connect on Social Media
                                 </p>
                             </div>
@@ -478,7 +378,7 @@ export default function Footer() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         aria-label={social.name}
-                                        className="social-icon group relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] text-[#B8BDD9] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#623BFD]/50 hover:bg-gradient-to-br hover:from-[#623BFD]/20 hover:to-[#B296FE]/10 hover:text-white hover:shadow-[0_8px_25px_rgba(98,59,253,0.3)]"
+                                        className="social-icon group relative flex h-14 w-14 items-center justify-center overflow-hidden rounded-xl border border-[#e6e7ec] bg-[#f6f7f9] text-[#8a8fa3] backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:border-[#8168F0]/50 hover:bg-gradient-to-br hover:from-[#8168F0]/12 hover:to-[#B296FE]/8 hover:text-[#8168F0] hover:shadow-[0_8px_22px_rgba(98,59,253,0.16)]"
                                     >
                                         <div className="relative z-10 h-6 w-6 transition-transform duration-500 group-hover:scale-110">
                                             {social.icon}
@@ -492,19 +392,19 @@ export default function Footer() {
 
                 {/* ===== BOTTOM BAR ===== */}
                 <div className="relative z-10 w-full px-6 pt-12 pb-0 sm:px-12 lg:px-20 xl:px-28">
-                    <div className="scroll-reveal flex flex-col items-center justify-center gap-2 border-t border-white/5 pt-10 text-center">
-                        <p className="text-[16px] text-[#9DA3C2]">
+                    <div className="scroll-reveal flex flex-col items-center justify-center gap-2 border-t border-[#e6e7ec] pt-10 text-center">
+                        <p className="text-[16px] text-[#8a8fa3]">
                             © {currentYear}{" "}
-                            <span className="font-bold text-white">
+                            <span className="font-bold text-[#1b1f3b]">
                                 Sameer Visuals
                             </span>
                             . All rights reserved.
                         </p>
 
-                        <p className="text-[16px] text-[#9DA3C2]">
+                        <p className="text-[16px] text-[#8a8fa3]">
                             Designed & Developed by{" "}
-                            <span className="font-bold text-[#D4C8FE]">
-                                Nexwim
+                            <span className="font-bold text-[#8168F0]">
+                                Vezqor Group
                             </span>
                             .
                         </p>
@@ -519,7 +419,7 @@ export default function Footer() {
                             })
                         }
                         aria-label="Scroll to top"
-                        className="scroll-top group fixed right-8 bottom-8 z-40 flex h-14 w-14 items-center justify-center rounded-full border border-[#623BFD]/40 bg-gradient-to-br from-[#623BFD] to-[#B296FE] text-white shadow-[0_10px_30px_rgba(98,59,253,0.4)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(98,59,253,0.6)]"
+                        className="scroll-top group fixed right-8 bottom-8 z-40 flex h-14 w-14 items-center justify-center rounded-full border border-black/10 bg-[#141414] text-white shadow-[0_10px_28px_rgba(0,0,0,0.22)] transition-all duration-500 hover:-translate-y-1 hover:bg-black hover:shadow-[0_16px_40px_rgba(0,0,0,0.3)]"
                     >
                         <svg
                             className="h-6 w-6 transition-transform duration-300 group-hover:-translate-y-0.5"
@@ -541,15 +441,15 @@ export default function Footer() {
                 <div
                     className="pointer-events-none relative z-[1] w-full overflow-hidden"
                     style={{
-                        height: "clamp(60px, 12vw, 200px)",
-                        marginTop: "2rem",
+                        height: "clamp(28px, 5vw, 64px)",
+                        marginTop: "0",
                     }}
                 >
                     <h1
                         className="brand-text-glow absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center font-black tracking-tighter text-transparent"
                         style={{
                             WebkitTextStroke:
-                                "1px rgba(178, 150, 254, 0.1)",
+                                "1px rgba(98, 59, 253, 0.14)",
                             fontSize: "clamp(80px, 18vw, 320px)",
                             lineHeight: "0.85",
                             bottom: "-15%",

@@ -80,9 +80,9 @@ export default function WorkHero() {
                 .hero-gradient-text {
                     background: linear-gradient(
                         135deg,
-                        #623BFD 0%,
-                        #B296FE 50%,
-                        #D4C8FE 100%
+                        #8168F0 0%,
+                        #7C5CFF 50%,
+                        #9D6BFF 100%
                     );
                     background-size: 200% auto;
                     -webkit-background-clip: text;
@@ -94,7 +94,7 @@ export default function WorkHero() {
 
             <section
                 ref={sectionRef}
-                className="relative h-[85vh] md:h-[95vh] w-full overflow-hidden text-white"
+                className="relative h-[85vh] md:h-[95vh] w-full overflow-hidden bg-white text-[#1b1f3b]"
             >
                 {/* Background Video */}
                 <div className="absolute inset-0">
@@ -110,36 +110,36 @@ export default function WorkHero() {
                         onLoadedData={() => setIsVideoLoaded(true)}
                     />
 
-                    {/* Dark Overlay */}
-                    <div className="absolute inset-0 bg-[#080B29]/70" />
+                    {/* Light Scrim */}
+                    <div className="absolute inset-0 bg-white/78" />
 
                     {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#080B29]/40 to-[#080B29]" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-white/55 to-white" />
                 </div>
 
                 {/* Animated Background Orbs */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
                     <div
-                        className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-[150px] opacity-30"
+                        className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full blur-[150px] opacity-[0.12]"
                         style={{
-                            background: "#623BFD",
+                            background: "#8168F0",
                             animation: "orbFloat 15s ease-in-out infinite",
                         }}
                     />
 
                     <div
-                        className="absolute top-1/2 -right-40 h-[500px] w-[500px] rounded-full blur-[150px] opacity-25"
+                        className="absolute top-1/2 -right-40 h-[500px] w-[500px] rounded-full blur-[150px] opacity-[0.1]"
                         style={{
-                            background: "#B296FE",
+                            background: "#8b5cf6",
                             animation: "orbFloat 18s ease-in-out infinite reverse",
                             animationDelay: "-5s",
                         }}
                     />
 
                     <div
-                        className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full blur-[120px] opacity-20"
+                        className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full blur-[120px] opacity-[0.08]"
                         style={{
-                            background: "#D4C8FE",
+                            background: "#8b5cf6",
                             animation: "orbFloat 20s ease-in-out infinite",
                             animationDelay: "-10s",
                         }}
@@ -151,7 +151,7 @@ export default function WorkHero() {
                     {[...Array(10)].map((_, i) => (
                         <div
                             key={i}
-                            className="absolute rounded-full bg-[#D4C8FE]"
+                            className="absolute rounded-full bg-[#8b5cf6]"
                             style={{
                                 width: `${2 + Math.random() * 3}px`,
                                 height: `${2 + Math.random() * 3}px`,
@@ -182,10 +182,10 @@ export default function WorkHero() {
                                 opacity: 0,
                             }}
                         >
-                            <div className="inline-flex items-center gap-2 rounded-full border border-[#623BFD]/30 bg-[#623BFD]/10 px-5 py-2.5 backdrop-blur-md">
-                                <span className="h-2 w-2 animate-pulse rounded-full bg-[#B296FE] shadow-[0_0_8px_rgba(178,150,254,0.8)]" />
+                            <div className="inline-flex items-center gap-2 rounded-full border border-[#8168F0]/25 bg-[#8168F0]/8 px-5 py-2.5 backdrop-blur-md">
+                                <span className="h-2 w-2 animate-pulse rounded-full bg-[#8168F0] shadow-[0_0_8px_rgba(98,59,253,0.5)]" />
 
-                                <span className="text-xs font-bold uppercase tracking-[0.15em] text-[#D4C8FE]">
+                                <span className="text-xs font-bold uppercase tracking-[0.15em] text-[#8168F0]">
                                     Featured Work
                                 </span>
                             </div>
@@ -200,7 +200,7 @@ export default function WorkHero() {
                             }}
                         >
                             <h1 className="text-5xl font-black leading-[1.1] tracking-tight sm:text-6xl md:text-7xl lg:text-8xl">
-                                <span className="block text-white">
+                                <span className="block text-[#1b1f3b]">
                                     A Showcase Of
                                 </span>
 
@@ -218,14 +218,14 @@ export default function WorkHero() {
                                 opacity: 0,
                             }}
                         >
-                            <p className="max-w-2xl text-lg text-[#B8BDD9] md:text-xl lg:text-[22px] leading-relaxed">
+                            <p className="max-w-2xl text-[17px] text-[#4b5563] leading-relaxed">
                                 From cinematic masterpieces to viral social content.
                                 Explore the projects that define my craft in{" "}
-                                <span className="font-semibold text-[#D4C8FE]">
-                                    post-production, motion graphics
+                                <span className="font-semibold text-[#8168F0]">
+                                    video editing, motion graphics
                                 </span>{" "}
                                 and{" "}
-                                <span className="font-semibold text-[#D4C8FE]">
+                                <span className="font-semibold text-[#8168F0]">
                                     creative storytelling
                                 </span>
                                 .
@@ -243,13 +243,13 @@ export default function WorkHero() {
                     }}
                 >
                     <div className="flex flex-col items-center gap-2">
-                        <span className="text-xs font-medium uppercase tracking-wider text-[#B8BDD9]">
+                        <span className="text-xs font-medium uppercase tracking-wider text-[#8a8fa3]">
                             Scroll Down
                         </span>
 
-                        <div className="h-10 w-6 rounded-full border-2 border-white/20">
+                        <div className="h-10 w-6 rounded-full border-2 border-[#1b1f3b]/20">
                             <div
-                                className="mx-auto mt-2 h-2 w-1 rounded-full bg-[#D4C8FE]"
+                                className="mx-auto mt-2 h-2 w-1 rounded-full bg-[#8168F0]"
                                 style={{
                                     animation: "float 2s ease-in-out infinite",
                                 }}

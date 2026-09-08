@@ -1,13 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 
-// ── Brand Palette ──
+// ── Brand Palette (light / Hostinger-style) ──
 const COLORS = {
-    bg: "#080B29",
-    left: "#623BFD",
-    mid: "#D4C8FE",
-    right: "#B296FE",
+    bg: "#ffffff",
+    surface: "#f6f7f9",
+    border: "#e6e7ec",
+    text: "#1b1f3b",
+    textBody: "#4b5563",
+    textMuted: "#8a8fa3",
+    left: "#8168F0",
+    mid: "#7C5CFF",
+    right: "#8b5cf6",
 };
-const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 60%, ${COLORS.mid} 100%)`;
+const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
 // ── Backend API Configuration ──
 const API_CONFIG = {
@@ -46,7 +51,7 @@ const InputField = ({ label, type = "text", placeholder, value, onChange, error,
         <div className="flex flex-col gap-2.5">
             <label
                 className="text-[13px] font-bold uppercase tracking-[0.15em] transition-colors duration-500"
-                style={{ color: focused ? COLORS.mid : "#9DA3C2" }}
+                style={{ color: focused ? COLORS.left : "#8a8fa3" }}
             >
                 {label} {required && <span style={{ color: COLORS.right }}>*</span>}
             </label>
@@ -57,8 +62,8 @@ const InputField = ({ label, type = "text", placeholder, value, onChange, error,
                         ? "#ef4444"
                         : focused
                             ? COLORS.left
-                            : "rgba(255,255,255,0.08)",
-                    background: focused ? `${COLORS.left}10` : "rgba(255,255,255,0.02)",
+                            : "#e6e7ec",
+                    background: focused ? `${COLORS.left}0a` : "#ffffff",
                     boxShadow: focused ? `0 0 25px ${COLORS.left}20` : "none",
                 }}
             >
@@ -76,7 +81,7 @@ const InputField = ({ label, type = "text", placeholder, value, onChange, error,
                     onChange={onChange}
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
-                    className="w-full px-5 py-4 bg-transparent outline-none text-white text-[16px] font-medium placeholder-[#6B7194]"
+                    className="w-full px-5 py-4 bg-transparent outline-none text-[#1b1f3b] text-[16px] font-medium placeholder-[#9ca3af]"
                 />
             </div>
             {error && (
@@ -99,7 +104,7 @@ const TextareaField = ({ label, placeholder, value, onChange, error, required })
         <div className="flex flex-col gap-2.5">
             <label
                 className="text-[13px] font-bold uppercase tracking-[0.15em] transition-colors duration-500"
-                style={{ color: focused ? COLORS.mid : "#9DA3C2" }}
+                style={{ color: focused ? COLORS.left : "#8a8fa3" }}
             >
                 {label} {required && <span style={{ color: COLORS.right }}>*</span>}
             </label>
@@ -110,8 +115,8 @@ const TextareaField = ({ label, placeholder, value, onChange, error, required })
                         ? "#ef4444"
                         : focused
                             ? COLORS.left
-                            : "rgba(255,255,255,0.08)",
-                    background: focused ? `${COLORS.left}10` : "rgba(255,255,255,0.02)",
+                            : "#e6e7ec",
+                    background: focused ? `${COLORS.left}0a` : "#ffffff",
                     boxShadow: focused ? `0 0 25px ${COLORS.left}20` : "none",
                 }}
             >
@@ -129,7 +134,7 @@ const TextareaField = ({ label, placeholder, value, onChange, error, required })
                     onFocus={() => setFocused(true)}
                     onBlur={() => setFocused(false)}
                     rows={5}
-                    className="w-full px-5 py-4 bg-transparent outline-none text-white text-[16px] font-medium placeholder-[#6B7194] resize-none leading-relaxed"
+                    className="w-full px-5 py-4 bg-transparent outline-none text-[#1b1f3b] text-[16px] font-medium placeholder-[#9ca3af] resize-none leading-relaxed"
                 />
             </div>
             {error && (
@@ -144,57 +149,128 @@ const TextareaField = ({ label, placeholder, value, onChange, error, required })
     );
 };
 
-// ── Select Field ──
+// ── Select Field (custom dropdown) ──
 const SelectField = ({ label, value, onChange, options, required, error }) => {
-    const [focused, setFocused] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [touched, setTouched] = useState(false);
+    const wrapRef = useRef(null);
+
+    const selected = options.find((o) => o.value === value) || options[0];
+    const isPlaceholder = !value;
+    const active = open || touched;
+
+    useEffect(() => {
+        if (!open) return;
+
+        const handlePointer = (e) => {
+            if (wrapRef.current && !wrapRef.current.contains(e.target)) {
+                setOpen(false);
+            }
+        };
+        const handleKey = (e) => {
+            if (e.key === "Escape") setOpen(false);
+        };
+
+        document.addEventListener("mousedown", handlePointer);
+        document.addEventListener("keydown", handleKey);
+        return () => {
+            document.removeEventListener("mousedown", handlePointer);
+            document.removeEventListener("keydown", handleKey);
+        };
+    }, [open]);
+
+    const pick = (opt) => {
+        onChange({ target: { value: opt.value } });
+        setOpen(false);
+        setTouched(true);
+    };
 
     return (
-        <div className="flex flex-col gap-2.5">
+        <div className="flex flex-col gap-2.5" ref={wrapRef}>
             <label
                 className="text-[13px] font-bold uppercase tracking-[0.15em] transition-colors duration-500"
-                style={{ color: focused ? COLORS.mid : "#9DA3C2" }}
+                style={{ color: active ? COLORS.left : "#8a8fa3" }}
             >
                 {label} {required && <span style={{ color: COLORS.right }}>*</span>}
             </label>
-            <div
-                className="relative rounded-2xl border transition-all duration-500 overflow-hidden"
-                style={{
-                    borderColor: error
-                        ? "#ef4444"
-                        : focused
-                            ? COLORS.left
-                            : "rgba(255,255,255,0.08)",
-                    background: focused ? `${COLORS.left}10` : "rgba(255,255,255,0.02)",
-                    boxShadow: focused ? `0 0 25px ${COLORS.left}20` : "none",
-                }}
-            >
-                <div
-                    className="absolute top-0 left-0 h-[2px] transition-all duration-700 ease-out"
-                    style={{
-                        width: focused ? "100%" : "0%",
-                        background: GRADIENT,
+
+            <div className="relative">
+                {/* Trigger */}
+                <button
+                    type="button"
+                    onClick={() => {
+                        setOpen((o) => !o);
+                        setTouched(true);
                     }}
-                />
-                <select
-                    value={value}
-                    onChange={onChange}
-                    onFocus={() => setFocused(true)}
-                    onBlur={() => setFocused(false)}
-                    className="w-full px-5 py-4 pr-12 bg-transparent outline-none text-white text-[16px] font-medium appearance-none cursor-pointer"
-                    style={{ background: "transparent" }}
+                    className="relative w-full overflow-hidden rounded-2xl border px-5 py-4 pr-12 text-left text-[16px] font-medium outline-none transition-all duration-500"
+                    style={{
+                        borderColor: error ? "#ef4444" : open ? COLORS.left : active ? `${COLORS.left}66` : "#e6e7ec",
+                        background: open ? `${COLORS.left}0a` : "#ffffff",
+                        boxShadow: open ? `0 0 25px ${COLORS.left}20` : "none",
+                        color: isPlaceholder ? "#9ca3af" : "#1b1f3b",
+                    }}
                 >
-                    {options.map((opt) => (
-                        <option key={opt.value} value={opt.value} style={{ background: "#0D0F35" }}>
-                            {opt.label}
-                        </option>
-                    ))}
-                </select>
-                <div className="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none">
-                    <svg className="w-5 h-5" fill="none" stroke={COLORS.right} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                </div>
+                    <span
+                        className="absolute top-0 left-0 h-[2px] transition-all duration-700 ease-out"
+                        style={{ width: open ? "100%" : "0%", background: GRADIENT }}
+                    />
+                    <span className="block truncate">{selected?.label}</span>
+                    <span
+                        className="absolute right-5 top-1/2 transition-transform duration-300"
+                        style={{ transform: `translateY(-50%) rotate(${open ? 180 : 0}deg)` }}
+                    >
+                        <svg className="w-5 h-5" fill="none" stroke={COLORS.right} viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </span>
+                </button>
+
+                {/* Panel */}
+                {open && (
+                    <div
+                        className="dropdown-panel absolute left-0 right-0 z-40 mt-2 overflow-hidden rounded-2xl border bg-white"
+                        style={{
+                            borderColor: "#e6e7ec",
+                            boxShadow: "0 24px 55px -14px rgba(27,31,59,0.28)",
+                        }}
+                    >
+                        <ul className="dropdown-scroll max-h-[240px] overflow-y-auto p-1.5">
+                            {options.map((opt, i) => {
+                                const isSel = opt.value === value;
+                                const isPh = !opt.value;
+                                return (
+                                    <li key={opt.value || `ph-${i}`}>
+                                        <button
+                                            type="button"
+                                            onClick={() => pick(opt)}
+                                            data-sel={isSel ? "" : undefined}
+                                            className="dropdown-option flex w-full items-center justify-between gap-3 rounded-xl px-4 py-2.5 text-left text-[15px] transition-colors duration-150"
+                                            style={{
+                                                color: isSel ? COLORS.left : isPh ? "#9ca3af" : "#4b5563",
+                                                fontWeight: isSel ? 700 : 500,
+                                            }}
+                                        >
+                                            <span className="truncate">{opt.label}</span>
+                                            {isSel && (
+                                                <svg
+                                                    className="h-4 w-4 shrink-0"
+                                                    fill="none"
+                                                    viewBox="0 0 24 24"
+                                                    stroke="currentColor"
+                                                    strokeWidth={3}
+                                                >
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            )}
+                                        </button>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </div>
+                )}
             </div>
+
             {error && (
                 <p className="text-[13px] font-semibold flex items-center gap-1.5" style={{ color: "#ef4444" }}>
                     <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
@@ -215,8 +291,8 @@ const InfoCard = ({ icon, label, value, sub, link, index, visible }) => (
         rel="noreferrer"
         className="info-card group flex items-center gap-5 p-6 rounded-2xl border transition-all duration-500"
         style={{
-            borderColor: "rgba(255,255,255,0.06)",
-            background: "rgba(255,255,255,0.02)",
+            borderColor: "#e6e7ec",
+            background: "#ffffff",
             animation: visible ? `fadeSlideRight 0.7s ease forwards ${index * 0.12 + 0.3}s` : "none",
             opacity: 0,
             textDecoration: "none",
@@ -239,9 +315,9 @@ const InfoCard = ({ icon, label, value, sub, link, index, visible }) => (
             >
                 {label}
             </p>
-            <p className="text-white text-[18px] font-bold truncate">{value}</p>
+            <p className="text-[#1b1f3b] text-[18px] font-bold truncate">{value}</p>
             {sub && (
-                <p className="text-[#9DA3C2] text-[14px] mt-1">{sub}</p>
+                <p className="text-[#8a8fa3] text-[14px] mt-1">{sub}</p>
             )}
         </div>
         <svg
@@ -463,6 +539,24 @@ export default function Contact({ selectedPlan }) {
           33% { transform: translate(30px, -20px) scale(1.05); }
           66% { transform: translate(-20px, 15px) scale(0.95); }
         }
+        @keyframes dropdownIn {
+          from { opacity: 0; transform: translateY(-8px) scale(0.98); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .dropdown-panel {
+          transform-origin: top center;
+          animation: dropdownIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .dropdown-option { background: transparent; }
+        .dropdown-option:hover { background: #f6f7f9; }
+        .dropdown-option[data-sel] { background: ${COLORS.left}12; }
+        .dropdown-option[data-sel]:hover { background: ${COLORS.left}1c; }
+        .dropdown-scroll::-webkit-scrollbar { width: 6px; }
+        .dropdown-scroll::-webkit-scrollbar-track { background: transparent; }
+        .dropdown-scroll::-webkit-scrollbar-thumb {
+          background: ${COLORS.left}40;
+          border-radius: 999px;
+        }
         .info-card:hover {
           border-color: ${COLORS.left}50 !important;
           background: ${COLORS.left}10 !important;
@@ -488,46 +582,46 @@ export default function Contact({ selectedPlan }) {
 
             <section
                 ref={sectionRef}
-                className="relative w-full text-white py-28 md:py-36 px-6 sm:px-12 lg:px-20 xl:px-28 overflow-hidden"
+                className="relative w-full bg-white text-[#1b1f3b] py-28 md:py-36 px-6 sm:px-12 lg:px-20 xl:px-28 overflow-hidden"
             >
                 <div
                     className="pointer-events-none absolute inset-x-0 top-0 h-40 z-[2]"
                     style={{
-                        background: "linear-gradient(to bottom, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                        background: "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.7) 50%, transparent 100%)",
                     }}
                 />
 
                 <div
                     className="orb-1 absolute top-0 left-0 w-[700px] h-[700px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at top left, ${COLORS.left}30 0%, transparent 65%)`,
+                        background: `radial-gradient(ellipse at top left, ${COLORS.left}12 0%, transparent 65%)`,
                         animation: "orbFloat 15s ease-in-out infinite",
                     }}
                 />
                 <div
                     className="orb-2 absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at top right, ${COLORS.right}20 0%, transparent 65%)`,
+                        background: `radial-gradient(ellipse at top right, ${COLORS.right}0c 0%, transparent 65%)`,
                         animation: "orbFloat 18s ease-in-out infinite reverse",
                     }}
                 />
                 <div
                     className="orb-3 absolute bottom-0 left-0 w-[600px] h-[600px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at bottom left, ${COLORS.right}15 0%, transparent 65%)`,
+                        background: `radial-gradient(ellipse at bottom left, ${COLORS.right}0a 0%, transparent 65%)`,
                         animation: "orbFloat 20s ease-in-out infinite",
                     }}
                 />
                 <div
                     className="orb-4 absolute bottom-0 right-0 w-[700px] h-[700px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at bottom right, ${COLORS.left}25 0%, transparent 65%)`,
+                        background: `radial-gradient(ellipse at bottom right, ${COLORS.left}10 0%, transparent 65%)`,
                         animation: "orbFloat 22s ease-in-out infinite reverse",
                     }}
                 />
 
                 <div
-                    className="absolute inset-0 opacity-[0.04] pointer-events-none"
+                    className="absolute inset-0 opacity-[0.05] pointer-events-none"
                     style={{
                         backgroundImage: `linear-gradient(${COLORS.left} 1px, transparent 1px), linear-gradient(90deg, ${COLORS.left} 1px, transparent 1px)`,
                         backgroundSize: "60px 60px",
@@ -597,7 +691,7 @@ export default function Contact({ selectedPlan }) {
                         </div>
 
                         <h2 className="text-[42px] sm:text-[54px] md:text-[64px] lg:text-[72px] font-extrabold tracking-tight leading-[1.05]">
-                            <span className="text-white">Let's </span>
+                            <span className="text-[#1b1f3b]">Let's </span>
                             <span
                                 style={{
                                     background: GRADIENT,
@@ -610,10 +704,10 @@ export default function Contact({ selectedPlan }) {
                             >
                                 Create
                             </span>
-                            <span className="text-white"> Together</span>
+                            <span className="text-[#1b1f3b]"> Together</span>
                         </h2>
 
-                        <p className="text-[#B8BDD9] text-[20px] leading-[1.7] max-w-2xl mx-auto">
+                        <p className="text-[#4b5563] text-[17px] leading-[1.7] max-w-2xl mx-auto">
                             Have a project in mind? Fill in the form and I'll get back to you within{" "}
                             <span style={{ color: COLORS.mid }} className="font-bold">
                                 24 hours
@@ -639,18 +733,18 @@ export default function Contact({ selectedPlan }) {
                             <div
                                 className="flex items-center gap-4 p-5 rounded-2xl border"
                                 style={{
-                                    borderColor: `${COLORS.left}30`,
-                                    background: `${COLORS.left}10`,
+                                    borderColor: `${COLORS.left}25`,
+                                    background: `${COLORS.left}0a`,
                                     animation: visible ? "fadeSlideLeft 0.7s ease forwards 0.1s" : "none",
                                     opacity: 0,
                                 }}
                             >
                                 <span className="relative flex h-3.5 w-3.5 flex-shrink-0">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-400" style={{ boxShadow: "0 0 12px rgba(74,222,128,0.8)" }} />
+                                    <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500" style={{ boxShadow: "0 0 12px rgba(74,222,128,0.6)" }} />
                                 </span>
                                 <div>
-                                    <p className="text-white text-[16px] font-bold uppercase tracking-wider">
+                                    <p className="text-[#1b1f3b] text-[16px] font-bold uppercase tracking-wider">
                                         Available for New Projects
                                     </p>
                                     <p className="text-[14px] mt-0.5" style={{ color: COLORS.right }}>
@@ -716,13 +810,13 @@ export default function Contact({ selectedPlan }) {
                             <div
                                 className="relative overflow-hidden p-6 rounded-2xl border"
                                 style={{
-                                    borderColor: `${COLORS.left}30`,
-                                    background: `linear-gradient(135deg, ${COLORS.left}15, ${COLORS.right}08)`,
+                                    borderColor: `${COLORS.left}22`,
+                                    background: `linear-gradient(135deg, ${COLORS.left}0d, ${COLORS.right}06)`,
                                     animation: visible ? "fadeSlideLeft 0.7s ease forwards 0.7s" : "none",
                                     opacity: 0,
                                 }}
                             >
-                                <div className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl" style={{ background: COLORS.left, opacity: 0.15 }} />
+                                <div className="pointer-events-none absolute -top-10 -right-10 w-40 h-40 rounded-full blur-2xl" style={{ background: COLORS.left, opacity: 0.08 }} />
                                 <div className="relative flex items-start gap-4">
                                     <div
                                         className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
@@ -733,10 +827,10 @@ export default function Contact({ selectedPlan }) {
                                         </svg>
                                     </div>
                                     <div>
-                                        <p className="text-white text-[18px] font-bold mb-1">
+                                        <p className="text-[#1b1f3b] text-[18px] font-bold mb-1">
                                             100% Confidential
                                         </p>
-                                        <p className="text-[15px] leading-relaxed" style={{ color: COLORS.right }}>
+                                        <p className="text-[17px] leading-relaxed" style={{ color: COLORS.textBody }}>
                                             Your project details are kept strictly private and never shared with third parties.
                                         </p>
                                     </div>
@@ -747,8 +841,9 @@ export default function Contact({ selectedPlan }) {
                         <div
                             className="lg:col-span-7 relative rounded-3xl border p-8 sm:p-10 md:p-12 overflow-hidden"
                             style={{
-                                borderColor: `${COLORS.left}25`,
-                                background: "rgba(255,255,255,0.02)",
+                                borderColor: `${COLORS.left}22`,
+                                background: "#ffffff",
+                                boxShadow: "0 25px 60px rgba(27,31,59,0.1)",
                                 backdropFilter: "blur(10px)",
                                 animation: visible ? "fadeSlideRight 0.8s ease forwards 0.3s" : "none",
                                 opacity: 0,
@@ -768,29 +863,29 @@ export default function Contact({ selectedPlan }) {
                                 style={{ background: COLORS.right, opacity: 0.08 }}
                             />
 
-                            <div className="flex items-center justify-between mb-10 pb-6 border-b" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                            <div className="flex items-center justify-between mb-10 pb-6 border-b" style={{ borderColor: "#e6e7ec" }}>
                                 <div>
                                     <p
                                         className="text-[13px] font-semibold uppercase tracking-[0.2em] mb-2"
-                                        style={{ color: COLORS.mid }}
+                                        style={{ color: COLORS.left }}
                                     >
                                         Project Brief
                                     </p>
-                                    <h3 className="text-[28px] sm:text-[32px] font-extrabold text-white tracking-tight">
+                                    <h3 className="text-[28px] sm:text-[32px] font-extrabold text-[#1b1f3b] tracking-tight">
                                         Tell Me About Your Project
                                     </h3>
                                 </div>
                                 <div
                                     className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border text-[12px] font-bold uppercase tracking-wider"
                                     style={{
-                                        borderColor: `${COLORS.left}40`,
-                                        background: `${COLORS.left}10`,
-                                        color: COLORS.mid,
+                                        borderColor: `${COLORS.left}33`,
+                                        background: `${COLORS.left}0c`,
+                                        color: COLORS.left,
                                     }}
                                 >
                                     <span
-                                        className="w-2 h-2 rounded-full bg-emerald-400"
-                                        style={{ animation: "glowPulse 2s ease-in-out infinite", boxShadow: "0 0 8px rgba(74,222,128,0.8)" }}
+                                        className="w-2 h-2 rounded-full bg-emerald-500"
+                                        style={{ animation: "glowPulse 2s ease-in-out infinite", boxShadow: "0 0 8px rgba(74,222,128,0.6)" }}
                                     />
                                     Free Consultation
                                 </div>
@@ -811,10 +906,10 @@ export default function Contact({ selectedPlan }) {
                                         <div className="absolute inset-0 rounded-3xl" style={{ background: GRADIENT, opacity: 0.5, filter: "blur(20px)" }} />
                                     </div>
                                     <div>
-                                        <h4 className="text-white text-[32px] font-extrabold mb-3">Thank You!</h4>
-                                        <p className="text-[#B8BDD9] text-[18px] leading-relaxed max-w-md">
+                                        <h4 className="text-[#1b1f3b] text-[32px] font-extrabold mb-3">Thank You!</h4>
+                                        <p className="text-[#4b5563] text-[17px] leading-relaxed max-w-md">
                                             Your response has been recorded and we will contact you shortly. I'll review your project details and get back to you within{" "}
-                                            <span style={{ color: COLORS.mid }} className="font-bold">
+                                            <span style={{ color: COLORS.left }} className="font-bold">
                                                 24 hours
                                             </span>
                                             .
@@ -824,11 +919,10 @@ export default function Contact({ selectedPlan }) {
                                         onClick={() => {
                                             setSubmitted(false);
                                         }}
-                                        className="mt-4 px-6 py-3 rounded-xl border text-[14px] font-bold uppercase tracking-wider transition-all duration-500 hover:-translate-y-0.5"
+                                        className="mt-4 px-6 py-3 rounded-xl border border-black/10 text-[14px] font-bold uppercase tracking-wider transition-all duration-500 hover:-translate-y-0.5 hover:bg-black"
                                         style={{
-                                            borderColor: `${COLORS.left}50`,
-                                            background: `${COLORS.left}10`,
-                                            color: COLORS.mid,
+                                            background: "#141414",
+                                            color: "#ffffff",
                                         }}
                                     >
                                         Send Another Message
@@ -891,10 +985,10 @@ export default function Contact({ selectedPlan }) {
                                         required
                                     />
 
-                                    <div className="h-px" style={{ background: "rgba(255,255,255,0.06)" }} />
+                                    <div className="h-px" style={{ background: "#e6e7ec" }} />
 
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
-                                        <p className="text-[14px] text-[#9DA3C2] max-w-xs">
+                                        <p className="text-[14px] text-[#8a8fa3] max-w-xs">
                                             Your information is kept private and never shared with third parties.
                                         </p>
 
@@ -903,9 +997,9 @@ export default function Contact({ selectedPlan }) {
                                             disabled={loading}
                                             className="cta-shimmer group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-semibold text-[16px] overflow-hidden transition-all duration-500 hover:-translate-y-1 flex-shrink-0"
                                             style={{
-                                                background: GRADIENT,
+                                                background: "#141414",
                                                 color: "#fff",
-                                                boxShadow: `0 10px 35px ${COLORS.left}40`,
+                                                boxShadow: "0 10px 28px rgba(0,0,0,0.2)",
                                                 opacity: loading ? 0.7 : 1,
                                             }}
                                         >

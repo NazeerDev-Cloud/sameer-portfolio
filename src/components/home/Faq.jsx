@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { HashLink } from 'react-router-hash-link';
 
-// ── Brand Palette ──
+// ── Brand Palette (light / Hostinger-style) ──
 const COLORS = {
-    bg: '#080B29',
-    left: '#623BFD',
-    mid: '#D4C8FE',
-    right: '#B296FE',
+    bg: '#ffffff',
+    surface: '#f6f7f9',
+    border: '#e6e7ec',
+    text: '#1b1f3b',
+    textBody: '#4b5563',
+    textMuted: '#8a8fa3',
+    left: '#8168F0',
+    mid: '#7C5CFF',
+    right: '#8b5cf6',
 };
-const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 60%, ${COLORS.mid} 100%)`;
+const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
 const categories = ['All', 'Pricing', 'Process', 'Delivery', 'Revisions'];
 
@@ -91,8 +96,8 @@ const FAQItem = ({ faq, isOpen, onClick, index, visible }) => {
         <div
             className="relative rounded-2xl border overflow-hidden transition-all duration-500"
             style={{
-                borderColor: isOpen ? `${COLORS.left}50` : 'rgba(255,255,255,0.07)',
-                background: isOpen ? `${COLORS.left}08` : 'rgba(255,255,255,0.015)',
+                borderColor: isOpen ? `${COLORS.left}50` : '#e6e7ec',
+                background: isOpen ? `${COLORS.left}08` : '#ffffff',
                 boxShadow: isOpen ? `0 8px 30px -10px ${COLORS.left}30` : 'none',
                 animation: visible
                     ? `faqSlideIn 0.6s ease forwards ${index * 0.07 + 0.1}s`
@@ -115,20 +120,20 @@ const FAQItem = ({ faq, isOpen, onClick, index, visible }) => {
                     <div
                         className="w-7 h-7 rounded-lg flex items-center justify-center text-[9px] font-black font-mono flex-shrink-0 transition-all duration-500"
                         style={{
-                            background: isOpen ? GRADIENT : 'rgba(255,255,255,0.04)',
-                            color: isOpen ? COLORS.bg : '#6b7280',
+                            background: isOpen ? GRADIENT : '#f6f7f9',
+                            color: isOpen ? '#ffffff' : '#8a8fa3',
                         }}
                     >
                         {String(faq.id).padStart(2, '0')}
                     </div>
                     <h3
                         className="text-sm font-semibold tracking-wide transition-colors duration-300"
-                        style={{ color: isOpen ? '#fff' : '#d1d5db' }}
+                        style={{ color: isOpen ? '#1b1f3b' : '#4b5563' }}
                     >
                         {faq.question}
                     </h3>
                 </div>
-                <Chevron open={isOpen} color={isOpen ? COLORS.mid : '#6b7280'} />
+                <Chevron open={isOpen} color={isOpen ? COLORS.left : '#8a8fa3'} />
             </button>
 
             {/* Answer */}
@@ -140,7 +145,7 @@ const FAQItem = ({ faq, isOpen, onClick, index, visible }) => {
                 }}
             >
                 <div ref={contentRef} className="px-6 pb-6" style={{ paddingLeft: '68px' }}>
-                    <p className="text-gray-400 text-sm leading-relaxed font-light">
+                    <p className="text-[#4b5563] text-[17px] leading-relaxed font-light">
                         {faq.answer}
                     </p>
                     <span
@@ -171,15 +176,15 @@ const ContactPanel = ({ visible }) => (
         {/* Main CTA card */}
         <div
             className="relative p-8 rounded-3xl border overflow-hidden"
-            style={{ borderColor: `${COLORS.left}30`, background: `${COLORS.left}08` }}
+            style={{ borderColor: `${COLORS.left}25`, background: `${COLORS.left}07` }}
         >
             <div
                 className="absolute -top-12 -right-12 w-44 h-44 rounded-full blur-3xl pointer-events-none"
-                style={{ background: COLORS.left, opacity: 0.18, animation: 'floatSlow 6s ease-in-out infinite' }}
+                style={{ background: COLORS.left, opacity: 0.1, animation: 'floatSlow 6s ease-in-out infinite' }}
             />
             <div
                 className="absolute -bottom-12 -left-12 w-36 h-36 rounded-full blur-3xl pointer-events-none"
-                style={{ background: COLORS.right, opacity: 0.14, animation: 'floatSlow 8s ease-in-out infinite reverse' }}
+                style={{ background: COLORS.right, opacity: 0.08, animation: 'floatSlow 8s ease-in-out infinite reverse' }}
             />
 
             <div className="relative z-10 text-center">
@@ -189,8 +194,8 @@ const ContactPanel = ({ visible }) => (
                 >
                     💬
                 </div>
-                <h3 className="text-white text-xl font-black mb-2">Still have questions?</h3>
-                <p className="text-gray-400 text-xs leading-relaxed mb-6 max-w-xs mx-auto">
+                <h3 className="text-[#1b1f3b] text-[21px] font-black mb-2">Still have questions?</h3>
+                <p className="text-[#4b5563] text-xs leading-relaxed mb-6 max-w-xs mx-auto">
                     Can't find the answer? Send me a message and I'll get back within 24 hours.
                 </p>
 
@@ -201,17 +206,17 @@ const ContactPanel = ({ visible }) => (
                     aria-label="Go to contact section"
                     className="group relative mb-3 flex w-full items-center justify-center overflow-hidden rounded-xl border py-3.5 text-xs font-black uppercase tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                     style={{
-                        borderColor: `${COLORS.left}50`,
-                        background: '#0d0b2a',
-                        color: '#fff',
+                        borderColor: 'rgba(0,0,0,0.12)',
+                        background: '#ffffff',
+                        color: '#1b1f3b',
                     }}
                 >
                     <span
                         className="absolute inset-0 origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"
-                        style={{ background: GRADIENT }}
+                        style={{ background: '#141414' }}
                     />
 
-                    <span className="relative z-10 flex items-center justify-center gap-2 transition-colors duration-300 group-hover:text-[#080B29]">
+                    <span className="relative z-10 flex items-center justify-center gap-2 transition-colors duration-300 group-hover:text-white">
                         Get In Touch
 
                         <svg
@@ -236,8 +241,8 @@ const ContactPanel = ({ visible }) => (
                     aria-label="Call us on +92 303 9800035"
                     className="group relative flex w-full items-center justify-center overflow-hidden rounded-xl py-3.5 text-xs font-black uppercase tracking-widest transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
                     style={{
-                        background: GRADIENT,
-                        color: COLORS.bg,
+                        background: "#141414",
+                        color: "#ffffff",
                     }}
                 >
                     <div className="absolute inset-0 bg-white/0 transition-colors duration-300 group-hover:bg-white/10" />
@@ -264,19 +269,19 @@ const ContactPanel = ({ visible }) => (
                 <div
                     key={item.label}
                     className="p-4 rounded-2xl border flex flex-col gap-1.5 transition-all duration-300 cursor-default"
-                    style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.02)' }}
+                    style={{ borderColor: '#e6e7ec', background: '#ffffff' }}
                     onMouseEnter={e => {
                         e.currentTarget.style.borderColor = `${COLORS.left}40`;
                         e.currentTarget.style.background = `${COLORS.left}08`;
                     }}
                     onMouseLeave={e => {
-                        e.currentTarget.style.borderColor = 'rgba(255,255,255,0.06)';
-                        e.currentTarget.style.background = 'rgba(255,255,255,0.02)';
+                        e.currentTarget.style.borderColor = '#e6e7ec';
+                        e.currentTarget.style.background = '#ffffff';
                     }}
                 >
                     <span className="text-lg">{item.icon}</span>
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-gray-500">{item.label}</p>
-                    <p className="text-xs font-black text-white">{item.value}</p>
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-[#8a8fa3]">{item.label}</p>
+                    <p className="text-xs font-black text-[#1b1f3b]">{item.value}</p>
                 </div>
             ))}
         </div>
@@ -285,13 +290,13 @@ const ContactPanel = ({ visible }) => (
         <div
             className="p-5 rounded-2xl border"
             style={{
-                borderColor: 'rgba(255,255,255,0.06)',
-                background: 'rgba(255,255,255,0.015)',
+                borderColor: '#e6e7ec',
+                background: '#ffffff',
                 animation: visible ? 'fadeSlideRight 0.7s ease forwards 0.6s' : 'none',
                 opacity: 0,
             }}
         >
-            <p className="text-[9px] font-black uppercase tracking-widest text-gray-500 mb-4">Find me on</p>
+            <p className="text-[9px] font-black uppercase tracking-widest text-[#8a8fa3] mb-4">Find me on</p>
             <div className="flex flex-col gap-2">
                 {[
                     { label: 'YouTube', handle: '@sameervisuals', icon: '▶' },
@@ -319,8 +324,8 @@ const ContactPanel = ({ visible }) => (
                             {social.icon}
                         </div>
                         <div className="min-w-0">
-                            <p className="text-[10px] font-black uppercase tracking-widest text-white">{social.label}</p>
-                            <p className="text-[9px] text-gray-500 font-mono truncate">{social.handle}</p>
+                            <p className="text-[10px] font-black uppercase tracking-widest text-[#1b1f3b]">{social.label}</p>
+                            <p className="text-[9px] text-[#8a8fa3] font-mono truncate">{social.handle}</p>
                         </div>
                         <svg
                             className="w-3.5 h-3.5 ml-auto text-gray-600 transition-transform duration-300 group-hover:translate-x-1"
@@ -400,8 +405,8 @@ export default function FAQ() {
 
             <section
                 ref={sectionRef}
-                className="relative w-full text-white py-28 md:py-44 px-6 sm:px-12 lg:px-24 overflow-hidden font-sans"
-                style={{ background: COLORS.bg }}
+                className="relative w-full text-[#1b1f3b] py-28 md:py-44 px-6 sm:px-12 lg:px-24 overflow-hidden font-sans"
+                style={{ background: '#f6f7f9' }}
             >
                 {/* ══════════════════════════════════════ */}
                 {/* ── GRADIENT SHADOW BACKGROUND EFFECTS ── */}
@@ -411,7 +416,7 @@ export default function FAQ() {
                 <div
                     className="absolute top-0 left-0 w-[600px] h-[600px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at top left, ${COLORS.left}30 0%, ${COLORS.left}10 40%, transparent 70%)`,
+                        background: `radial-gradient(ellipse at top left, ${COLORS.left}14 0%, ${COLORS.left}06 40%, transparent 70%)`,
                     }}
                 />
 
@@ -419,7 +424,7 @@ export default function FAQ() {
                 <div
                     className="absolute top-0 right-0 w-[500px] h-[500px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at top right, ${COLORS.right}20 0%, ${COLORS.right}08 40%, transparent 70%)`,
+                        background: `radial-gradient(ellipse at top right, ${COLORS.right}0e 0%, ${COLORS.right}05 40%, transparent 70%)`,
                     }}
                 />
 
@@ -427,7 +432,7 @@ export default function FAQ() {
                 <div
                     className="absolute bottom-0 left-0 w-[500px] h-[500px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at bottom left, ${COLORS.right}18 0%, transparent 65%)`,
+                        background: `radial-gradient(ellipse at bottom left, ${COLORS.right}0c 0%, transparent 65%)`,
                     }}
                 />
 
@@ -435,7 +440,7 @@ export default function FAQ() {
                 <div
                     className="absolute bottom-0 right-0 w-[600px] h-[600px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at bottom right, ${COLORS.left}25 0%, ${COLORS.left}08 40%, transparent 70%)`,
+                        background: `radial-gradient(ellipse at bottom right, ${COLORS.left}12 0%, ${COLORS.left}05 40%, transparent 70%)`,
                     }}
                 />
 
@@ -443,7 +448,7 @@ export default function FAQ() {
                 <div
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[700px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at center, ${COLORS.left}12 0%, ${COLORS.right}06 40%, transparent 70%)`,
+                        background: `radial-gradient(ellipse at center, ${COLORS.left}0a 0%, ${COLORS.right}05 40%, transparent 70%)`,
                         animation: 'floatSlow 10s ease-in-out infinite',
                     }}
                 />
@@ -452,7 +457,7 @@ export default function FAQ() {
                 <div
                     className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[300px] pointer-events-none"
                     style={{
-                        background: `radial-gradient(ellipse at top center, ${COLORS.mid}18 0%, transparent 70%)`,
+                        background: `radial-gradient(ellipse at top center, ${COLORS.mid}0c 0%, transparent 70%)`,
                     }}
                 />
 
@@ -525,7 +530,7 @@ export default function FAQ() {
 
                         {/* Heading — matches other sections */}
                         <h2 className="text-5xl sm:text-7xl font-black tracking-widest uppercase leading-none">
-                            <span className="text-white">Frequently </span>
+                            <span className="text-[#1b1f3b]">Frequently </span>
                             <span
                                 style={{
                                     background: `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 50%, ${COLORS.mid} 100%)`,
@@ -539,10 +544,10 @@ export default function FAQ() {
                                 Asked
                             </span>
                             <br />
-                            <span className="text-white">Questions</span>
+                            <span className="text-[#1b1f3b]">Questions</span>
                         </h2>
 
-                        <p className="text-gray-400 text-sm max-w-md mx-auto leading-relaxed normal-case tracking-normal">
+                        <p className="text-[#4b5563] text-[17px] max-w-md mx-auto leading-relaxed normal-case tracking-normal">
                             Everything about pricing, process & delivery —{' '}
                             <span style={{ color: COLORS.mid }} className="font-semibold">
                                 answered clearly
@@ -573,8 +578,8 @@ export default function FAQ() {
                                 <div
                                     className="flex items-center gap-3 px-5 py-3.5 rounded-2xl border transition-all duration-300"
                                     style={{
-                                        borderColor: searchTerm ? `${COLORS.left}50` : 'rgba(255,255,255,0.08)',
-                                        background: 'rgba(255,255,255,0.02)',
+                                        borderColor: searchTerm ? `${COLORS.left}50` : '#e6e7ec',
+                                        background: '#ffffff',
                                     }}
                                 >
                                     <svg
@@ -589,12 +594,12 @@ export default function FAQ() {
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                         placeholder="Search your question..."
-                                        className="flex-1 bg-transparent outline-none text-white text-sm placeholder-gray-600 normal-case tracking-normal"
+                                        className="flex-1 bg-transparent outline-none text-[#1b1f3b] text-sm placeholder-[#9ca3af] normal-case tracking-normal"
                                     />
                                     {searchTerm && (
                                         <button
                                             onClick={() => setSearchTerm('')}
-                                            className="text-gray-500 hover:text-white transition-colors duration-200 text-sm flex-shrink-0"
+                                            className="text-[#8a8fa3] hover:text-[#1b1f3b] transition-colors duration-200 text-sm flex-shrink-0"
                                         >
                                             ✕
                                         </button>
@@ -618,15 +623,15 @@ export default function FAQ() {
                                             onClick={() => setActiveCategory(cat)}
                                             className="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-300 border"
                                             style={{
-                                                background: isActive ? GRADIENT : 'rgba(255,255,255,0.02)',
-                                                borderColor: isActive ? 'transparent' : 'rgba(255,255,255,0.08)',
-                                                color: isActive ? COLORS.bg : '#9ca3af',
+                                                background: isActive ? GRADIENT : '#ffffff',
+                                                borderColor: isActive ? 'transparent' : '#e6e7ec',
+                                                color: isActive ? '#ffffff' : '#8a8fa3',
                                             }}
                                             onMouseEnter={e => {
                                                 if (!isActive) e.currentTarget.style.borderColor = `${COLORS.left}40`;
                                             }}
                                             onMouseLeave={e => {
-                                                if (!isActive) e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)';
+                                                if (!isActive) e.currentTarget.style.borderColor = '#e6e7ec';
                                             }}
                                         >
                                             {cat}
@@ -652,12 +657,12 @@ export default function FAQ() {
                                     <div
                                         className="text-center py-16 rounded-2xl border"
                                         style={{
-                                            borderColor: 'rgba(255,255,255,0.05)',
-                                            background: 'rgba(255,255,255,0.01)',
+                                            borderColor: '#e6e7ec',
+                                            background: '#f6f7f9',
                                         }}
                                     >
                                         <p className="text-4xl mb-3">🔍</p>
-                                        <p className="text-gray-400 text-sm normal-case">
+                                        <p className="text-[#4b5563] text-sm normal-case">
                                             No questions found matching your search.
                                         </p>
                                         <button

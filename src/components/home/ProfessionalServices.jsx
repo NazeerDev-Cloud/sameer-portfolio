@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 
 export default function ProfessionalServices() {
     const [activeService, setActiveService] = useState(0);
-    const [hoveredService, setHoveredService] = useState(null);
     const sectionRef = useRef(null);
     const panelRef = useRef(null);
 
@@ -77,6 +76,20 @@ export default function ProfessionalServices() {
             software: ["Premiere Pro", "Camtasia Studio", "Photoshop"],
             pipeline: ["Audio Noise Cleanup", "Key-Command Popups", "On-Screen Zoom", "Interactive End Cards"],
         },
+        {
+            id: "06",
+            title: "AI Generated Videos",
+            tagline: "Prompt-to-Screen Visual Production",
+            desc: "Fully AI-generated video content — from concept prompts to a finished, broadcast-ready cut. We build consistent characters, product scenes, and cinematic b-roll with generative models, then polish everything with color grading, sound design, and motion graphics.",
+            icon: (
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.8">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z" />
+                </svg>
+            ),
+            metrics: { retention: "10x Faster Turnaround", delivery: "4K AI Upscaled", audio: "AI Voice + Foley" },
+            software: ["Runway", "Kling / Veo", "Premiere Pro", "After Effects"],
+            pipeline: ["Prompt & Style Board", "Generative Shot Creation", "Consistency & Cleanup", "Grade, Sound & Export"],
+        },
     ];
 
     useEffect(() => {
@@ -128,36 +141,36 @@ export default function ProfessionalServices() {
             <section
                 ref={sectionRef}
                 id="services"
-                className="relative w-full overflow-hidden px-5 pt-32 pb-24 text-white sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
+                className="relative w-full overflow-hidden bg-[#f6f7f9] px-5 pt-32 pb-24 text-[#1b1f3b] sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
             >
                 {/* Top Blend */}
                 <div
                     className="pointer-events-none absolute inset-x-0 top-0 h-40 z-[2]"
                     style={{
-                        background: "linear-gradient(to bottom, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                        background: "linear-gradient(to bottom, #f6f7f9 0%, rgba(250,248,255,0.7) 50%, transparent 100%)",
                     }}
                 />
                 {/* Bottom Blend */}
                 <div
                     className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-[2]"
                     style={{
-                        background: "linear-gradient(to top, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                        background: "linear-gradient(to top, #f6f7f9 0%, rgba(250,248,255,0.7) 50%, transparent 100%)",
                     }}
                 />
 
                 {/* Ambient Glows */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="orb-glow orb-1 absolute -top-40 left-[-15%] h-[600px] w-[600px] rounded-full bg-[#623BFD]/25 blur-[150px]" />
-                    <div className="orb-glow orb-2 absolute bottom-0 right-[-15%] h-[600px] w-[600px] rounded-full bg-[#B296FE]/18 blur-[150px]" />
-                    <div className="orb-glow orb-3 absolute top-1/3 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#D4C8FE]/10 blur-[120px]" />
+                    <div className="orb-glow orb-1 absolute -top-40 left-[-15%] h-[600px] w-[600px] rounded-full bg-[#8168F0]/5 blur-[150px]" />
+                    <div className="orb-glow orb-2 absolute bottom-0 right-[-15%] h-[600px] w-[600px] rounded-full bg-[#B296FE]/5 blur-[150px]" />
+                    <div className="orb-glow orb-3 absolute top-1/3 left-1/2 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#8b5cf6]/4 blur-[120px]" />
                 </div>
 
                 {/* Floating Particles */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    {[...Array(10)].map((_, i) => (
+                    {[...Array(5)].map((_, i) => (
                         <div
                             key={i}
-                            className="particle absolute rounded-full bg-[#D4C8FE]"
+                            className="particle absolute rounded-full bg-[#8b5cf6]"
                             style={{
                                 width: `${2 + Math.random() * 4}px`,
                                 height: `${2 + Math.random() * 4}px`,
@@ -172,111 +185,118 @@ export default function ProfessionalServices() {
 
                 <div className="relative z-10 mx-auto max-w-7xl">
                     {/* ===== HEADER ===== */}
-                    <div className="mb-20 flex flex-col items-center space-y-7 text-center">
-                        <div className="scroll-reveal group inline-flex items-center gap-2.5 rounded-full border border-[#623BFD]/30 bg-[#623BFD]/10 px-6 py-3 backdrop-blur-md transition-all duration-500 hover:border-[#623BFD]/50 hover:bg-[#623BFD]/15">
-                            <span className="pulse-dot h-2 w-2 rounded-full bg-[#B296FE] shadow-[0_0_10px_rgba(178,150,254,0.8)]" />
-                            <span className="text-[15px] font-semibold uppercase tracking-[0.15em] text-[#D4C8FE]">
+                    <div className="mb-14 flex flex-col items-center space-y-7 text-center">
+                        <div className="scroll-reveal group inline-flex items-center gap-2.5 rounded-full border border-[#8168F0]/25 bg-[#8168F0]/8 px-6 py-3 backdrop-blur-md transition-all duration-500 hover:border-[#8168F0]/40 hover:bg-[#8168F0]/12">
+                            <span className="pulse-dot h-2 w-2 rounded-full bg-[#8168F0] shadow-[0_0_10px_rgba(98,59,253,0.5)]" />
+                            <span className="text-[15px] font-semibold uppercase tracking-[0.15em] text-[#8168F0]">
                                 My Expertise
                             </span>
                         </div>
 
-                        <h2 className="scroll-reveal text-[36px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[48px] md:text-[58px] lg:text-[68px]">
+                        <h2 className="scroll-reveal text-[36px] font-extrabold leading-[1.1] tracking-tight text-[#1b1f3b] sm:text-[48px] md:text-[58px] lg:text-[68px]">
                             Professional{" "}
-                            <span className="heading-gradient inline-block bg-gradient-to-r from-[#623BFD] via-[#D4C8FE] to-[#B296FE] bg-clip-text text-transparent">
+                            <span className="heading-gradient inline-block bg-gradient-to-r from-[#8168F0] via-[#8b5cf6] to-[#9D6BFF] bg-clip-text text-transparent">
                                 Services
                             </span>
                         </h2>
 
-                        <p className="scroll-reveal max-w-2xl text-[19px] leading-[1.8] text-[#B8BDD9] sm:text-[21px]">
+                        <p className="scroll-reveal max-w-2xl text-[17px] leading-[1.8] text-[#4b5563]">
                             End-to-end video production solutions tailored to elevate your brand
                             and captivate audiences across every platform and format.
                         </p>
                     </div>
 
+                    {/* ===== STATS STRIP ===== */}
+                    <div className="scroll-reveal mx-auto mb-16 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+                        {[
+                            { value: `${services.length}`, label: "Services" },
+                            { value: "200+", label: "Projects" },
+                            { value: "24h", label: "Response" },
+                            { value: "98%", label: "Satisfaction" },
+                        ].map((stat) => (
+                            <div
+                                key={stat.label}
+                                className="rounded-2xl border border-[#e6e7ec] bg-white px-4 py-4 text-center transition-all duration-500 hover:border-[#8168F0]/30 hover:shadow-[0_12px_30px_rgba(27,31,59,0.06)]"
+                            >
+                                <p className="text-[24px] font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-[#8168F0] to-[#8b5cf6]">
+                                    {stat.value}
+                                </p>
+                                <p className="mt-1 text-[11px] font-bold uppercase tracking-[0.18em] text-[#8a8fa3]">
+                                    {stat.label}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+
                     {/* ===== SERVICES MATRIX ===== */}
                     <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-8">
                         {/* LEFT: Service Selector */}
-                        <div className="scroll-reveal flex flex-col gap-4 lg:col-span-5">
+                        <div className="scroll-reveal flex flex-col gap-3 lg:col-span-5">
+                            <p className="mb-1 px-1 text-[11px] font-bold uppercase tracking-[0.22em] text-[#8a8fa3]">
+                                {services.length} Services
+                            </p>
                             {services.map((service, index) => {
                                 const isSelected = activeService === index;
-                                const isHovered = hoveredService === index;
                                 return (
                                     <button
                                         key={service.id}
                                         onClick={() => setActiveService(index)}
-                                        onMouseEnter={() => setHoveredService(index)}
-                                        onMouseLeave={() => setHoveredService(null)}
-                                        className={`service-item group relative w-full overflow-hidden rounded-2xl border p-5 text-left outline-none sm:p-6 ${isSelected
-                                            ? "border-[#623BFD]/60 bg-gradient-to-r from-[#623BFD]/20 via-[#623BFD]/8 to-transparent shadow-[0_15px_50px_rgba(98,59,253,0.25)]"
-                                            : "border-white/[0.06] bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
+                                        className={`service-item group relative w-full overflow-hidden rounded-2xl border px-4 py-4 text-left outline-none sm:px-5 ${isSelected
+                                            ? "border-[#8168F0]/40 bg-white shadow-[0_16px_44px_rgba(27,31,59,0.08)]"
+                                            : "border-[#e6e7ec] bg-white/60 hover:border-[#8168F0]/25 hover:bg-white"
                                             }`}
                                     >
-                                        {/* Active indicator line */}
+                                        {/* Active accent bar */}
                                         <div
-                                            className={`absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-[#623BFD] to-[#B296FE] transition-all duration-700 ease-out ${isSelected ? "h-16 opacity-100" : "h-0 opacity-0"
+                                            className={`absolute left-0 top-1/2 w-[3px] -translate-y-1/2 rounded-r-full bg-gradient-to-b from-[#8168F0] to-[#8b5cf6] transition-all duration-500 ease-out ${isSelected ? "h-12 opacity-100" : "h-0 opacity-0"
                                                 }`}
                                         />
 
-                                        {/* Hover glow effect */}
-                                        <div
-                                            className={`pointer-events-none absolute inset-0 bg-gradient-to-r from-[#623BFD]/8 via-transparent to-transparent opacity-0 transition-opacity duration-700 ${isHovered && !isSelected ? "opacity-100" : ""
-                                                }`}
-                                        />
+                                        <div className="relative flex items-center gap-4">
+                                            {/* Icon Container */}
+                                            <div
+                                                className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border transition-all duration-500 ease-out ${isSelected
+                                                    ? "border-transparent bg-gradient-to-br from-[#8168F0] to-[#8b5cf6] text-white shadow-[0_8px_20px_rgba(98,59,253,0.28)]"
+                                                    : "border-[#e6e7ec] bg-[#f6f7f9] text-[#8a8fa3] group-hover:border-[#8168F0]/30 group-hover:text-[#8168F0]"
+                                                    }`}
+                                            >
+                                                <div className="h-5 w-5">{service.icon}</div>
+                                            </div>
 
-                                        <div className="relative flex items-center justify-between gap-4">
-                                            <div className="flex items-center gap-4 sm:gap-5">
-                                                {/* Icon Container */}
-                                                <div
-                                                    className={`icon-container relative flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border transition-all duration-700 ease-out ${isSelected
-                                                        ? "border-[#623BFD]/50 bg-gradient-to-br from-[#623BFD]/35 to-[#B296FE]/20 text-white shadow-[0_0_25px_rgba(98,59,253,0.4)]"
-                                                        : "border-white/10 bg-white/5 text-[#9DA3C2] group-hover:border-white/25 group-hover:bg-white/8 group-hover:text-white"
-                                                        }`}
-                                                >
-                                                    <div className="h-6 w-6 transition-transform duration-500 ease-out group-hover:scale-110">
-                                                        {service.icon}
-                                                    </div>
-                                                    {isSelected && (
-                                                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#623BFD]/20 to-transparent icon-shimmer" />
-                                                    )}
-                                                </div>
-
-                                                {/* Text */}
-                                                <div className="flex-1">
-                                                    <div className="flex items-center gap-2.5">
-                                                        <span
-                                                            className={`text-[13px] font-bold tracking-wider transition-colors duration-500 ${isSelected ? "text-[#B296FE]" : "text-[#6B7194]"
-                                                                }`}
-                                                        >
-                                                            {service.id}
-                                                        </span>
-                                                        <div
-                                                            className={`h-px transition-all duration-700 ease-out ${isSelected ? "w-10 bg-gradient-to-r from-[#623BFD] to-transparent" : "w-6 bg-white/10"
-                                                                }`}
-                                                        />
-                                                    </div>
+                                            {/* Text */}
+                                            <div className="min-w-0 flex-1">
+                                                <div className="flex items-center gap-2">
+                                                    <span
+                                                        className={`font-mono text-[12px] font-bold transition-colors duration-500 ${isSelected ? "text-[#8168F0]" : "text-[#b6b9c6]"
+                                                            }`}
+                                                    >
+                                                        {service.id}
+                                                    </span>
                                                     <h3
-                                                        className={`mt-1.5 text-[19px] font-bold tracking-tight transition-colors duration-500 sm:text-[20px] ${isSelected ? "text-white" : "text-[#B8BDD9] group-hover:text-white"
+                                                        className={`truncate text-[17px] font-bold tracking-tight transition-colors duration-500 sm:text-[18px] ${isSelected ? "text-[#1b1f3b]" : "text-[#4b5563] group-hover:text-[#1b1f3b]"
                                                             }`}
                                                     >
                                                         {service.title}
                                                     </h3>
-                                                    <p className="mt-1 text-[14px] leading-relaxed text-[#9DA3C2] sm:text-[15px]">
-                                                        {service.tagline}
-                                                    </p>
                                                 </div>
+                                                <p className="mt-0.5 truncate text-[13px] text-[#8a8fa3]">
+                                                    {service.tagline}
+                                                </p>
                                             </div>
 
-                                            {/* Arrow */}
-                                            <div
-                                                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-all duration-700 ease-out ${isSelected
-                                                    ? "rotate-90 border-[#623BFD] bg-gradient-to-br from-[#623BFD] to-[#8562FE] text-white shadow-[0_0_15px_rgba(98,59,253,0.5)]"
-                                                    : "border-white/10 text-[#9DA3C2] group-hover:translate-x-1 group-hover:border-white/30 group-hover:text-white"
+                                            {/* Chevron */}
+                                            <svg
+                                                className={`h-4 w-4 shrink-0 transition-all duration-500 ${isSelected
+                                                    ? "text-[#8168F0] opacity-100"
+                                                    : "-translate-x-1 text-[#c8cad4] opacity-0 group-hover:translate-x-0 group-hover:opacity-100"
                                                     }`}
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                strokeWidth="2.5"
                                             >
-                                                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                                                </svg>
-                                            </div>
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                                            </svg>
                                         </div>
                                     </button>
                                 );
@@ -288,142 +308,127 @@ export default function ProfessionalServices() {
                             <div
                                 ref={panelRef}
                                 key={activeService}
-                                className="panel-fade-in relative flex min-h-[680px] flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.05] via-white/[0.02] to-white/[0.01] p-6 shadow-[0_25px_70px_rgba(0,0,0,0.5)] backdrop-blur-2xl sm:p-8 md:p-10"
+                                className="panel-fade-in relative flex min-h-[680px] flex-col overflow-hidden rounded-3xl border border-[#e6e7ec] bg-white p-6 shadow-[0_25px_60px_rgba(27,31,59,0.1)] backdrop-blur-2xl sm:p-8 md:p-10"
                             >
                                 {/* Decorative gradient top line */}
-                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#623BFD] to-transparent" />
+                                <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#8168F0] to-transparent" />
 
                                 {/* Decorative corner glows */}
-                                <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#623BFD]/15 blur-[100px] panel-glow-1" />
-                                <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#B296FE]/12 blur-[100px] panel-glow-2" />
+                                <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#8168F0]/4 blur-[100px] panel-glow-1" />
+                                <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-[#B296FE]/4 blur-[100px] panel-glow-2" />
+
+                                {/* Ghost numeral watermark */}
+                                <span className="pointer-events-none absolute -top-4 right-4 select-none text-[120px] font-black leading-none text-[#8168F0]/[0.06] sm:text-[150px]">
+                                    {currentService.id}
+                                </span>
 
                                 {/* ===== TOP: Header ===== */}
                                 <div className="relative">
-                                    <div className="flex flex-wrap items-start justify-between gap-4 border-b border-white/5 pb-8">
-                                        <div className="flex items-center gap-5">
-                                            <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl border border-[#623BFD]/30 bg-gradient-to-br from-[#623BFD]/25 to-[#B296FE]/15 text-[#D4C8FE] shadow-[0_0_25px_rgba(98,59,253,0.25)]">
-                                                <div className="h-7 w-7">{currentService.icon}</div>
+                                    <div className="flex flex-wrap items-start justify-between gap-4 border-b border-[#e6e7ec] pb-8">
+                                        <div className="flex items-start gap-5">
+                                            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-[#8168F0] to-[#8b5cf6] text-white shadow-[0_12px_28px_rgba(98,59,253,0.28)]">
+                                                <div className="h-8 w-8">{currentService.icon}</div>
                                                 <div className="absolute inset-0 rounded-2xl icon-shimmer" />
                                             </div>
                                             <div>
-                                                <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#B296FE]">
-                                                    Currently Viewing
+                                                <p className="text-[12px] font-semibold uppercase tracking-[0.2em] text-[#8168F0]">
+                                                    {currentService.tagline}
                                                 </p>
-                                                <h4 className="mt-1.5 text-[26px] font-extrabold tracking-tight text-white sm:text-[30px]">
+                                                <h4 className="mt-1.5 text-[26px] font-extrabold tracking-tight text-[#1b1f3b] sm:text-[32px]">
                                                     {currentService.title}
                                                 </h4>
                                             </div>
                                         </div>
 
                                         {/* Status Badge */}
-                                        <div className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
-                                            <span className="h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)] pulse-dot" />
-                                            <span className="text-[12px] font-semibold uppercase tracking-wider text-emerald-300">
+                                        <div className="flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-50 px-4 py-2">
+                                            <span className="h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(52,211,153,0.7)] pulse-dot" />
+                                            <span className="text-[12px] font-semibold uppercase tracking-wider text-emerald-600">
                                                 Available Now
                                             </span>
                                         </div>
                                     </div>
 
                                     {/* Description */}
-                                    <p className="fade-in-up mt-7 text-[19px] leading-[1.8] text-[#C4C9E0]">
+                                    <p className="fade-in-up mt-7 text-[17px] leading-[1.8] text-[#4b5563]">
                                         {currentService.desc}
                                     </p>
                                 </div>
 
-                                {/* ===== MIDDLE: Architecture Grid ===== */}
-                                <div className="my-10 grid grid-cols-1 gap-8 border-t border-white/5 pt-10 sm:grid-cols-2">
-                                    {/* Workflow Pipeline */}
-                                    <div className="fade-in-up" style={{ animationDelay: "150ms" }}>
-                                        <div className="mb-5 flex items-center gap-3">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#623BFD]/30 bg-gradient-to-br from-[#623BFD]/20 to-transparent text-[#B296FE]">
-                                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9DA3C2]">
-                                                    Process
-                                                </p>
-                                                <p className="text-[16px] font-bold text-white">
-                                                    Workflow Pipeline
-                                                </p>
-                                            </div>
+                                {/* ===== PRODUCTION TARGETS (stat strip) ===== */}
+                                <div className="my-9 grid grid-cols-1 gap-3 border-t border-[#e6e7ec] pt-9 sm:grid-cols-3">
+                                    {[
+                                        { label: "Performance", value: currentService.metrics.retention, highlight: true },
+                                        { label: "Export Spec", value: currentService.metrics.delivery, highlight: false },
+                                        { label: "Audio Master", value: currentService.metrics.audio, highlight: false },
+                                    ].map((item, i) => (
+                                        <div
+                                            key={i}
+                                            className="metric-card rounded-xl border border-[#e6e7ec] bg-[#f6f7f9] p-4"
+                                            style={{ animationDelay: `${150 + i * 90}ms` }}
+                                        >
+                                            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#8a8fa3]">
+                                                {item.label}
+                                            </p>
+                                            <p
+                                                className={`mt-1.5 text-[16px] font-bold leading-snug ${item.highlight ? "text-[#8168F0]" : "text-[#1b1f3b]"
+                                                    }`}
+                                            >
+                                                {item.value}
+                                            </p>
                                         </div>
-                                        <ul className="space-y-3.5">
-                                            {currentService.pipeline.map((step, i) => (
-                                                <li
-                                                    key={i}
-                                                    className="pipeline-item group flex items-center gap-3.5 rounded-xl border border-white/[0.04] bg-white/[0.02] p-3 text-[16px] text-[#C4C9E0] transition-all duration-500 hover:border-[#623BFD]/25 hover:bg-white/[0.04] hover:pl-4"
-                                                    style={{ animationDelay: `${300 + i * 100}ms` }}
-                                                >
-                                                    <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[#623BFD]/40 bg-gradient-to-br from-[#623BFD]/25 to-[#B296FE]/15 text-[13px] font-bold text-[#D4C8FE] transition-all duration-500 group-hover:border-[#623BFD]/70 group-hover:from-[#623BFD]/40 group-hover:to-[#B296FE]/25 group-hover:shadow-[0_0_15px_rgba(98,59,253,0.4)]">
-                                                        {i + 1}
-                                                    </div>
-                                                    <span className="flex-1 transition-colors duration-500 group-hover:text-white">
-                                                        {step}
-                                                    </span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
+                                    ))}
+                                </div>
 
-                                    {/* Production Targets */}
-                                    <div className="fade-in-up" style={{ animationDelay: "250ms" }}>
-                                        <div className="mb-5 flex items-center gap-3">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#623BFD]/30 bg-gradient-to-br from-[#623BFD]/20 to-transparent text-[#B296FE]">
-                                                <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                                                </svg>
-                                            </div>
-                                            <div>
-                                                <p className="text-[11px] font-semibold uppercase tracking-widest text-[#9DA3C2]">
-                                                    Standards
-                                                </p>
-                                                <p className="text-[16px] font-bold text-white">
-                                                    Production Targets
-                                                </p>
-                                            </div>
+                                {/* ===== WORKFLOW PIPELINE ===== */}
+                                <div className="fade-in-up" style={{ animationDelay: "250ms" }}>
+                                    <div className="mb-5 flex items-center gap-3">
+                                        <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#8168F0]/25 bg-gradient-to-br from-[#8168F0]/12 to-transparent text-[#8168F0]">
+                                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                            </svg>
                                         </div>
-                                        <div className="space-y-3">
-                                            {[
-                                                { label: "Performance", value: currentService.metrics.retention, highlight: true },
-                                                { label: "Export Spec", value: currentService.metrics.delivery, highlight: false },
-                                                { label: "Audio Master", value: currentService.metrics.audio, highlight: false },
-                                            ].map((item, i) => (
-                                                <div
-                                                    key={i}
-                                                    className="metric-card group rounded-xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-white/[0.01] p-4 transition-all duration-500 hover:border-[#623BFD]/25 hover:from-white/[0.05] hover:to-white/[0.02]"
-                                                    style={{ animationDelay: `${400 + i * 100}ms` }}
-                                                >
-                                                    <p className="text-[12px] font-semibold uppercase tracking-wider text-[#9DA3C2]">
-                                                        {item.label}
-                                                    </p>
-                                                    <p
-                                                        className={`mt-1.5 text-[17px] font-bold transition-colors duration-500 ${item.highlight ? "text-[#B296FE] group-hover:text-[#D4C8FE]" : "text-white"
-                                                            }`}
-                                                    >
-                                                        {item.value}
-                                                    </p>
-                                                </div>
-                                            ))}
+                                        <div>
+                                            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#8a8fa3]">
+                                                Process
+                                            </p>
+                                            <p className="text-[16px] font-bold text-[#1b1f3b]">
+                                                Workflow Pipeline
+                                            </p>
                                         </div>
                                     </div>
+                                    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                                        {currentService.pipeline.map((step, i) => (
+                                            <li
+                                                key={i}
+                                                className="pipeline-item group flex items-center gap-3.5 rounded-xl border border-[#e6e7ec] bg-[#f6f7f9] p-3.5 text-[15px] text-[#4b5563] transition-all duration-500 hover:border-[#8168F0]/30 hover:bg-white"
+                                                style={{ animationDelay: `${350 + i * 90}ms` }}
+                                            >
+                                                <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#8168F0] to-[#8b5cf6] text-[13px] font-bold text-white">
+                                                    {i + 1}
+                                                </div>
+                                                <span className="flex-1 transition-colors duration-500 group-hover:text-[#1b1f3b]">
+                                                    {step}
+                                                </span>
+                                            </li>
+                                        ))}
+                                    </ul>
                                 </div>
 
                                 {/* ===== BOTTOM: Tech Stack + CTA ===== */}
-                                <div className="mt-auto border-t border-white/5 pt-8">
+                                <div className="mt-auto border-t border-[#e6e7ec] pt-9">
                                     <div className="mb-6 fade-in-up" style={{ animationDelay: "500ms" }}>
-                                        <p className="mb-4 text-[14px] font-bold uppercase tracking-widest text-white">
+                                        <p className="mb-4 text-[14px] font-bold uppercase tracking-widest text-[#1b1f3b]">
                                             Tech Stack
                                         </p>
                                         <div className="flex flex-wrap gap-2.5">
                                             {currentService.software.map((tool, i) => (
                                                 <span
                                                     key={i}
-                                                    className="tech-pill inline-flex items-center gap-2 rounded-xl border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] px-4 py-2 text-[14px] font-semibold text-[#D4C8FE] backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:border-[#623BFD]/40 hover:from-[#623BFD]/15 hover:to-[#623BFD]/5 hover:text-white hover:shadow-[0_5px_20px_rgba(98,59,253,0.2)]"
+                                                    className="tech-pill inline-flex items-center gap-2 rounded-xl border border-[#e6e7ec] bg-[#f6f7f9] px-4 py-2 text-[14px] font-semibold text-[#4b5563] backdrop-blur-md transition-all duration-500 hover:-translate-y-0.5 hover:border-[#8168F0]/40 hover:bg-[#8168F0]/8 hover:text-[#8168F0] hover:shadow-[0_5px_18px_rgba(98,59,253,0.14)]"
                                                     style={{ animationDelay: `${600 + i * 80}ms` }}
                                                 >
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-[#623BFD] shadow-[0_0_6px_rgba(98,59,253,0.8)]" />
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-[#8168F0] shadow-[0_0_6px_rgba(98,59,253,0.8)]" />
                                                     {tool}
                                                 </span>
                                             ))}
@@ -432,12 +437,12 @@ export default function ProfessionalServices() {
 
                                     {/* CTA Button */}
                                     <div className="flex flex-wrap items-center justify-between gap-4 fade-in-up" style={{ animationDelay: "700ms" }}>
-                                        <p className="text-[16px] text-[#B8BDD9]">
+                                        <p className="text-[17px] text-[#4b5563]">
                                             Ready to start your project?
                                         </p>
                                         <button
                                             onClick={handleBookService}
-                                            className="cta-premium group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-gradient-to-r from-[#623BFD] via-[#8562FE] to-[#B296FE] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_10px_35px_rgba(98,59,253,0.4)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_15px_45px_rgba(98,59,253,0.55)]"
+                                            className="cta-premium group relative inline-flex items-center gap-3 overflow-hidden rounded-2xl bg-[#141414] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:bg-black hover:shadow-[0_16px_40px_rgba(0,0,0,0.28)]"
                                         >
                                             <span className="relative z-10">Book This Service</span>
                                             <svg

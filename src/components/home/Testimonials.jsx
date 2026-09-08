@@ -1,14 +1,19 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
-// ── Brand Palette ──
+// ── Brand Palette (light / Hostinger-style) ──
 const COLORS = {
-    bg: '#080B29',
-    left: '#623BFD',
-    mid: '#D4C8FE',
-    right: '#B296FE',
+    bg: '#ffffff',
+    surface: '#f6f7f9',
+    border: '#e6e7ec',
+    text: '#1b1f3b',
+    textBody: '#4b5563',
+    textMuted: '#8a8fa3',
+    left: '#8168F0',
+    mid: '#7C5CFF',
+    right: '#8b5cf6',
 };
 
-const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 60%, ${COLORS.mid} 100%)`;
+const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
 const testimonials = [
     {
@@ -163,9 +168,9 @@ const FeaturedCard = ({ t }) => (
     <div
         className="relative mx-auto w-full max-w-3xl overflow-hidden rounded-[32px] border p-8 transition-all duration-500 sm:p-10"
         style={{
-            background: '#0D0B2A',
-            borderColor: `${COLORS.left}50`,
-            boxShadow: `0 30px 80px -20px ${COLORS.left}40, inset 0 1px 0 rgba(255,255,255,0.05)`,
+            background: '#ffffff',
+            borderColor: `${COLORS.left}33`,
+            boxShadow: `0 30px 70px -24px rgba(27,31,59,0.16)`,
         }}
     >
         {/* Glow blob */}
@@ -201,7 +206,7 @@ const FeaturedCard = ({ t }) => (
             {/* Top row — Client initials box removed */}
             <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                    <p className="text-sm font-black uppercase tracking-widest text-white">
+                    <p className="text-sm font-black uppercase tracking-widest text-[#1b1f3b]">
                         {t.name}
                     </p>
 
@@ -236,13 +241,13 @@ const FeaturedCard = ({ t }) => (
                     <Star key={index} color={COLORS.right} />
                 ))}
 
-                <span className="ml-2 text-[9px] font-bold uppercase tracking-widest text-gray-500">
+                <span className="ml-2 text-[9px] font-bold uppercase tracking-widest text-[#8a8fa3]">
                     Verified Client
                 </span>
             </div>
 
             {/* Quote */}
-            <p className="text-base font-light italic leading-relaxed text-gray-200 sm:text-lg">
+            <p className="text-[17px] font-light italic leading-relaxed text-[#4b5563]">
                 "{t.text}"
             </p>
 
@@ -251,7 +256,7 @@ const FeaturedCard = ({ t }) => (
                 className="flex items-center justify-between gap-4 border-t pt-4"
                 style={{ borderColor: '#1e1b4b' }}
             >
-                <span className="font-mono text-[11px] tracking-widest text-gray-500">
+                <span className="font-mono text-[11px] tracking-widest text-[#8a8fa3]">
                     {t.handle}
                 </span>
 
@@ -269,7 +274,7 @@ const FeaturedCard = ({ t }) => (
                         {t.metric}
                     </span>
 
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-gray-400">
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-[#8a8fa3]">
                         {t.metricLabel}
                     </span>
                 </div>
@@ -409,8 +414,8 @@ export default function Testimonials() {
 
             <section
                 ref={sectionRef}
-                className="relative w-full select-none overflow-hidden px-6 py-32 font-sans text-white sm:px-12 lg:px-24"
-                style={{ background: COLORS.bg }}
+                className="relative w-full select-none overflow-hidden px-6 py-32 font-sans sm:px-12 lg:px-24"
+                style={{ background: COLORS.bg, color: COLORS.text }}
             >
                 {/* Ambient Glows */}
                 <div
@@ -498,8 +503,8 @@ export default function Testimonials() {
                             </span>
                         </div>
 
-                        <h2 className="text-5xl font-black uppercase leading-none tracking-widest sm:text-7xl">
-                            <span className="text-white">Client's </span>
+                        <h2 className="text-5xl font-black uppercase leading-none tracking-widest sm:text-7xl" style={{ color: COLORS.text }}>
+                            <span>Client's </span>
 
                             <span
                                 style={{
@@ -515,7 +520,7 @@ export default function Testimonials() {
                             </span>
                         </h2>
 
-                        <p className="mx-auto max-w-lg text-sm leading-relaxed text-gray-400">
+                        <p className="mx-auto max-w-lg text-[17px] leading-relaxed text-[#4b5563]">
                             Real results from real clients, every metric, every review,{' '}
                             <span
                                 className="font-semibold"
@@ -563,19 +568,19 @@ export default function Testimonials() {
                         <button
                             onClick={goPrev}
                             aria-label="Previous testimonial"
-                            className="absolute top-1/2 -left-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border font-black text-gray-400 shadow-2xl outline-none backdrop-blur-sm transition-all duration-300 sm:-left-6"
+                            className="absolute top-1/2 -left-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border font-black text-[#8a8fa3] shadow-lg outline-none backdrop-blur-sm transition-all duration-300 sm:-left-6"
                             style={{
-                                borderColor: `${COLORS.left}40`,
-                                background: 'rgba(13,11,42,0.9)',
+                                borderColor: 'rgba(0,0,0,0.12)',
+                                background: '#ffffff',
                             }}
                             onMouseEnter={(event) => {
-                                event.currentTarget.style.background = GRADIENT;
-                                event.currentTarget.style.color = COLORS.bg;
+                                event.currentTarget.style.background = '#141414';
+                                event.currentTarget.style.color = '#ffffff';
                             }}
                             onMouseLeave={(event) => {
                                 event.currentTarget.style.background =
-                                    'rgba(13,11,42,0.9)';
-                                event.currentTarget.style.color = '#9ca3af';
+                                    '#ffffff';
+                                event.currentTarget.style.color = '#8a8fa3';
                             }}
                         >
                             ←
@@ -585,19 +590,19 @@ export default function Testimonials() {
                         <button
                             onClick={goNext}
                             aria-label="Next testimonial"
-                            className="absolute top-1/2 -right-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border font-black text-gray-400 shadow-2xl outline-none backdrop-blur-sm transition-all duration-300 sm:-right-6"
+                            className="absolute top-1/2 -right-2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border font-black text-[#8a8fa3] shadow-lg outline-none backdrop-blur-sm transition-all duration-300 sm:-right-6"
                             style={{
-                                borderColor: `${COLORS.left}40`,
-                                background: 'rgba(13,11,42,0.9)',
+                                borderColor: 'rgba(0,0,0,0.12)',
+                                background: '#ffffff',
                             }}
                             onMouseEnter={(event) => {
-                                event.currentTarget.style.background = GRADIENT;
-                                event.currentTarget.style.color = COLORS.bg;
+                                event.currentTarget.style.background = '#141414';
+                                event.currentTarget.style.color = '#ffffff';
                             }}
                             onMouseLeave={(event) => {
                                 event.currentTarget.style.background =
-                                    'rgba(13,11,42,0.9)';
-                                event.currentTarget.style.color = '#9ca3af';
+                                    '#ffffff';
+                                event.currentTarget.style.color = '#8a8fa3';
                             }}
                         >
                             →
@@ -652,12 +657,12 @@ export default function Testimonials() {
                                 key={item.label}
                                 className="flex flex-col gap-3 rounded-2xl border p-5 transition-all duration-300"
                                 style={{
-                                    borderColor: '#1e1b4b',
-                                    background: '#0D0B2A',
+                                    borderColor: '#e6e7ec',
+                                    background: '#ffffff',
                                 }}
                             >
                                 <div className="flex items-center justify-between">
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">
+                                    <span className="text-[10px] font-black uppercase tracking-widest text-[#8a8fa3]">
                                         {item.label}
                                     </span>
 
@@ -671,7 +676,7 @@ export default function Testimonials() {
 
                                 <div
                                     className="h-1.5 w-full overflow-hidden rounded-full"
-                                    style={{ background: '#1e1b4b' }}
+                                    style={{ background: '#ece7fb' }}
                                 >
                                     <div
                                         className="h-full rounded-full"

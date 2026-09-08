@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 
 const COLORS = {
-    primary: '#623BFD',
+    primary: '#8168F0',
     primaryLight: '#7C5CFF',
-    lavender: '#B296FE',
+    lavender: '#8b5cf6',
 }
 
 export default function CustomCursor() {
@@ -144,13 +144,12 @@ export default function CustomCursor() {
           pointer-events: none;
           z-index: 99999;
           transform: translate(-50%, -50%);
-          transition: 
+          transition:
             width 0.3s cubic-bezier(0.16, 1, 0.3, 1),
             height 0.3s cubic-bezier(0.16, 1, 0.3, 1),
             border-color 0.3s ease,
             background-color 0.3s ease,
             opacity 0.3s ease;
-          mix-blend-mode: difference;
         }
 
         .custom-cursor-outer.hovering {

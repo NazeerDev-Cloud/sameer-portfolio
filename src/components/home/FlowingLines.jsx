@@ -1,7 +1,7 @@
 import React from 'react';
 
 const COLORS = {
-    left: '#623BFD',
+    left: '#8168F0',
     mid: '#D4C8FE',
     right: '#B296FE',
 };

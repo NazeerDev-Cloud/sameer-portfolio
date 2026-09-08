@@ -409,14 +409,14 @@ export default function ProjectCarousel() {
             <section
                 ref={sectionRef}
                 id="portfolio"
-                className="relative w-full overflow-hidden px-5 pt-32 pb-24 text-white sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
+                className="relative w-full overflow-hidden bg-white px-5 pt-32 pb-24 text-[#1b1f3b] sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
             >
                 {/* Top Blend */}
                 <div
                     className="pointer-events-none absolute inset-x-0 top-0 z-[2] h-40"
                     style={{
                         background:
-                            "linear-gradient(to bottom, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                            "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.7) 50%, transparent 100%)",
                     }}
                 />
 
@@ -425,15 +425,15 @@ export default function ProjectCarousel() {
                     className="pointer-events-none absolute inset-x-0 bottom-0 z-[2] h-40"
                     style={{
                         background:
-                            "linear-gradient(to top, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)",
+                            "linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.7) 50%, transparent 100%)",
                     }}
                 />
 
                 {/* Ambient Glows */}
                 <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                    <div className="orb-glow orb-1 absolute -top-20 right-[-10%] h-[500px] w-[500px] rounded-full bg-[#623BFD]/20 blur-[130px]" />
-                    <div className="orb-glow orb-2 absolute bottom-0 left-[-10%] h-[500px] w-[500px] rounded-full bg-[#B296FE]/15 blur-[130px]" />
-                    <div className="orb-glow orb-3 absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#D4C8FE]/8 blur-[120px]" />
+                    <div className="orb-glow orb-1 absolute -top-20 right-[-10%] h-[500px] w-[500px] rounded-full bg-[#8168F0]/5 blur-[130px]" />
+                    <div className="orb-glow orb-2 absolute bottom-0 left-[-10%] h-[500px] w-[500px] rounded-full bg-[#B296FE]/5 blur-[130px]" />
+                    <div className="orb-glow orb-3 absolute top-1/2 left-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8b5cf6]/6 blur-[120px]" />
                 </div>
 
                 {/* Floating Particles */}
@@ -441,7 +441,7 @@ export default function ProjectCarousel() {
                     {[...Array(8)].map((_, i) => (
                         <div
                             key={i}
-                            className="particle absolute rounded-full bg-[#D4C8FE]"
+                            className="particle absolute rounded-full bg-[#8b5cf6]"
                             style={{
                                 width: `${3 + Math.random() * 4}px`,
                                 height: `${3 + Math.random() * 4}px`,
@@ -457,22 +457,22 @@ export default function ProjectCarousel() {
                 <div className="relative z-10 mx-auto flex max-w-7xl flex-col items-center">
                     {/* ===== HEADER ===== */}
                     <div className="mb-16 flex max-w-4xl flex-col items-center space-y-6 text-center">
-                        <div className="scroll-reveal inline-flex items-center gap-2 rounded-full border border-[#623BFD]/30 bg-[#623BFD]/10 px-6 py-2.5 backdrop-blur-md">
-                            <span className="pulse-dot h-2 w-2 rounded-full bg-[#B296FE] shadow-[0_0_8px_rgba(178,150,254,0.6)]" />
+                        <div className="scroll-reveal inline-flex items-center gap-2 rounded-full border border-[#8168F0]/25 bg-[#8168F0]/8 px-6 py-2.5 backdrop-blur-md">
+                            <span className="pulse-dot h-2 w-2 rounded-full bg-[#8168F0] shadow-[0_0_8px_rgba(98,59,253,0.4)]" />
 
-                            <span className="text-sm font-semibold uppercase tracking-wider text-[#D4C8FE]">
+                            <span className="text-sm font-semibold uppercase tracking-wider text-[#8168F0]">
                                 Portfolio Showcase
                             </span>
                         </div>
 
-                        <h2 className="scroll-reveal text-[32px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[42px] md:text-[50px] lg:text-[58px]">
+                        <h2 className="scroll-reveal text-[32px] font-extrabold leading-[1.1] tracking-tight text-[#1b1f3b] sm:text-[42px] md:text-[50px] lg:text-[58px]">
                             My Most Popular{" "}
-                            <span className="heading-gradient inline-block bg-gradient-to-r from-[#623BFD] via-[#D4C8FE] to-[#B296FE] bg-clip-text text-transparent">
+                            <span className="heading-gradient inline-block bg-gradient-to-r from-[#8168F0] via-[#8b5cf6] to-[#9D6BFF] bg-clip-text text-transparent">
                                 Edit Collections
                             </span>
                         </h2>
 
-                        <p className="scroll-reveal max-w-2xl text-[18px] leading-[1.8] text-[#B8BDD9] sm:text-[20px]">
+                        <p className="scroll-reveal max-w-2xl text-[17px] leading-[1.8] text-[#4b5563]">
                             Explore my featured portfolio of cinematic edits,
                             motion graphics, and high-impact commercial productions
                             crafted for global brands.
@@ -485,7 +485,7 @@ export default function ProjectCarousel() {
                         <button
                             onClick={handlePrev}
                             aria-label="Previous project"
-                            className="carousel-btn group absolute left-2 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#623BFD]/50 hover:bg-[#623BFD]/80 sm:h-14 sm:w-14 lg:-left-4"
+                            className="carousel-btn group absolute left-2 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-[#e6e7ec] bg-white text-[#1b1f3b] shadow-[0_8px_24px_rgba(27,31,59,0.1)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-black/20 hover:bg-[#141414] hover:text-white sm:h-14 sm:w-14 lg:-left-4"
                         >
                             <svg
                                 className="h-5 w-5 transition-transform duration-300 group-hover:-translate-x-0.5 sm:h-6 sm:w-6"
@@ -540,8 +540,8 @@ export default function ProjectCarousel() {
                                         onClick={() =>
                                             isActive && openProject(project)
                                         }
-                                        className={`carousel-card group absolute flex h-[360px] w-[500px] flex-col overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_30px_60px_rgba(0,0,0,0.5)] backdrop-blur-xl will-change-transform sm:h-[400px] sm:w-[600px] md:h-[440px] md:w-[720px] ${isActive
-                                                ? "cursor-pointer border-[#623BFD]/40 hover:border-[#623BFD]/60 hover:shadow-[0_35px_70px_rgba(98,59,253,0.35)]"
+                                        className={`carousel-card group absolute flex h-[360px] w-[500px] flex-col overflow-hidden rounded-[28px] border border-[#e6e7ec] bg-white shadow-[0_30px_60px_rgba(27,31,59,0.14)] backdrop-blur-xl will-change-transform sm:h-[400px] sm:w-[600px] md:h-[440px] md:w-[720px] ${isActive
+                                                ? "cursor-pointer border-[#8168F0]/40 hover:border-[#8168F0]/60 hover:shadow-[0_35px_70px_rgba(98,59,253,0.22)]"
                                                 : "pointer-events-none"
                                             }`}
                                         style={{
@@ -589,29 +589,29 @@ export default function ProjectCarousel() {
                                             )}
 
                                             {/* Gradient overlay */}
-                                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#080B29] via-[#080B29]/30 to-transparent" />
+                                            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#1b1f3b] via-[#1b1f3b]/25 to-transparent" />
 
                                             {/* Top edge overlay */}
-                                            <div className="pointer-events-none absolute top-0 right-0 left-0 h-16 bg-gradient-to-b from-[#080B29] via-[#080B29]/60 to-transparent" />
+                                            <div className="pointer-events-none absolute top-0 right-0 left-0 h-16 bg-gradient-to-b from-[#1b1f3b]/60 via-[#1b1f3b]/25 to-transparent" />
 
                                             {/* Category Badge */}
-                                            <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 backdrop-blur-md">
+                                            <div className="absolute top-4 left-4 z-10 flex items-center gap-2 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 backdrop-blur-md">
                                                 <span className="h-1.5 w-1.5 rounded-full bg-[#B296FE]" />
 
-                                                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#D4C8FE]">
+                                                <span className="text-[11px] font-semibold uppercase tracking-wider text-[#E9E2FF]">
                                                     {project.category}
                                                 </span>
                                             </div>
 
                                             {/* Duration Badge */}
-                                            <div className="absolute top-4 right-4 z-10 rounded-full border border-white/20 bg-black/60 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-md">
+                                            <div className="absolute top-4 right-4 z-10 rounded-full border border-white/25 bg-black/50 px-3 py-1.5 text-[11px] font-semibold text-white backdrop-blur-md">
                                                 {stats.duration}
                                             </div>
 
                                             {/* Play Button */}
                                             {isActive && (
                                                 <div className="play-overlay pointer-events-none absolute inset-0 z-10 flex items-center justify-center opacity-0 transition-opacity duration-500">
-                                                    <div className="play-pulse flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#623BFD] to-[#B296FE] shadow-[0_0_30px_rgba(98,59,253,0.6)] sm:h-20 sm:w-20">
+                                                    <div className="play-pulse flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-[#8168F0] to-[#B296FE] shadow-[0_0_30px_rgba(98,59,253,0.6)] sm:h-20 sm:w-20">
                                                         <svg
                                                             className="h-7 w-7 translate-x-0.5 text-white sm:h-8 sm:w-8"
                                                             fill="currentColor"
@@ -625,10 +625,10 @@ export default function ProjectCarousel() {
                                         </div>
 
                                         {/* Bottom Info Bar */}
-                                        <div className="flex flex-1 items-center justify-between border-t border-white/5 bg-black/40 px-5 py-4 backdrop-blur-md sm:px-6">
+                                        <div className="flex flex-1 items-center justify-between border-t border-[#e6e7ec] bg-[#f6f7f9] px-5 py-4 backdrop-blur-md sm:px-6">
                                             <div className="flex items-center gap-3">
-                                                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-[#623BFD] to-[#B296FE] p-[2px]">
-                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#080B29] text-xs font-bold text-white">
+                                                <div className="h-10 w-10 rounded-full bg-gradient-to-tr from-[#8168F0] to-[#B296FE] p-[2px]">
+                                                    <div className="flex h-full w-full items-center justify-center rounded-full bg-[#1b1f3b] text-xs font-bold text-white">
                                                         {project.client
                                                             .substring(0, 2)
                                                             .toUpperCase()}
@@ -636,17 +636,17 @@ export default function ProjectCarousel() {
                                                 </div>
 
                                                 <div>
-                                                    <p className="text-sm font-bold text-white">
+                                                    <p className="text-sm font-bold text-[#1b1f3b]">
                                                         {project.title}
                                                     </p>
 
-                                                    <p className="text-xs text-[#9DA3C2]">
+                                                    <p className="text-xs text-[#8a8fa3]">
                                                         {project.client}
                                                     </p>
                                                 </div>
                                             </div>
 
-                                            <div className="flex items-center gap-2 text-xs text-[#9DA3C2]">
+                                            <div className="flex items-center gap-2 text-xs text-[#8a8fa3]">
                                                 <svg
                                                     className="h-4 w-4"
                                                     fill="none"
@@ -680,7 +680,7 @@ export default function ProjectCarousel() {
                         <button
                             onClick={handleNext}
                             aria-label="Next project"
-                            className="carousel-btn group absolute right-2 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-[#623BFD]/50 hover:bg-[#623BFD]/80 sm:h-14 sm:w-14 lg:-right-4"
+                            className="carousel-btn group absolute right-2 z-40 flex h-12 w-12 items-center justify-center rounded-full border border-[#e6e7ec] bg-white text-[#1b1f3b] shadow-[0_8px_24px_rgba(27,31,59,0.1)] backdrop-blur-md transition-all duration-300 hover:scale-110 hover:border-black/20 hover:bg-[#141414] hover:text-white sm:h-14 sm:w-14 lg:-right-4"
                         >
                             <svg
                                 className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-0.5 sm:h-6 sm:w-6"
@@ -706,20 +706,20 @@ export default function ProjectCarousel() {
                                 onClick={() => setActiveIndex(index)}
                                 aria-label={`Go to slide ${index + 1}`}
                                 className={`h-2 rounded-full transition-all duration-500 ${index === activeIndex
-                                        ? "w-10 bg-gradient-to-r from-[#623BFD] to-[#B296FE] shadow-[0_0_10px_rgba(98,59,253,0.5)]"
-                                        : "w-2 bg-white/20 hover:bg-white/40"
+                                        ? "w-10 bg-gradient-to-r from-[#8168F0] to-[#B296FE] shadow-[0_0_10px_rgba(98,59,253,0.4)]"
+                                        : "w-2 bg-[#1b1f3b]/15 hover:bg-[#1b1f3b]/30"
                                     }`}
                             />
                         ))}
                     </div>
 
                     {/* ===== SLIDE COUNTER ===== */}
-                    <div className="scroll-reveal mt-6 flex items-center gap-2 text-sm text-[#9DA3C2]">
-                        <span className="text-lg font-bold text-white">
+                    <div className="scroll-reveal mt-6 flex items-center gap-2 text-sm text-[#8a8fa3]">
+                        <span className="text-lg font-bold text-[#1b1f3b]">
                             {String(activeIndex + 1).padStart(2, "0")}
                         </span>
 
-                        <span className="text-[#623BFD]">/</span>
+                        <span className="text-[#8168F0]">/</span>
 
                         <span>{String(projects.length).padStart(2, "0")}</span>
                     </div>
@@ -728,7 +728,7 @@ export default function ProjectCarousel() {
                     <div className="scroll-reveal mt-16">
                         <a
                             href="/work"
-                            className="cta-shimmer group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#623BFD] via-[#8562FE] to-[#B296FE] px-10 py-5 text-base font-bold text-white shadow-[0_8px_30px_rgba(98,59,253,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(98,59,253,0.6)]"
+                            className="cta-shimmer group inline-flex items-center gap-3 rounded-2xl bg-[#141414] px-10 py-5 text-base font-bold text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-black hover:shadow-[0_16px_40px_rgba(0,0,0,0.28)]"
                         >
                             See My Hidden Skills
 
@@ -758,48 +758,48 @@ export default function ProjectCarousel() {
                 >
                     {/* Backdrop Glows */}
                     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                        <div className="absolute -top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-[#623BFD]/20 blur-[150px]" />
+                        <div className="absolute -top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-[#8168F0]/6 blur-[150px]" />
 
-                        <div className="absolute -right-1/4 -bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#B296FE]/15 blur-[150px]" />
+                        <div className="absolute -right-1/4 -bottom-1/4 h-[500px] w-[500px] rounded-full bg-[#B296FE]/6 blur-[150px]" />
                     </div>
 
                     <div
                         onClick={(event) => event.stopPropagation()}
-                        className={`modal-scale-in relative flex flex-col overflow-hidden rounded-[28px] border border-white/10 bg-gradient-to-br from-[#0D1030] to-[#080B29] shadow-[0_0_80px_rgba(98,59,253,0.4)] transition-all duration-500 ${isMaximized
+                        className={`modal-scale-in relative flex flex-col overflow-hidden rounded-[28px] border border-[#e6e7ec] bg-white shadow-[0_40px_120px_rgba(27,31,59,0.35)] transition-all duration-500 ${isMaximized
                                 ? "w-full max-w-[1400px]"
                                 : "w-full max-w-5xl"
                             }`}
                     >
                         {/* Decorative gradient border */}
-                        <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#623BFD] to-transparent" />
+                        <div className="absolute top-0 right-0 left-0 h-[2px] bg-gradient-to-r from-transparent via-[#8168F0] to-transparent" />
 
                         {/* Modal Header */}
-                        <div className="relative z-10 flex items-center justify-between border-b border-white/5 bg-white/[0.02] px-5 py-4 backdrop-blur-md sm:px-6">
+                        <div className="relative z-10 flex items-center justify-between border-b border-[#e6e7ec] bg-[#f6f7f9] px-5 py-4 backdrop-blur-md sm:px-6">
                             <div className="flex items-center gap-4">
                                 <div className="relative">
-                                    <div className="h-11 w-11 rounded-xl bg-gradient-to-tr from-[#623BFD] to-[#B296FE] p-[2px]">
-                                        <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-[#080B29] text-sm font-bold text-white">
+                                    <div className="h-11 w-11 rounded-xl bg-gradient-to-tr from-[#8168F0] to-[#B296FE] p-[2px]">
+                                        <div className="flex h-full w-full items-center justify-center rounded-[10px] bg-[#1b1f3b] text-sm font-bold text-white">
                                             {selectedProject.client
                                                 .substring(0, 2)
                                                 .toUpperCase()}
                                         </div>
                                     </div>
 
-                                    <span className="pulse-dot absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-2 border-[#080B29] bg-[#B296FE]" />
+                                    <span className="pulse-dot absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full border-2 border-white bg-[#8168F0]" />
                                 </div>
 
                                 <div>
                                     <div className="flex items-center gap-2">
-                                        <span className="text-[10px] font-semibold uppercase tracking-widest text-[#D4C8FE]">
+                                        <span className="text-[10px] font-semibold uppercase tracking-widest text-[#8168F0]">
                                             {selectedProject.category}
                                         </span>
 
-                                        <span className="rounded-full bg-[#623BFD]/20 px-2 py-0.5 text-[9px] font-bold uppercase text-[#B296FE]">
+                                        <span className="rounded-full bg-[#8168F0]/12 px-2 py-0.5 text-[9px] font-bold uppercase text-[#8168F0]">
                                             HD
                                         </span>
                                     </div>
 
-                                    <h3 className="text-base font-bold text-white sm:text-lg">
+                                    <h3 className="text-base font-bold text-[#1b1f3b] sm:text-lg">
                                         {selectedProject.title}
                                     </h3>
                                 </div>
@@ -813,7 +813,7 @@ export default function ProjectCarousel() {
                                     aria-label={
                                         isMaximized ? "Minimize" : "Maximize"
                                     }
-                                    className="hidden h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-300 transition-all hover:border-[#623BFD]/50 hover:bg-white/10 hover:text-white sm:flex"
+                                    className="hidden h-10 w-10 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#6b7280] transition-all hover:border-[#8168F0]/50 hover:bg-[#8168F0]/10 hover:text-[#8168F0] sm:flex"
                                 >
                                     {isMaximized ? (
                                         <svg
@@ -849,7 +849,7 @@ export default function ProjectCarousel() {
                                 <button
                                     onClick={closeProject}
                                     aria-label="Close"
-                                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-gray-400 transition-all hover:rotate-90 hover:border-red-500/50 hover:bg-red-500/20 hover:text-red-400"
+                                    className="flex h-10 w-10 items-center justify-center rounded-xl border border-[#e6e7ec] bg-white text-[#6b7280] transition-all hover:rotate-90 hover:border-red-400/50 hover:bg-red-50 hover:text-red-500"
                                 >
                                     <svg
                                         className="h-4 w-4"
@@ -873,7 +873,7 @@ export default function ProjectCarousel() {
                             {/* Loading placeholder */}
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <div className="flex flex-col items-center gap-3">
-                                    <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-[#623BFD]" />
+                                    <div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-[#8168F0]" />
 
                                     <span className="text-xs uppercase tracking-widest text-[#9DA3C2]">
                                         Loading Project
@@ -907,7 +907,7 @@ export default function ProjectCarousel() {
                                 )
                             ) : (
                                 <div className="relative z-10 flex h-full w-full flex-col items-center justify-center gap-4 p-6 text-center">
-                                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#623BFD]/20 to-[#B296FE]/10">
+                                    <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-br from-[#8168F0]/20 to-[#B296FE]/10">
                                         <svg
                                             className="h-10 w-10 text-[#B296FE]"
                                             fill="none"
@@ -938,22 +938,22 @@ export default function ProjectCarousel() {
                         </div>
 
                         {/* ===== PREMIUM AUDIO PANEL ===== */}
-                        <div className="player-audio-panel relative z-20 border-t border-white/5 px-5 py-4 sm:px-6">
+                        <div className="player-audio-panel relative z-20 border-t border-[#e6e7ec] px-5 py-4 sm:px-6">
                             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                                 {/* Audio Status */}
                                 <div className="flex items-center gap-3">
-                                    <div className="audio-equalizer flex h-9 w-9 items-center justify-center gap-1 rounded-xl border border-[#623BFD]/30 bg-[#623BFD]/10">
+                                    <div className="audio-equalizer flex h-9 w-9 items-center justify-center gap-1 rounded-xl border border-[#8168F0]/30 bg-[#8168F0]/10">
                                         <span />
                                         <span />
                                         <span />
                                     </div>
 
                                     <div>
-                                        <p className="text-sm font-bold text-white">
+                                        <p className="text-sm font-bold text-[#1b1f3b]">
                                             Project Audio
                                         </p>
 
-                                        <p className="text-[11px] text-[#9DA3C2]">
+                                        <p className="text-[11px] text-[#8a8fa3]">
                                             {isMuted || volume === 0
                                                 ? "Sound is muted"
                                                 : "Background sound is enabled"}
@@ -962,7 +962,7 @@ export default function ProjectCarousel() {
                                 </div>
 
                                 {/* Volume Controls */}
-                                <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-3 py-2.5 backdrop-blur-md">
+                                <div className="flex items-center gap-3 rounded-xl border border-[#e6e7ec] bg-[#f6f7f9] px-3 py-2.5 backdrop-blur-md">
                                     <button
                                         type="button"
                                         onClick={handleMuteToggle}
@@ -971,7 +971,7 @@ export default function ProjectCarousel() {
                                                 ? "Unmute project audio"
                                                 : "Mute project audio"
                                         }
-                                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#623BFD]/15 text-[#D4C8FE] transition-all duration-300 hover:bg-[#623BFD]/35 hover:text-white"
+                                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-[#8168F0]/12 text-[#8168F0] transition-all duration-300 hover:bg-[#8168F0]/25 hover:text-white"
                                     >
                                         {isMuted || volume === 0 ? (
                                             <svg
@@ -1025,17 +1025,17 @@ export default function ProjectCarousel() {
                                         style={{
                                             background: `linear-gradient(
                                                 to right,
-                                                #623BFD 0%,
+                                                #8168F0 0%,
                                                 #B296FE ${isMuted ? 0 : volume
                                                 }%,
-                                                rgba(255,255,255,0.13) ${isMuted ? 0 : volume
+                                                rgba(27,31,59,0.12) ${isMuted ? 0 : volume
                                                 }%,
-                                                rgba(255,255,255,0.13) 100%
+                                                rgba(27,31,59,0.12) 100%
                                             )`,
                                         }}
                                     />
 
-                                    <span className="min-w-[44px] text-right text-xs font-bold text-[#D4C8FE]">
+                                    <span className="min-w-[44px] text-right text-xs font-bold text-[#8168F0]">
                                         {isMuted || volume === 0
                                             ? "Muted"
                                             : `${volume}%`}
@@ -1045,13 +1045,13 @@ export default function ProjectCarousel() {
                         </div>
 
                         {/* ===== MODAL FOOTER ===== */}
-                        <div className="relative border-t border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent px-5 py-5 sm:px-6">
+                        <div className="relative border-t border-[#e6e7ec] bg-[#f6f7f9] px-5 py-5 sm:px-6">
                             <div className="flex flex-wrap items-center justify-between gap-4">
                                 {/* Client Detail */}
-                                <div className="flex items-center gap-2 text-sm text-[#B8BDD9]">
-                                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5">
+                                <div className="flex items-center gap-2 text-sm text-[#4b5563]">
+                                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#8168F0]/10">
                                         <svg
-                                            className="h-4 w-4 text-[#B296FE]"
+                                            className="h-4 w-4 text-[#8168F0]"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -1066,11 +1066,11 @@ export default function ProjectCarousel() {
                                     </div>
 
                                     <div>
-                                        <p className="text-[10px] uppercase tracking-wider text-[#9DA3C2]">
+                                        <p className="text-[10px] uppercase tracking-wider text-[#8a8fa3]">
                                             Client
                                         </p>
 
-                                        <p className="text-sm font-bold text-white">
+                                        <p className="text-sm font-bold text-[#1b1f3b]">
                                             {selectedProject.client}
                                         </p>
                                     </div>
@@ -1079,7 +1079,7 @@ export default function ProjectCarousel() {
                                 {/* CTA Button */}
                                 <a
                                     href="/work"
-                                    className="cta-shimmer group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#623BFD] via-[#8562FE] to-[#B296FE] px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_20px_rgba(98,59,253,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_8px_28px_rgba(98,59,253,0.5)]"
+                                    className="cta-shimmer group inline-flex items-center gap-2 rounded-xl bg-[#141414] px-6 py-3 text-sm font-semibold text-white shadow-[0_6px_20px_rgba(0,0,0,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-black hover:shadow-[0_10px_28px_rgba(0,0,0,0.26)]"
                                 >
                                     View More Work
 
@@ -1262,7 +1262,7 @@ export default function ProjectCarousel() {
 
         /* ===== MODAL ANIMATIONS ===== */
         .modal-backdrop {
-          background: rgba(4, 6, 20, 0.85);
+          background: rgba(27, 31, 59, 0.45);
           backdrop-filter: blur(20px);
           -webkit-backdrop-filter: blur(20px);
           animation: modalBackdropFade 0.3s ease-out forwards;
@@ -1332,17 +1332,17 @@ export default function ProjectCarousel() {
           background:
             radial-gradient(
               circle at left,
-              rgba(98, 59, 253, 0.11),
+              rgba(98, 59, 253, 0.06),
               transparent 44%
             ),
-            rgba(255, 255, 255, 0.018);
+            #ffffff;
         }
 
         .audio-equalizer span {
           display: block;
           width: 3px;
           border-radius: 999px;
-          background: linear-gradient(to top, #623BFD, #D4C8FE);
+          background: linear-gradient(to top, #8168F0, #D4C8FE);
           box-shadow: 0 0 10px rgba(178, 150, 254, 0.55);
           animation: audioWave 1s ease-in-out infinite;
         }

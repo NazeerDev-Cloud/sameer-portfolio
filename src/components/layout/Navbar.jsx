@@ -2,22 +2,28 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Link, useLocation } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import logoMark from "../../assets/logo-mark.svg";
 
-// ── Brand Palette ──
+// ── Brand Palette (light / Hostinger-style) ──
 const COLORS = {
-    bg: "#080B29",
-    left: "#623BFD",
-    mid: "#D4C8FE",
-    right: "#B296FE",
+    bg: "#ffffff",
+    surface: "#f6f7f9",
+    border: "#e6e7ec",
+    text: "#1b1f3b",
+    textBody: "#4b5563",
+    textMuted: "#8a8fa3",
+    left: "#8168F0",
+    leftDark: "#4b26d4",
+    mid: "#7C5CFF",
+    right: "#8b5cf6",
 };
 
-const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 60%, ${COLORS.mid} 100%)`;
+const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
 // ── Navigation Links ──
 const navItems = [
     { name: "Home", to: "/", isHash: false },
     { name: "Work", to: "/work", isHash: false },
-    { name: "About", to: "/#about", isHash: true },
     { name: "Process", to: "/#process", isHash: true },
     { name: "Testimonials", to: "/#testimonials", isHash: true },
     { name: "Contact", to: "/#contact", isHash: true },
@@ -134,15 +140,15 @@ export default function Navbar() {
                 ref={navRef}
                 className="fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out"
                 style={{
-                    background: isScrolled ? `${COLORS.bg}f0` : `${COLORS.bg}80`,
+                    background: isScrolled ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.6)",
                     backdropFilter: isScrolled ? "blur(24px)" : "blur(16px)",
                     WebkitBackdropFilter: isScrolled ? "blur(24px)" : "blur(16px)",
                     borderBottom: `1px solid ${isScrolled
-                            ? `${COLORS.left}30`
-                            : "rgba(255,255,255,0.06)"
+                            ? COLORS.border
+                            : "rgba(27,31,59,0.06)"
                         }`,
                     boxShadow: isScrolled
-                        ? `0 15px 50px -12px ${COLORS.left}25`
+                        ? `0 12px 40px -14px ${COLORS.left}26`
                         : "none",
                 }}
             >
@@ -155,9 +161,9 @@ export default function Navbar() {
                 {/* Ambient glow when scrolled */}
                 {isScrolled && (
                     <div
-                        className="pointer-events-none absolute inset-0 opacity-40"
+                        className="pointer-events-none absolute inset-0 opacity-60"
                         style={{
-                            background: `radial-gradient(ellipse at top, ${COLORS.left}15 0%, transparent 60%)`,
+                            background: `radial-gradient(ellipse at top, ${COLORS.left}0c 0%, transparent 60%)`,
                         }}
                     />
                 )}
@@ -174,13 +180,17 @@ export default function Navbar() {
                     >
                         <div className="relative">
                             <div
-                                className="relative w-11 h-11 rounded-2xl flex items-center justify-center text-[15px] font-black text-white flex-shrink-0 transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
+                                className="relative w-11 h-11 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden transition-all duration-500 group-hover:scale-110 group-hover:rotate-6"
                                 style={{
-                                    background: GRADIENT,
-                                    boxShadow: `0 8px 25px ${COLORS.left}50`,
+                                    background: "#141414",
+                                    boxShadow: "0 8px 22px rgba(0,0,0,0.22)",
                                 }}
                             >
-                                SV
+                                <img
+                                    src={logoMark}
+                                    alt="Sameer Visuals logo"
+                                    className="h-full w-full"
+                                />
 
                                 {/* Shimmer overlay */}
                                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
@@ -199,22 +209,22 @@ export default function Navbar() {
                         </div>
 
                         <div className="text-[19px] sm:text-[21px] font-extrabold tracking-tight leading-none">
-                            <span className="text-white transition-colors duration-500 group-hover:text-[#D4C8FE]">
+                            <span className="transition-colors duration-500 group-hover:text-[#8168F0]" style={{ color: COLORS.text }}>
                                 Sameer
                             </span>
 
                             <span
                                 style={{ color: COLORS.right }}
-                                className="transition-colors duration-500 group-hover:text-white"
+                                className="transition-colors duration-500 group-hover:text-[#1b1f3b]"
                             >
                                 Visuals
                             </span>
 
                             <p
-                                className="text-[10px] font-semibold uppercase tracking-[0.2em] mt-1 opacity-70"
-                                style={{ color: COLORS.mid }}
+                                className="text-[10px] font-semibold uppercase tracking-[0.2em] mt-1"
+                                style={{ color: COLORS.textMuted }}
                             >
-                                Post-Production
+                                Video Editing
                             </p>
                         </div>
                     </Link>
@@ -240,10 +250,10 @@ export default function Navbar() {
                                     "nav-link relative px-5 py-2.5 rounded-xl text-[15px] font-semibold transition-all duration-500",
                                 style: {
                                     color: isActive
-                                        ? "#fff"
+                                        ? COLORS.left
                                         : isHovered
-                                            ? COLORS.mid
-                                            : "#B8BDD9",
+                                            ? COLORS.left
+                                            : COLORS.textBody,
                                 },
                             };
 
@@ -254,9 +264,9 @@ export default function Navbar() {
                                         <span
                                             className="absolute inset-0 rounded-xl -z-10 active-pill"
                                             style={{
-                                                background: `linear-gradient(135deg, ${COLORS.left}25, ${COLORS.right}15)`,
-                                                border: `1px solid ${COLORS.left}40`,
-                                                boxShadow: `0 4px 20px ${COLORS.left}25, inset 0 1px 0 rgba(255,255,255,0.1)`,
+                                                background: `linear-gradient(135deg, ${COLORS.left}14, ${COLORS.right}0d)`,
+                                                border: `1px solid ${COLORS.left}2b`,
+                                                boxShadow: `0 4px 16px ${COLORS.left}1f`,
                                             }}
                                         />
                                     )}
@@ -266,7 +276,7 @@ export default function Navbar() {
                                         <span
                                             className="absolute inset-0 rounded-xl -z-10 opacity-100 transition-opacity duration-500"
                                             style={{
-                                                background: `${COLORS.left}10`,
+                                                background: `${COLORS.left}0d`,
                                             }}
                                         />
                                     )}
@@ -317,8 +327,8 @@ export default function Navbar() {
                                 aria-label="Quick call on +92 303 9800035"
                                 className="cta-premium group relative inline-flex items-center gap-2.5 overflow-hidden rounded-xl px-6 py-3 text-[15px] font-semibold text-white transition-all duration-500 hover:-translate-y-0.5"
                                 style={{
-                                    background: GRADIENT,
-                                    boxShadow: `0 8px 25px ${COLORS.left}40`,
+                                    background: "#141414",
+                                    boxShadow: "0 8px 22px rgba(0,0,0,0.18)",
                                 }}
                             >
                                 <span className="relative z-10">Quick Call</span>
@@ -345,21 +355,21 @@ export default function Navbar() {
                             aria-label="Open menu"
                             className="lg:hidden group flex flex-col justify-center items-center gap-[6px] w-12 h-12 rounded-xl transition-all duration-500 border"
                             style={{
-                                borderColor: "rgba(255,255,255,0.08)",
-                                background: "rgba(255,255,255,0.02)",
+                                borderColor: "rgba(27,31,59,0.1)",
+                                background: "rgba(27,31,59,0.03)",
                             }}
                         >
                             <span
                                 className="w-6 h-[2px] rounded-full transition-all duration-500 group-hover:w-7"
-                                style={{ background: "#fff" }}
+                                style={{ background: COLORS.text }}
                             />
                             <span
                                 className="w-4 h-[2px] rounded-full transition-all duration-500 group-hover:w-7"
-                                style={{ background: COLORS.right }}
+                                style={{ background: COLORS.left }}
                             />
                             <span
                                 className="w-6 h-[2px] rounded-full transition-all duration-500 group-hover:w-4"
-                                style={{ background: "#fff" }}
+                                style={{ background: COLORS.text }}
                             />
                         </button>
                     </div>
@@ -376,24 +386,24 @@ export default function Navbar() {
                     {/* Ambient glows */}
                     <div
                         className="orb-glow absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[130px] pointer-events-none"
-                        style={{ background: COLORS.left, opacity: 0.2 }}
+                        style={{ background: COLORS.left, opacity: 0.1 }}
                     />
 
                     <div
                         className="orb-glow absolute bottom-0 left-0 w-[350px] h-[350px] rounded-full blur-[120px] pointer-events-none"
-                        style={{ background: COLORS.right, opacity: 0.15 }}
+                        style={{ background: COLORS.right, opacity: 0.08 }}
                     />
 
                     <div
                         className="orb-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full blur-[100px] pointer-events-none"
-                        style={{ background: COLORS.mid, opacity: 0.08 }}
+                        style={{ background: COLORS.mid, opacity: 0.05 }}
                     />
 
                     {/* Grid overlay */}
                     <div
-                        className="pointer-events-none absolute inset-0 opacity-[0.03]"
+                        className="pointer-events-none absolute inset-0 opacity-[0.04]"
                         style={{
-                            backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+                            backgroundImage: `linear-gradient(rgba(27,31,59,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(27,31,59,0.4) 1px, transparent 1px)`,
                             backgroundSize: "60px 60px",
                         }}
                     />
@@ -409,13 +419,17 @@ export default function Navbar() {
                             className="flex items-center gap-3.5"
                         >
                             <div
-                                className="relative w-12 h-12 rounded-2xl flex items-center justify-center text-[16px] font-black text-white"
+                                className="relative w-12 h-12 rounded-2xl flex items-center justify-center overflow-hidden"
                                 style={{
-                                    background: GRADIENT,
-                                    boxShadow: `0 8px 25px ${COLORS.left}50`,
+                                    background: "#141414",
+                                    boxShadow: "0 8px 22px rgba(0,0,0,0.22)",
                                 }}
                             >
-                                SV
+                                <img
+                                    src={logoMark}
+                                    alt="Sameer Visuals logo"
+                                    className="h-full w-full"
+                                />
 
                                 <div className="absolute inset-0 rounded-2xl overflow-hidden">
                                     <div className="logo-shimmer absolute inset-0" />
@@ -424,17 +438,17 @@ export default function Navbar() {
 
                             <div>
                                 <div className="text-[20px] font-extrabold leading-none">
-                                    <span className="text-white">Sameer</span>
+                                    <span style={{ color: COLORS.text }}>Sameer</span>
                                     <span style={{ color: COLORS.right }}>
                                         Visuals
                                     </span>
                                 </div>
 
                                 <p
-                                    className="text-[10px] font-semibold uppercase tracking-[0.2em] mt-1 opacity-70"
-                                    style={{ color: COLORS.mid }}
+                                    className="text-[10px] font-semibold uppercase tracking-[0.2em] mt-1"
+                                    style={{ color: COLORS.textMuted }}
                                 >
-                                    Post-Production
+                                    Video Editing
                                 </p>
                             </div>
                         </Link>
@@ -445,11 +459,12 @@ export default function Navbar() {
                             className="w-12 h-12 rounded-xl flex items-center justify-center border transition-all duration-500 hover:rotate-90 group"
                             style={{
                                 borderColor: `${COLORS.left}30`,
-                                background: "rgba(255,255,255,0.04)",
+                                background: `${COLORS.left}0a`,
                             }}
                         >
                             <svg
-                                className="w-5 h-5 text-white transition-transform duration-500"
+                                className="w-5 h-5 transition-transform duration-500"
+                                style={{ color: COLORS.text }}
                                 fill="none"
                                 viewBox="0 0 24 24"
                                 stroke="currentColor"
@@ -484,19 +499,19 @@ export default function Navbar() {
                                     </span>
 
                                     <span
-                                        className="text-[32px] font-extrabold tracking-tight transition-colors duration-500 group-hover:text-[#D4C8FE]"
+                                        className="text-[32px] font-extrabold tracking-tight transition-colors duration-500 group-hover:text-[#8168F0]"
                                         style={{
                                             color:
                                                 activeLink === item.name
                                                     ? COLORS.right
-                                                    : "#fff",
+                                                    : COLORS.text,
                                         }}
                                     >
                                         {item.name}
                                     </span>
 
                                     <svg
-                                        className="ml-auto w-5 h-5 text-[#B8BDD9] opacity-0 -translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0"
+                                        className="ml-auto w-5 h-5 text-[#8a8fa3] opacity-0 -translate-x-2 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0"
                                         fill="none"
                                         viewBox="0 0 24 24"
                                         stroke="currentColor"
@@ -522,7 +537,7 @@ export default function Navbar() {
                                     setIsMobileMenuOpen(false);
                                 },
                                 className:
-                                    "mobile-link group flex items-center gap-5 py-3 border-b border-white/5 transition-all duration-500 hover:pl-3",
+                                    "mobile-link group flex items-center gap-5 py-3 border-b border-[#1b1f3b]/10 transition-all duration-500 hover:pl-3",
                             };
 
                             if (!item.isHash) {
@@ -559,10 +574,10 @@ export default function Navbar() {
                                     <a
                                         key={social}
                                         href="#"
-                                        className="flex-1 py-3 rounded-xl border text-center text-[11px] font-bold tracking-wider uppercase text-[#B8BDD9] transition-all duration-500 hover:border-[#623BFD]/50 hover:bg-white/5 hover:text-white"
+                                        className="flex-1 py-3 rounded-xl border text-center text-[11px] font-bold tracking-wider uppercase text-[#8a8fa3] transition-all duration-500 hover:border-[#8168F0]/50 hover:bg-[#8168F0]/5 hover:text-[#1b1f3b]"
                                         style={{
                                             borderColor:
-                                                "rgba(255,255,255,0.08)",
+                                                "rgba(27,31,59,0.1)",
                                         }}
                                     >
                                         {social.slice(0, 2)}
@@ -578,8 +593,8 @@ export default function Navbar() {
                             aria-label="Quick call on +92 303 9800035"
                             className="mobile-link group relative w-full py-4 rounded-2xl font-semibold text-[16px] overflow-hidden transition-all duration-500 hover:-translate-y-0.5"
                             style={{
-                                background: GRADIENT,
-                                boxShadow: `0 10px 30px ${COLORS.left}40`,
+                                background: "#141414",
+                                boxShadow: "0 10px 26px rgba(0,0,0,0.2)",
                             }}
                         >
                             <span className="relative z-10 flex items-center justify-center gap-2 text-white">
@@ -602,7 +617,7 @@ export default function Navbar() {
                         </a>
 
                         {/* Copyright */}
-                        <p className="mobile-link text-center text-[11px] text-[#6B7194]">
+                        <p className="mobile-link text-center text-[11px] text-[#8a8fa3]">
                             © {new Date().getFullYear()} Sameer Visuals. All
                             rights reserved.
                         </p>
@@ -651,11 +666,11 @@ export default function Navbar() {
         }
 
         @keyframes pillGlow {
-          0%, 100% { 
-            box-shadow: 0 4px 20px ${COLORS.left}25, inset 0 1px 0 rgba(255,255,255,0.1);
+          0%, 100% {
+            box-shadow: 0 4px 16px ${COLORS.left}1c;
           }
-          50% { 
-            box-shadow: 0 4px 30px ${COLORS.left}40, inset 0 1px 0 rgba(255,255,255,0.15);
+          50% {
+            box-shadow: 0 4px 24px ${COLORS.left}30;
           }
         }
 

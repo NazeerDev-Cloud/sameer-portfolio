@@ -1,14 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 
-// ── Brand Palette ──
+// ── Brand Palette (light / Hostinger-style) ──
 const COLORS = {
-    bg: "#080B29",
-    left: "#623BFD",
-    mid: "#D4C8FE",
-    right: "#B296FE",
+    bg: "#ffffff",
+    surface: "#f6f7f9",
+    border: "#e6e7ec",
+    text: "#1b1f3b",
+    textBody: "#4b5563",
+    textMuted: "#8a8fa3",
+    left: "#8168F0",
+    mid: "#7C5CFF",
+    right: "#8b5cf6",
 };
 
-const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, ${COLORS.right} 60%, ${COLORS.mid} 100%)`;
+const GRADIENT = `linear-gradient(135deg, ${COLORS.left} 0%, #7C5CFF 55%, #9D6BFF 100%)`;
 
 // ── Pricing Plans ──
 const plans = [
@@ -102,8 +107,8 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                 background: isPopular
                     ? GRADIENT
                     : hovered
-                        ? `linear-gradient(135deg, ${COLORS.left}60, transparent)`
-                        : "rgba(255,255,255,0.08)",
+                        ? `linear-gradient(135deg, ${COLORS.left}55, transparent)`
+                        : "#e6e7ec",
                 animation: visible
                     ? `fadeSlideUp 0.7s ease forwards ${index * 0.15 + 0.2}s`
                     : "none",
@@ -119,7 +124,7 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
             <div
                 className="relative h-full rounded-[27px] p-8 flex flex-col overflow-hidden transition-transform duration-500"
                 style={{
-                    background: "#0B0A24",
+                    background: "#ffffff",
                     transform: hovered
                         ? "translateY(-6px)"
                         : "translateY(0)",
@@ -149,11 +154,11 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
 
                 <div className="relative z-10 flex flex-col h-full">
                     {/* Header */}
-                    <h3 className="text-2xl font-black text-white tracking-tight">
+                    <h3 className="text-[21px] font-black text-[#1b1f3b] tracking-tight">
                         {plan.name}
                     </h3>
 
-                    <p className="text-gray-500 text-xs mt-2 leading-relaxed max-w-[220px]">
+                    <p className="text-[#8a8fa3] text-xs mt-2 leading-relaxed max-w-[220px]">
                         {plan.desc}
                     </p>
 
@@ -171,14 +176,14 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                                         color: "transparent",
                                     }
                                     : {
-                                        color: "#ffffff",
+                                        color: "#1b1f3b",
                                     }
                             }
                         >
                             ${plan.price}
                         </span>
 
-                        <span className="text-gray-500 text-sm font-medium mb-1.5">
+                        <span className="text-[#8a8fa3] text-sm font-medium mb-1.5">
                             {plan.period}
                         </span>
                     </div>
@@ -187,7 +192,7 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                     <div
                         className="h-px w-full mb-6"
                         style={{
-                            background: "rgba(255,255,255,0.08)",
+                            background: "#e6e7ec",
                         }}
                     />
 
@@ -196,7 +201,7 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                         {plan.features.map((feature, featureIndex) => (
                             <li
                                 key={featureIndex}
-                                className="flex items-center gap-3 text-sm text-gray-300"
+                                className="flex items-center gap-3 text-sm text-[#4b5563]"
                             >
                                 <Check
                                     color={
@@ -219,14 +224,14 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                         style={
                             isPopular
                                 ? {
-                                    background: GRADIENT,
-                                    color: COLORS.bg,
-                                    boxShadow: `0 8px 30px ${COLORS.left}50`,
+                                    background: "#141414",
+                                    color: "#ffffff",
+                                    boxShadow: "0 8px 26px rgba(0,0,0,0.2)",
                                 }
                                 : {
-                                    background: "rgba(255,255,255,0.04)",
-                                    color: "#fff",
-                                    border: "1px solid rgba(255,255,255,0.1)",
+                                    background: "#f6f7f9",
+                                    color: "#1b1f3b",
+                                    border: "1px solid #e6e7ec",
                                 }
                         }
                     >
@@ -234,14 +239,14 @@ const PricingCard = ({ plan, index, visible, onSelectPlan }) => {
                             <span
                                 className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
                                 style={{
-                                    background: GRADIENT,
+                                    background: "#141414",
                                 }}
                             />
                         )}
 
                         <span
                             className={`relative z-10 transition-colors duration-300 ${!isPopular
-                                    ? "group-hover:text-[#080B29]"
+                                    ? "group-hover:text-white"
                                     : ""
                                 }`}
                         >
@@ -375,9 +380,10 @@ export default function Pricing({ onSelectPlan }) {
 
             <section
                 ref={sectionRef}
-                className="relative w-full text-white py-32 px-6 sm:px-12 lg:px-24 overflow-hidden font-sans"
+                className="relative w-full py-32 px-6 sm:px-12 lg:px-24 overflow-hidden font-sans"
                 style={{
                     background: COLORS.bg,
+                    color: COLORS.text,
                 }}
             >
                 {/* Ambient Glows */}
@@ -473,8 +479,8 @@ export default function Pricing({ onSelectPlan }) {
                             </span>
                         </div>
 
-                        <h2 className="text-5xl sm:text-7xl font-black tracking-tight leading-none">
-                            <span className="text-white">
+                        <h2 className="text-5xl sm:text-7xl font-black tracking-tight leading-none" style={{ color: COLORS.text }}>
+                            <span>
                                 Transparent{" "}
                             </span>
 
@@ -493,7 +499,7 @@ export default function Pricing({ onSelectPlan }) {
                             </span>
                         </h2>
 
-                        <p className="text-gray-400 text-sm max-w-lg mx-auto leading-relaxed">
+                        <p className="text-[#4b5563] text-[17px] max-w-lg mx-auto leading-relaxed">
                             No hidden fees, no surprises — just clear
                             pricing for{" "}
                             <span
@@ -557,7 +563,7 @@ export default function Pricing({ onSelectPlan }) {
                                     {item.icon}
                                 </span>
 
-                                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-[#8a8fa3]">
                                     {item.label}
                                 </span>
                             </div>
@@ -586,11 +592,11 @@ export default function Pricing({ onSelectPlan }) {
                             }}
                         />
 
-                        <p className="text-white text-lg font-bold relative z-10">
+                        <p className="text-[#1b1f3b] text-[21px] font-bold relative z-10">
                             Need something custom?
                         </p>
 
-                        <p className="text-gray-500 text-xs mt-2 mb-6 relative z-10">
+                        <p className="text-[#8a8fa3] text-xs mt-2 mb-6 relative z-10">
                             Long-term retainers, bulk packages, or unique
                             project scopes — let's build a plan around your
                             needs.
@@ -601,19 +607,19 @@ export default function Pricing({ onSelectPlan }) {
                             onClick={handleCustomQuote}
                             className="group relative inline-flex items-center gap-3 px-8 py-3.5 rounded-xl font-black text-xs tracking-widest uppercase overflow-hidden transition-all duration-300 hover:scale-105 active:scale-95 border"
                             style={{
-                                borderColor: `${COLORS.left}50`,
-                                background: "#0d0b2a",
-                                color: "#fff",
+                                borderColor: "rgba(0,0,0,0.12)",
+                                background: "#ffffff",
+                                color: "#1b1f3b",
                             }}
                         >
                             <span
                                 className="absolute inset-0 origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
                                 style={{
-                                    background: GRADIENT,
+                                    background: "#141414",
                                 }}
                             />
 
-                            <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-[#080B29]">
+                            <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-white">
                                 Request Custom Quote
 
                                 <svg

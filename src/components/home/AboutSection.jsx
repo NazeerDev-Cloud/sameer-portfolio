@@ -95,13 +95,13 @@ export default function AboutSection({
         ref={sectionRef}
         id="about"
         aria-labelledby="about-heading"
-        className="about-section relative overflow-hidden bg-[#080B29] px-5 pt-32 pb-24 text-white sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
+        className="about-section relative overflow-hidden bg-white px-5 pt-32 pb-24 text-[#1b1f3b] sm:px-10 md:pt-40 md:pb-32 lg:px-16 xl:px-24"
       >
         {/* ===== SEAMLESS TOP BLEND (Fixes seam with Hero section) ===== */}
         <div
           className="pointer-events-none absolute inset-x-0 top-0 h-40 z-2"
           style={{
-            background: 'linear-gradient(to bottom, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)'
+            background: 'linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.7) 50%, transparent 100%)'
           }}
         />
 
@@ -109,7 +109,7 @@ export default function AboutSection({
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 h-40 z-2"
           style={{
-            background: 'linear-gradient(to top, #080B29 0%, rgba(8, 11, 41, 0.7) 50%, transparent 100%)'
+            background: 'linear-gradient(to top, #ffffff 0%, rgba(255,255,255,0.7) 50%, transparent 100%)'
           }}
         />
 
@@ -119,9 +119,9 @@ export default function AboutSection({
 
         {/* Radial Glow Orbs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
-          <div className="orb orb-1 absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#623BFD]/20 blur-[120px]" />
-          <div className="orb orb-2 absolute -right-20 top-1/2 h-[400px] w-[400px] rounded-full bg-[#B296FE]/15 blur-[100px]" />
-          <div className="orb orb-3 absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-[#D4C8FE]/10 blur-[110px]" />
+          <div className="orb orb-1 absolute -left-32 -top-32 h-[500px] w-[500px] rounded-full bg-[#8168F0]/5 blur-[120px]" />
+          <div className="orb orb-2 absolute -right-20 top-1/2 h-[400px] w-[400px] rounded-full bg-[#B296FE]/4 blur-[100px]" />
+          <div className="orb orb-3 absolute bottom-0 left-1/3 h-[350px] w-[350px] rounded-full bg-[#8b5cf6]/6 blur-[110px]" />
         </div>
 
         {/* Floating Particles */}
@@ -129,7 +129,7 @@ export default function AboutSection({
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="particle absolute rounded-full bg-[#D4C8FE]"
+              className="particle absolute rounded-full bg-[#8b5cf6]"
               style={{
                 width: `${3 + Math.random() * 4}px`,
                 height: `${3 + Math.random() * 4}px`,
@@ -146,25 +146,25 @@ export default function AboutSection({
 
           {/* Top Header Area */}
           <div className="mb-20 text-center">
-            <div className="scroll-reveal inline-flex items-center gap-2 rounded-full border border-[#623BFD]/30 bg-[#623BFD]/10 px-6 py-2.5 backdrop-blur-md">
-              <span className="h-2 w-2 rounded-full bg-[#B296FE] shadow-[0_0_8px_rgba(178,150,254,0.6)] pulse-dot" />
-              <span className="text-sm font-semibold tracking-wider text-[#D4C8FE] uppercase">
+            <div className="scroll-reveal inline-flex items-center gap-2 rounded-full border border-[#8168F0]/25 bg-[#8168F0]/8 px-6 py-2.5 backdrop-blur-md">
+              <span className="h-2 w-2 rounded-full bg-[#8168F0] shadow-[0_0_8px_rgba(98,59,253,0.4)] pulse-dot" />
+              <span className="text-sm font-semibold tracking-wider text-[#8168F0] uppercase">
                 About My Studio
               </span>
             </div>
 
             <h2
               id="about-heading"
-              className="scroll-reveal mt-8 text-[32px] font-extrabold leading-[1.1] tracking-tight text-white sm:text-[42px] md:text-[50px] lg:text-[58px]"
+              className="scroll-reveal mt-8 text-[32px] font-extrabold leading-[1.1] tracking-tight text-[#1b1f3b] sm:text-[42px] md:text-[50px] lg:text-[58px]"
             >
               I Create
               <br />
-              <span className="heading-gradient inline-block bg-linear-to-r from-[#623BFD] via-[#D4C8FE] to-[#B296FE] bg-clip-text text-transparent">
+              <span className="heading-gradient inline-block bg-linear-to-r from-[#8168F0] via-[#8b5cf6] to-[#9D6BFF] bg-clip-text text-transparent">
                 Stunning Visuals
               </span>
             </h2>
 
-            <p className="scroll-reveal mx-auto mt-8 max-w-3xl text-[18px] leading-[1.8] text-[#B8BDD9] sm:text-[20px] md:text-[22px]">
+            <p className="scroll-reveal mx-auto mt-8 max-w-3xl text-[17px] leading-[1.8] text-[#4b5563]">
               I operate at the intersection of pacing, narrative architecture,
               and cutting-edge visual post-production. Every single frame is
               carefully crafted to capture attention from the very first moment.
@@ -182,16 +182,16 @@ export default function AboutSection({
                 {features.map((feature) => (
                   <div
                     key={feature.title}
-                    className="scroll-reveal feature-card group flex gap-5 rounded-2xl border border-white/[0.06] bg-white/[0.03] p-6 backdrop-blur-md transition-all duration-500 hover:border-[#623BFD]/40 hover:bg-white/[0.06]"
+                    className="scroll-reveal feature-card group flex gap-5 rounded-2xl border border-[#e6e7ec] bg-white p-6 backdrop-blur-md transition-all duration-500 hover:border-[#8168F0]/30 hover:bg-[#f6f7f9]"
                   >
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[#623BFD]/30 bg-gradient-to-br from-[#623BFD]/20 to-[#B296FE]/10 text-[#D4C8FE] transition-all duration-500 group-hover:border-[#B296FE]/50 group-hover:shadow-[0_0_20px_rgba(98,59,253,0.3)]">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-[#8168F0]/25 bg-gradient-to-br from-[#8168F0]/12 to-[#B296FE]/8 text-[#8168F0] transition-all duration-500 group-hover:border-[#B296FE]/50 group-hover:shadow-[0_0_20px_rgba(98,59,253,0.2)]">
                       {feature.icon}
                     </div>
                     <div>
-                      <h3 className="text-[20px] font-bold text-white sm:text-[22px]">
+                      <h3 className="text-[21px] font-bold text-[#1b1f3b]">
                         {feature.title}
                       </h3>
-                      <p className="mt-1.5 text-[16px] leading-relaxed text-[#9DA3C2] sm:text-[18px]">
+                      <p className="mt-1.5 text-[17px] leading-relaxed text-[#8a8fa3]">
                         {feature.desc}
                       </p>
                     </div>
@@ -203,7 +203,7 @@ export default function AboutSection({
               <div className="scroll-reveal mt-10">
                 <Link
                   to="/work"
-                  className="cta-primary group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-[#623BFD] via-[#8562FE] to-[#B296FE] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_8px_32px_rgba(98,59,253,0.4)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_14px_44px_rgba(98,59,253,0.5)] sm:text-[18px]"
+                  className="cta-primary group inline-flex items-center gap-3 rounded-2xl bg-[#141414] px-8 py-4 text-[16px] font-semibold text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] transition-all duration-500 hover:-translate-y-1 hover:bg-black hover:shadow-[0_16px_40px_rgba(0,0,0,0.28)] sm:text-[18px]"
                 >
                   View My Work
                   <svg
@@ -228,7 +228,7 @@ export default function AboutSection({
               <div className="scroll-reveal bento-grid mx-auto grid max-w-[540px] grid-cols-12 grid-rows-12 gap-3 sm:gap-4" style={{ height: "620px" }}>
 
                 {/* Main Large Image */}
-                <div className="bento-item float-up-down col-span-8 row-span-7 col-start-4 row-start-1 overflow-hidden rounded-[28px] border border-white/[0.08] bg-white/[0.04] p-2 backdrop-blur-lg sm:rounded-[32px] sm:p-3">
+                <div className="bento-item float-up-down col-span-8 row-span-7 col-start-4 row-start-1 overflow-hidden rounded-[28px] border border-[#e6e7ec] bg-white p-2 backdrop-blur-lg sm:rounded-[32px] sm:p-3">
                   <div className="relative h-full w-full overflow-hidden rounded-[22px] sm:rounded-[26px]">
                     <img
                       src={getSrc(mainImg, "main")}
@@ -238,13 +238,13 @@ export default function AboutSection({
                       loading="lazy"
                     />
                     {!imgErrors.main && (
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#080B29]/40 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1b1f3b]/20 via-transparent to-transparent" />
                     )}
                   </div>
                 </div>
 
                 {/* Top Left Accent */}
-                <div className="bento-item float-diag-1 col-span-3 row-span-3 col-start-1 row-start-1 overflow-hidden rounded-[20px] border border-white/[0.08] bg-white/[0.04] p-1.5 backdrop-blur-lg sm:rounded-[24px] sm:p-2">
+                <div className="bento-item float-diag-1 col-span-3 row-span-3 col-start-1 row-start-1 overflow-hidden rounded-[20px] border border-[#e6e7ec] bg-white p-1.5 backdrop-blur-lg sm:rounded-[24px] sm:p-2">
                   <img
                     src={getSrc(topLeftImg, "topLeft")}
                     alt="Video editing interface"
@@ -255,7 +255,7 @@ export default function AboutSection({
                 </div>
 
                 {/* Bottom Left */}
-                <div className="bento-item float-left-right col-span-6 row-span-5 col-start-1 row-start-5 overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.04] p-2 backdrop-blur-lg sm:rounded-[28px] sm:p-2.5">
+                <div className="bento-item float-left-right col-span-6 row-span-5 col-start-1 row-start-5 overflow-hidden rounded-[24px] border border-[#e6e7ec] bg-white p-2 backdrop-blur-lg sm:rounded-[28px] sm:p-2.5">
                   <div className="relative h-full w-full overflow-hidden rounded-[18px] sm:rounded-[22px]">
                     <img
                       src={getSrc(bottomLeftImg, "bottomLeft")}
@@ -264,12 +264,12 @@ export default function AboutSection({
                       onError={() => handleImageError("bottomLeft")}
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#623BFD]/10 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#8168F0]/10 via-transparent to-transparent" />
                   </div>
                 </div>
 
                 {/* Bottom Right */}
-                <div className="bento-item float-diag-2 col-span-6 row-span-5 col-start-7 row-start-8 overflow-hidden rounded-[24px] border border-white/[0.08] bg-white/[0.04] p-2 backdrop-blur-lg sm:rounded-[28px] sm:p-2.5">
+                <div className="bento-item float-diag-2 col-span-6 row-span-5 col-start-7 row-start-8 overflow-hidden rounded-[24px] border border-[#e6e7ec] bg-white p-2 backdrop-blur-lg sm:rounded-[28px] sm:p-2.5">
                   <div className="relative h-full w-full overflow-hidden rounded-[18px] sm:rounded-[22px]">
                     <img
                       src={getSrc(bottomRightImg, "bottomRight")}
@@ -283,9 +283,9 @@ export default function AboutSection({
                 </div>
 
                 {/* Small Accent Node */}
-                <div className="bento-item float-up-down-delayed col-span-2 row-span-2 col-start-5 row-start-10 overflow-hidden rounded-2xl border border-white/[0.12] bg-white/[0.06] p-1.5 backdrop-blur-lg relative">
+                <div className="bento-item float-up-down-delayed col-span-2 row-span-2 col-start-5 row-start-10 overflow-hidden rounded-2xl border border-[#e6e7ec] bg-white p-1.5 backdrop-blur-lg relative">
                   {imgErrors.bottomSmall && (
-                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#623BFD] to-[#B296FE]">
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-[#8168F0] to-[#B296FE]">
                       <svg className="h-4 w-4 text-white/60" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
                         <path fillRule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clipRule="evenodd" />
@@ -303,7 +303,7 @@ export default function AboutSection({
 
                 {/* Decorative Glow Ring */}
                 <div className="col-span-2 row-span-2 col-start-1 row-start-4 flex items-center justify-center">
-                  <div className="glow-ring h-10 w-10 rounded-full border-2 border-[#623BFD]/40 shadow-[0_0_20px_rgba(98,59,253,0.3)]" />
+                  <div className="glow-ring h-10 w-10 rounded-full border-2 border-[#8168F0]/40 shadow-[0_0_20px_rgba(98,59,253,0.3)]" />
                 </div>
               </div>
             </div>
@@ -315,8 +315,8 @@ export default function AboutSection({
         /* ===== GRID BACKGROUND ===== */
         .grid-bg {
           background-image:
-            linear-gradient(rgba(98, 59, 253, 0.06) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(98, 59, 253, 0.06) 1px, transparent 1px);
+            linear-gradient(rgba(27,31,59,0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(27,31,59,0.045) 1px, transparent 1px);
           background-size: 60px 60px;
           mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);
           -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 80%);

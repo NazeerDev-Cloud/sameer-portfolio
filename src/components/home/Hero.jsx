@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import sameerImg from "../../assets/sameer.jpeg";
+import sameerImg from "../../assets/Sameer.jpg";
+import premiereProIcon from "../../assets/tools/premiere-pro.svg";
+import afterEffectsIcon from "../../assets/tools/after-effects.svg";
+import capcutIcon from "../../assets/tools/capcut.svg";
+import photoshopIcon from "../../assets/tools/photoshop.svg";
 const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
@@ -48,10 +52,10 @@ const Hero = () => {
   ];
 
   const tools = [
-    { short: "Pr", name: "Premiere Pro", color: "#9999FF" },
-    { short: "Ae", name: "After Effects", color: "#D291FF" },
-    { short: "Da", name: "DaVinci", color: "#FF6B6B" },
-    { short: "Bl", name: "Blender", color: "#FF8C42" },
+    { name: "Premiere Pro", icon: premiereProIcon },
+    { name: "After Effects", icon: afterEffectsIcon },
+    { name: "CapCut", icon: capcutIcon },
+    { name: "Photoshop", icon: photoshopIcon },
   ];
 
   return (
@@ -61,7 +65,7 @@ const Hero = () => {
       className="relative min-h-screen w-full overflow-hidden flex items-center"
       style={{
         background:
-          "radial-gradient(circle at top left, #17104A 0%, #080B29 38%, #05071D 100%)",
+          "radial-gradient(circle at top left, #f6f7f9 0%, #ffffff 46%, #f6f7f9 100%)",
         fontFamily: "'Inter','Segoe UI',sans-serif",
       }}
     >
@@ -76,7 +80,7 @@ const Hero = () => {
           transform: "translate(-50%, -50%)",
           borderRadius: "999px",
           background:
-            "radial-gradient(circle, rgba(126,87,255,0.17) 0%, rgba(126,87,255,0.07) 32%, transparent 68%)",
+            "radial-gradient(circle, rgba(98,59,253,0.06) 0%, rgba(98,59,253,0.02) 32%, transparent 68%)",
           filter: "blur(8px)",
           transition: "left 0.7s ease, top 0.7s ease",
           zIndex: 0,
@@ -84,17 +88,17 @@ const Hero = () => {
       />
 
       {/* Deep Ambient Blobs */}
-      <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-purple-600/25 blur-[110px] animate-blobOne" />
-      <div className="absolute -bottom-44 -right-32 h-[620px] w-[620px] rounded-full bg-indigo-500/20 blur-[130px] animate-blobTwo" />
-      <div className="absolute left-[45%] top-[20%] h-[320px] w-[320px] rounded-full bg-violet-300/10 blur-[90px] animate-blobThree" />
+      <div className="absolute -top-40 -left-40 h-[520px] w-[520px] rounded-full bg-[#8168F0]/5 blur-[110px] animate-blobOne" />
+      <div className="absolute -bottom-44 -right-32 h-[620px] w-[620px] rounded-full bg-[#7C5CFF]/5 blur-[130px] animate-blobTwo" />
+      <div className="absolute left-[45%] top-[20%] h-[320px] w-[320px] rounded-full bg-[#B296FE]/5 blur-[90px] animate-blobThree" />
 
       {/* Grid */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(151,125,255,0.055) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(151,125,255,0.055) 1px, transparent 1px)
+            linear-gradient(rgba(27,31,59,0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(27,31,59,0.045) 1px, transparent 1px)
           `,
           backgroundSize: "68px 68px",
           maskImage:
@@ -103,39 +107,8 @@ const Hero = () => {
         }}
       />
 
-      {/* Background Glass Icons */}
-      <div className="absolute left-20 top-24 hidden md:block z-[1] animate-floatSoft">
-        <div className="glassAppIcon">
-          <span style={{ color: "#9999FF" }}>Pr</span>
-        </div>
-        <p className="glassAppLabel" style={{ color: "#9999FF" }}>
-          Premiere Pro
-        </p>
-      </div>
-
-      <div className="absolute right-20 top-24 hidden md:block z-[1] animate-floatSoft animation-delay-1200">
-        <div className="glassAppIcon aeIcon">
-          <span style={{ color: "#D291FF" }}>Ae</span>
-        </div>
-        <p className="glassAppLabel" style={{ color: "#D291FF" }}>
-          After Effects
-        </p>
-      </div>
-
-      <div className="absolute right-[12%] bottom-[14%] hidden lg:block z-[1] animate-floatSoft animation-delay-2200 opacity-60">
-        <div className="glassAppIcon largeIcon">
-          <span style={{ color: "#9999FF" }}>Pr</span>
-        </div>
-      </div>
-
-      <div className="absolute left-[9%] bottom-[10%] hidden lg:block z-[1] animate-floatSoft animation-delay-3000 opacity-50">
-        <div className="glassAppIcon largeIcon aeIcon">
-          <span style={{ color: "#D291FF" }}>Ae</span>
-        </div>
-      </div>
-
-      {/* Main Container - INCREASED PADDING HERE */}
-      <div className="relative z-10 w-full px-10 sm:px-16 lg:px-[10vw] pt-[100px] pb-24">
+      {/* Main Container */}
+      <div className="relative z-10 w-full px-10 sm:px-16 lg:px-[10vw] pt-[150px] md:pt-[180px] pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-16 xl:gap-24">
           {/* Left Content */}
           <div
@@ -149,19 +122,8 @@ const Hero = () => {
                 "opacity 1s cubic-bezier(0.16,1,0.3,1), transform 1s cubic-bezier(0.16,1,0.3,1)",
             }}
           >
-            {/* Badge */}
-            <div className="mb-7 inline-flex items-center gap-3 rounded-full border border-violet-400/35 bg-violet-500/10 px-5 py-2.5 backdrop-blur-xl shadow-[0_0_35px_rgba(124,92,255,0.18)]">
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-violet-400 opacity-70" />
-                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-violet-400 shadow-[0_0_14px_rgba(167,139,250,1)]" />
-              </span>
-              <span className="text-[11px] font-black uppercase tracking-[0.18em] text-violet-200">
-                Available for Projects
-              </span>
-            </div>
-
             {/* Heading */}
-            <h1 className="mb-6 text-[clamp(38px,5vw,76px)] font-black leading-[0.98] tracking-[-0.055em] text-white">
+            <h1 className="mb-6 text-[clamp(38px,5vw,76px)] font-black leading-[0.98] tracking-[-0.055em] text-[#1b1f3b]">
               Crafting{" "}
               <span className="animatedTextGradient">Cinematic</span>
               <br />
@@ -171,7 +133,7 @@ const Hero = () => {
             </h1>
 
             {/* Description */}
-            <p className="mb-9 max-w-xl text-[16px] sm:text-[18px] leading-[1.8] text-white/58">
+            <p className="mb-9 max-w-xl text-[17px] leading-[1.8] text-[#4b5563]">
               I transform raw footage into polished, high-retention films,
               branded edits, social campaigns, trailers, and cinematic content
               with sharp pacing, clean sound design, rich color, and premium VFX.
@@ -182,7 +144,7 @@ const Hero = () => {
               <HashLink
                 smooth
                 to="/#projects"
-                className="group relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#623BFD] via-[#7C5CFF] to-[#B296FE] px-8 py-4 text-[15px] font-black text-white shadow-[0_16px_48px_rgba(98,59,253,0.42)] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.025] hover:shadow-[0_24px_70px_rgba(98,59,253,0.62)]"
+                className="group relative overflow-hidden rounded-2xl bg-[#141414] px-8 py-4 text-[15px] font-black text-white shadow-[0_12px_30px_rgba(0,0,0,0.2)] transition-all duration-500 ease-out hover:-translate-y-1 hover:scale-[1.025] hover:bg-black hover:shadow-[0_18px_44px_rgba(0,0,0,0.28)]"
               >
                 <span className="absolute inset-0 translate-x-[-120%] bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]" />
                 <span className="relative">View Showreel</span>
@@ -190,7 +152,7 @@ const Hero = () => {
 
               <Link
                 to="/work"
-                className="rounded-2xl border border-white/13 bg-white/[0.045] px-8 py-4 text-[15px] font-black text-white/78 backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:border-violet-300/50 hover:bg-violet-500/12 hover:text-violet-100 hover:shadow-[0_18px_50px_rgba(124,92,255,0.2)]"
+                className="rounded-2xl border border-[#e6e7ec] bg-white px-8 py-4 text-[15px] font-black text-[#4b5563] backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#8168F0]/40 hover:bg-[#8168F0]/[0.06] hover:text-[#8168F0] hover:shadow-[0_18px_44px_rgba(98,59,253,0.15)]"
               >
                 Explore Portfolio
               </Link>
@@ -201,7 +163,7 @@ const Hero = () => {
               {stats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className="group rounded-2xl border border-white/9 bg-white/[0.035] p-5 text-center backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:border-violet-300/40 hover:bg-violet-500/10 hover:shadow-[0_18px_50px_rgba(98,59,253,0.18)]"
+                  className="group rounded-2xl border border-[#e6e7ec] bg-white p-5 text-center backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:border-[#8168F0]/30 hover:bg-[#8168F0]/[0.04] hover:shadow-[0_18px_44px_rgba(98,59,253,0.12)]"
                   style={{
                     animation: isLoaded
                       ? `fadeRise 0.9s cubic-bezier(0.16,1,0.3,1) ${0.18 + index * 0.08
@@ -209,10 +171,10 @@ const Hero = () => {
                       : "none",
                   }}
                 >
-                  <p className="text-[24px] font-black tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-r from-violet-200 to-violet-500">
+                  <p className="text-[24px] font-black tracking-[-0.04em] text-transparent bg-clip-text bg-gradient-to-r from-[#8168F0] to-[#8b5cf6]">
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-[11px] font-bold text-white/35">
+                  <p className="mt-1 text-[11px] font-bold text-[#8a8fa3]">
                     {stat.label}
                   </p>
                 </div>
@@ -220,33 +182,26 @@ const Hero = () => {
             </div>
 
             {/* Tools */}
-            <div className="mt-9 max-w-2xl border-t border-white/8 pt-6">
-              <p className="mb-4 text-[10px] font-black uppercase tracking-[0.19em] text-white/25">
-                Post Production Stack
+            <div className="mt-9 max-w-2xl border-t border-[#e6e7ec] pt-6">
+              <p className="mb-4 text-[10px] font-black uppercase tracking-[0.19em] text-[#8a8fa3]">
+                Video Editing Stack
               </p>
 
               <div className="flex flex-wrap gap-3">
                 {tools.map((tool) => (
                   <div
                     key={tool.name}
-                    className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-white/[0.075] hover:shadow-[0_16px_42px_rgba(0,0,0,0.26)]"
-                    style={{
-                      "--tool-color": tool.color,
-                    }}
+                    className="group flex items-center gap-3 rounded-xl border border-[#e6e7ec] bg-white px-4 py-3 backdrop-blur-xl transition-all duration-500 ease-out hover:-translate-y-1 hover:bg-[#f6f7f9] hover:shadow-[0_16px_38px_rgba(27,31,59,0.1)]"
                   >
-                    <span
-                      className="flex h-7 w-7 items-center justify-center rounded-lg text-[11px] font-black text-white shadow-lg transition-all duration-500 group-hover:scale-110"
-                      style={{
-                        background: tool.color,
-                        boxShadow: `0 0 18px ${tool.color}55`,
-                        fontFamily: "Georgia, serif",
-                      }}
-                    >
-                      {tool.short}
-                    </span>
+                    <img
+                      src={tool.icon}
+                      alt={`${tool.name} logo`}
+                      className="h-7 w-7 rounded-lg transition-transform duration-500 group-hover:scale-110"
+                      loading="lazy"
+                    />
 
                     <span
-                      className="text-[13px] font-bold text-white/46 transition-colors duration-500 group-hover:text-white/85"
+                      className="text-[13px] font-bold text-[#6b7280] transition-colors duration-500 group-hover:text-[#1b1f3b]"
                     >
                       {tool.name}
                     </span>
@@ -271,27 +226,27 @@ const Hero = () => {
           >
             <div className="relative h-[600px] w-[480px] max-w-full -ml-32">
               {/* Main Glow Behind Card */}
-              <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/18 blur-[90px] animate-glowBreath" />
+              <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8168F0]/5 blur-[90px] animate-glowBreath" />
 
-              {/* Blurred Grey Tilt Frame 1 */}
+              {/* Blurred Tilt Frame 1 */}
               <div
-                className="absolute inset-0 rounded-[56px] border border-white/10 bg-slate-300/10 backdrop-blur-md"
+                className="absolute inset-0 rounded-[56px] border border-[#e6e7ec] bg-white backdrop-blur-md"
                 style={{
                   transform:
                     "rotate(-13deg) translateX(-22px) translateY(18px)",
                   filter: "blur(1px)",
-                  boxShadow: "0 45px 100px rgba(0,0,0,0.34)",
+                  boxShadow: "0 45px 100px rgba(27,31,59,0.12)",
                 }}
               />
 
-              {/* Blurred Grey Tilt Frame 2 */}
+              {/* Blurred Tilt Frame 2 */}
               <div
-                className="absolute inset-0 rounded-[56px] border border-white/10 bg-slate-300/8 backdrop-blur-md"
+                className="absolute inset-0 rounded-[56px] border border-[#e6e7ec] bg-[#f6f7f9] backdrop-blur-md"
                 style={{
                   transform:
                     "rotate(9deg) translateX(26px) translateY(14px)",
                   filter: "blur(1.2px)",
-                  boxShadow: "0 45px 100px rgba(0,0,0,0.28)",
+                  boxShadow: "0 45px 100px rgba(27,31,59,0.1)",
                 }}
               />
 
@@ -299,7 +254,7 @@ const Hero = () => {
               <div
                 onMouseMove={handleCardMove}
                 onMouseLeave={resetCardTilt}
-                className="group relative h-full w-full overflow-hidden rounded-[56px] border border-white/14 bg-[#11132F] shadow-[0_55px_130px_rgba(0,0,0,0.72)] transition-all duration-700 ease-out"
+                className="group relative h-full w-full overflow-hidden rounded-[56px] border border-[#e6e7ec] bg-white shadow-[0_45px_120px_rgba(27,31,59,0.18)] transition-all duration-700 ease-out"
                 style={{
                   transform: `rotateX(${cardTilt.x}deg) rotateY(${cardTilt.y}deg)`,
                   transformStyle: "preserve-3d",
@@ -317,29 +272,29 @@ const Hero = () => {
                   style={{
                     objectPosition: "top center",
                     filter:
-                      "brightness(0.9) contrast(1.08) saturate(1.08)",
+                      "brightness(1.02) contrast(1.03) saturate(1.05)",
                   }}
                 />
 
                 {/* Soft Purple Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/12 via-transparent to-transparent mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#8168F0]/10 via-transparent to-transparent mix-blend-multiply" />
 
                 {/* Bottom Fade */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#060820] via-[#060820]/18 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1b1f3b]/70 via-[#1b1f3b]/10 to-transparent" />
 
                 {/* Inner Border Glow */}
-                <div className="pointer-events-none absolute inset-0 rounded-[56px] shadow-[inset_0_0_90px_rgba(124,92,255,0.14)]" />
+                <div className="pointer-events-none absolute inset-0 rounded-[56px] shadow-[inset_0_0_90px_rgba(98,59,253,0.12)]" />
 
                 {/* Name Inside Card Only */}
                 <div
                   className="absolute bottom-7 left-7 right-7"
                   style={{ transform: "translateZ(40px)" }}
                 >
-                  <div className="rounded-3xl border border-white/12 bg-black/18 px-5 py-4 backdrop-blur-xl">
+                  <div className="rounded-3xl border border-white/20 bg-white/15 px-5 py-4 backdrop-blur-xl">
                     <p className="text-[22px] font-black tracking-[-0.04em] text-white">
                       Sameer Visuals
                     </p>
-                    <p className="mt-1 text-[13px] font-bold text-violet-200/70">
+                    <p className="mt-1 text-[13px] font-bold text-white/80">
                       Professional Video Editor
                     </p>
                   </div>
@@ -347,8 +302,8 @@ const Hero = () => {
               </div>
 
               {/* Decorative Small Glow Dots */}
-              <span className="absolute -left-6 top-24 h-3 w-3 rounded-full bg-violet-300 shadow-[0_0_25px_rgba(196,181,253,1)] animate-dotPulse" />
-              <span className="absolute -right-4 bottom-32 h-2.5 w-2.5 rounded-full bg-indigo-300 shadow-[0_0_25px_rgba(165,180,252,1)] animate-dotPulse animation-delay-1200" />
+              <span className="absolute -left-6 top-24 h-3 w-3 rounded-full bg-[#8168F0] shadow-[0_0_20px_rgba(98,59,253,0.6)] animate-dotPulse" />
+              <span className="absolute -right-4 bottom-32 h-2.5 w-2.5 rounded-full bg-[#8b5cf6] shadow-[0_0_20px_rgba(139,92,246,0.6)] animate-dotPulse animation-delay-1200" />
             </div>
           </div>
         </div>
@@ -356,87 +311,16 @@ const Hero = () => {
 
       <style>{`
         .animatedTextGradient {
-          background: linear-gradient(90deg, #B296FE, #ffffff, #7C5CFF, #D4C8FE);
+          background: linear-gradient(90deg, #8168F0, #8b5cf6, #7C5CFF, #9D6BFF);
           background-size: 260% 100%;
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
           animation: gradientMove 5s ease-in-out infinite;
-          text-shadow: 0 0 55px rgba(124,92,255,0.24);
-        }
-
-        .glassAppIcon {
-          width: 62px;
-          height: 62px;
-          border-radius: 20px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(145deg, rgba(255,255,255,0.12), rgba(255,255,255,0.035));
-          border: 1px solid rgba(255,255,255,0.16);
-          backdrop-filter: blur(22px);
-          -webkit-backdrop-filter: blur(22px);
-          box-shadow:
-            0 18px 55px rgba(0,0,0,0.36),
-            inset 0 1px 0 rgba(255,255,255,0.12),
-            0 0 34px rgba(153,153,255,0.16);
-          transition: all 0.55s cubic-bezier(0.16,1,0.3,1);
-        }
-
-        .glassAppIcon span {
-          font-size: 22px;
-          font-weight: 900;
-          font-family: Georgia, serif;
-          letter-spacing: -0.04em;
-          text-shadow: 0 0 18px currentColor;
-        }
-
-        .glassAppIcon:hover {
-          transform: translateY(-6px) scale(1.11);
-          border-color: rgba(255,255,255,0.32);
-          box-shadow:
-            0 28px 70px rgba(0,0,0,0.45),
-            inset 0 1px 0 rgba(255,255,255,0.18),
-            0 0 46px rgba(153,153,255,0.35);
-        }
-
-        .aeIcon {
-          box-shadow:
-            0 18px 55px rgba(0,0,0,0.36),
-            inset 0 1px 0 rgba(255,255,255,0.12),
-            0 0 34px rgba(210,145,255,0.16);
-        }
-
-        .largeIcon {
-          width: 78px;
-          height: 78px;
-          border-radius: 26px;
-        }
-
-        .largeIcon span {
-          font-size: 28px;
-        }
-
-        .glassAppLabel {
-          margin-top: 9px;
-          text-align: center;
-          font-size: 9px;
-          font-weight: 900;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-          opacity: 0.55;
         }
 
         .animation-delay-1200 {
           animation-delay: 1.2s;
-        }
-
-        .animation-delay-2200 {
-          animation-delay: 2.2s;
-        }
-
-        .animation-delay-3000 {
-          animation-delay: 3s;
         }
 
         @keyframes gradientMove {
@@ -459,18 +343,6 @@ const Hero = () => {
           }
         }
 
-        @keyframes floatSoft {
-          0%, 100% {
-            transform: translateY(0px) rotate(0deg);
-          }
-          50% {
-            transform: translateY(-14px) rotate(1.5deg);
-          }
-        }
-
-        .animate-floatSoft {
-          animation: floatSoft 7s ease-in-out infinite;
-        }
 
         @keyframes blobOne {
           0%, 100% {
@@ -539,14 +411,6 @@ const Hero = () => {
 
         .animate-dotPulse {
           animation: dotPulse 2.6s ease-in-out infinite;
-        }
-
-        @media (max-width: 640px) {
-          .glassAppIcon {
-            width: 52px;
-            height: 52px;
-            border-radius: 16px;
-          }
         }
       `}</style>
     </section>

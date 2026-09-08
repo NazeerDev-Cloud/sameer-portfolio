@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-09-08T20:05:30.955Z",
+  "totalBefore": 2023544883,
+  "totalAfter": 372747046,
+  "rows": [
+    {
+      "rel": "AI Videos\\Asad reel.mp4",
+      "before": 131884132,
+      "after": 26558778,
+      "saved": 0.7986203677634244,
+      "action": "compressed"
+    },
+    {
+      "rel": "AI Videos\\Lilly Herbal Soap.mp4",
+      "before": 65503898,
+      "after": 24762023,
+      "saved": 0.6219763440642876,
+      "action": "compressed"
+    },
+    {
+      "rel": "AI Videos\\Lillys Shampoo.mp4",
+      "before": 41379205,
+      "after": 13235560,
+      "saved": 0.6801398190226227,
+      "action": "compressed"
+    },
+    {
+      "rel": "AI Videos\\Time lapse Ai Video .mp4",
+      "before": 31851502,
+      "after": 15817679,
+      "saved": 0.5033929954072496,
+      "action": "compressed"
+    },
+    {
+      "rel": "AI Videos\\WhatsApp Video 2026-08-02 at 00.04.20.mp4",
+      "before": 5477788,
+      "after": 5171450,
+      "saved": 0.05592366845887431,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\Astrum Earth Sample .mp4",
+      "before": 53881744,
+      "after": 16039170,
+      "saved": 0.7023264503094035,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\C0301_5 copy.mp4",
+      "before": 131293370,
+      "after": 19747074,
+      "saved": 0.8495958021338016,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\C0301_5.mp4",
+      "before": 297614023,
+      "after": 20079743,
+      "saved": 0.932530924458489,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\C0301_7 (1).mp4",
+      "before": 217725480,
+      "after": 31402064,
+      "saved": 0.855772213706912,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\C0301_7.mp4",
+      "before": 217725480,
+      "after": 31402064,
+      "saved": 0.855772213706912,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\Camera animation.mp4",
+      "before": 5090338,
+      "after": 1436990,
+      "saved": 0.7177024394057919,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\Emily Sample Video .mp4",
+      "before": 249029386,
+      "after": 12757681,
+      "saved": 0.9487703792515474,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\Motion Graphics.mp4",
+      "before": 7490043,
+      "after": 2095675,
+      "saved": 0.7202052111049295,
+      "action": "compressed"
+    },
+    {
+      "rel": "Long Form\\sample-1.mp4",
+      "before": 39148713,
+      "after": 6324824,
+      "saved": 0.8384410746784958,
+      "action": "compressed"
+    },
+    {
+      "rel": "Map Animation\\C0301_8.mp4",
+      "before": 98549726,
+      "after": 20487279,
+      "saved": 0.7921122682776409,
+      "action": "compressed"
+    },
+    {
+      "rel": "Short Form\\1 (1).mp4",
+      "before": 294340574,
+      "after": 8437318,
+      "saved": 0.971334845599642,
+      "action": "compressed"
+    },
+    {
+      "rel": "Short Form\\Meet Ronaq Series by Login Perfect for Mehfils, Milad, Deeni Majalis.mp4",
+      "before": 8949207,
+      "after": 8949207,
+      "saved": 0,
+      "action": "kept original"
+    },
+    {
+      "rel": "Short Form\\Net sol  Ai .mp4",
+      "before": 17711560,
+      "after": 2389361,
+      "saved": 0.8650959599267372,
+      "action": "compressed"
+    },
+    {
+      "rel": "Short Form\\One of the Best Budget Phone Under Rs.20K _ Gfive NOTE 25.mp4",
+      "before": 7958888,
+      "after": 7958888,
+      "saved": 0,
+      "action": "kept original"
+    },
+    {
+      "rel": "Short Form\\reel.mp4",
+      "before": 4549839,
+      "after": 1304231,
+      "saved": 0.7133456810229988,
+      "action": "compressed"
+    },
+    {
+      "rel": "video.mp4",
+      "before": 96389987,
+      "after": 96389987,
+      "saved": 0,
+      "action": "kept original"
+    }
+  ]
+}

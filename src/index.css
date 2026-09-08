@@ -2,7 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
-
+/* ══════════════════════════════════════════
+   Light Theme Tokens (Hostinger-style)
+   ══════════════════════════════════════════ */
+:root {
+  --bg: #ffffff;
+  --bg-tint: #f6f7f9;
+  --bg-tint-2: #eef0f3;
+  --surface: #ffffff;
+  --surface-2: #f6f7f9;
+  --border: #e6e7ec;
+  --text: #1b1f3b;
+  --text-body: #4b5563;
+  --text-muted: #8a8fa3;
+  --primary: #8168F0;
+  --primary-dark: #4b26d4;
+  --primary-light: #7C5CFF;
+  --violet: #8b5cf6;
+  --lavender: #B296FE;
+}
 
 body {
   font-family: 'Orbitron', sans-serif;
@@ -10,8 +28,8 @@ body {
 
 body {
   font-family: var(--font-sans);
-  background-color: #080B29;
-  color: #ffffff;
+  background-color: #ffffff;
+  color: #1b1f3b;
   overflow-x: hidden;
 }
 
@@ -25,43 +43,43 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #05071D;
+  background: #eef0f3;
 }
 
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg,
-      #623BFD 0%,
+      #8168F0 0%,
       #7C5CFF 50%,
       #B296FE 100%);
   border-radius: 100px;
-  border: 2px solid #05071D;
+  border: 2px solid #eef0f3;
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg,
-      #7C5CFF 0%,
-      #9999FF 50%,
-      #D4C8FE 100%);
-  box-shadow: 0 0 10px #623BFD80;
+      #4b26d4 0%,
+      #8168F0 50%,
+      #7C5CFF 100%);
+  box-shadow: 0 0 10px #8168F040;
 }
 
 ::-webkit-scrollbar-corner {
-  background: #05071D;
+  background: #eef0f3;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #623BFD #05071D;
+  scrollbar-color: #8168F0 #eef0f3;
 }
 
 /* Selection Color bhi match karo */
 ::selection {
-  background: #623BFD80;
-  color: #ffffff;
+  background: #8168F033;
+  color: #1b1f3b;
 }
 
 ::-moz-selection {
-  background: #623BFD80;
-  color: #ffffff;
+  background: #8168F033;
+  color: #1b1f3b;
 }

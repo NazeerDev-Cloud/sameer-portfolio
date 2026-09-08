@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Hero from '../components/home/Hero'
-import AboutSection from '../components/home/AboutSection'
+// import AboutSection from '../components/home/AboutSection' // hidden on home page
 import ProjectCarousel from '../components/home/ProjectCarousel'
 import ProfessionalServices from '../components/home/ProfessionalServices'
 import WorkflowPipeline from '../components/home/WorkflowPipeline'
@@ -27,10 +27,7 @@ export default function Home() {
                 <Hero />
             </div>
 
-            {/* About */}
-            <div id="about" className="scroll-mt-28">
-                <AboutSection />
-            </div>
+            {/* About section hidden on home page */}
 
             {/* Projects */}
             <div id="projects" className="scroll-mt-28">
